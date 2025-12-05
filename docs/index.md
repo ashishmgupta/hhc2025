@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Provide a summary/overview of your report, including links to important sections like [Objectives](./objectives/o1.md) and [Easter eggs](./easter_eggs.md). This is also a good time to highlight and link to some of the awesome things you did like noteworthy hacks or custom scripts you created. Remember to make your report **fun** and **whimsical**! :wink:
+This is Ashish. Provide a summary/overview of your report, including links to important sections like [Objectives](./objectives/o1.md) and [Easter eggs](./easter_eggs.md). This is also a good time to highlight and link to some of the awesome things you did like noteworthy hacks or custom scripts you created. Remember to make your report **fun** and **whimsical**! :wink:
 
 The below two admonition blocks explain the 50-page submission limitation and how to navigate the report. Please note that report size and submission guidelines can change, so please make sure to carefully follow any instructions provided by Santa and the elves to ensure you meet the requirements.
 
