@@ -102,7 +102,7 @@ nav:
 - Welcome: 'index.md'
 - Objectives:
   - Section 1:
-    - Objective 1: 'objectives/o1.md'
+    - Objective 1: 'objectives/orientation.md'
   - Section 2:
     - Objective 2: 'objectives/o2.md'
     - Objective 3: 'objectives/o3.md'

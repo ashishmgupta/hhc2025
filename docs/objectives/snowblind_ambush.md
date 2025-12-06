@@ -6,7 +6,7 @@
 ## Objective
 
 !!! question "Request"
-    ashish - Insert the objective description from your badge.
+    Head to the Hotel to stop Frosty's plan. Torkel is waiting at the Grand Web Terminal.
 
 ??? quote "Insert Elf Name"
     Copy the first part of the conversation with Elf Name here<br/>
