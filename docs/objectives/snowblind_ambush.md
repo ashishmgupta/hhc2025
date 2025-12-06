@@ -1,6 +1,6 @@
 # Snowblind Ambush
 
-**Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:<br/>
 **Direct link**: [Objective 1 terminal](https://.../)
 
 ## Objective
