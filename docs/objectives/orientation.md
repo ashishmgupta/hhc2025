@@ -2,7 +2,7 @@
 icon: material/text-box-outline
 ---
 
-# Orientation
+# Holiday Hack Orientation
 Meet Lynn Schifano on the train for a warm welcome and get ready for your journey around the Dosis Neighborhood.
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
@@ -12,7 +12,7 @@ Meet Lynn Schifano on the train for a warm welcome and get ready for your journe
 !!! question "Request"
     Meet Lynn Schifano on the train for a warm welcome and get ready for your journey around the Dosis Neighborhood.
 
-??? quote "Insert Elf Name"
+??? quote "Lynn Schifano"
     Welcome to the 2025 SANS Holiday Hack Challenge! We’re on a train heading… NOT to the North Pole, but instead to The Neighborhood. Your cybersecurity skills are needed there this year! I’m here to help orient you to this year’s exciting challenge.<br/>
     I'm the Chief of Staff at Counter Hack, making sure the right people are doing the right thing at the right place at the right time -- Herding cats, in other words.<br/>
     I love sports, especially college basketball. My favorite teams are Monmouth University, Louisville, and Syracuse.<br/>I'm a Queens Girl living my best life at the beautiful Jersey Shore.<br/>
