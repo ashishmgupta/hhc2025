@@ -32,6 +32,54 @@ icon: material/text-box-outline
     Remember, the new Phishing Threat Analysis Station (PTAS) is still under construction. Even though the regex patterns are provided, they haven't been fine tuned. Some of the matches may need to be manually removed.
 
 ## Solution
+### Summary
+This challenge shows a phishing message from which we needed to extract IOCs (domains, IP addresses, URLs and email adddresses) and defanging them meaning replace the malicious content
+with harmless placeholders and report them.
+
+### Step 1 : Extract IOCs using regex
+#### Domains
+```bash
+`([a-zA-Z]+\.)*[a-zA-Z]+\.[a-zA-Z]{4}
+```
+
+![Domains extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_2.png){ width="500" height="350" }
+
+#### IP Address
+```bash
+` \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+```
+
+![IP Address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_3.png){ width="500" height="350" }
+
+#### URLs
+```bash
+` https://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:[0-9]+)?(/[^\s]*)?
+```
+
+![URL extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_4.png){ width="500" height="350" }
+
+#### Email Addresses
+```bash
+` \b[a-zA-Z0-9._%+-]+@(?!(dosisneighborhood\.corp)\b)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b
+```
+
+![Email address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_5.png){ width="500" height="350" }
+
+### Step 2 : Defang IOCs
+Different IOCs need different way to replace characters on them to defang them,
+For example:
+
+- For domain and URLs It would be replace all . with [.]
+- For  emails It would be replace all @ with [@] 
+- For  urls It would be replace http with hxxp
+
+We can use ```sed``` to do the replacements and combine all of them with semicolons to apply the defang to all the IOCs.
+
+```
+s/\./[.]/g; s/@/[@]/g; s/http/hxxp/g; s/:\//[://]/g
+```
+
+![Defang all](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_6.png){ width="500" height="350" }
 
 This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
 
