@@ -2,10 +2,11 @@
 icon: material/text-box-outline
 ---
 
-# Orientation
+# Its All About Defang
+![Meeting with Ed Skoudis](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 1 terminal](https://its-all-about-defang.holidayhackchallenge.com/)
+**Direct link**: [Its all about defang](https://its-all-about-defang.holidayhackchallenge.com/)
 
 ## Objective
 
