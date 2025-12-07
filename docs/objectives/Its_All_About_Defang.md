@@ -39,28 +39,28 @@ with harmless placeholders and report them.
 ### Step 1 : Extract IOCs using regex
 #### Domains
 ```bash
-`([a-zA-Z]+\.)*[a-zA-Z]+\.[a-zA-Z]{4}
+([a-zA-Z]+\.)*[a-zA-Z]+\.(?!corp\b)[a-zA-Z]{4}
 ```
 
 ![Domains extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_2.png){ width="500" height="350" }
 
 #### IP Address
 ```bash
-` \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+\b(?!10\.)(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}\b
 ```
 
 ![IP Address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_3.png){ width="500" height="350" }
 
 #### URLs
 ```bash
-` https://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:[0-9]+)?(/[^\s]*)?
+https://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:[0-9]+)?(/[^\s]*)?
 ```
 
 ![URL extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_4.png){ width="500" height="350" }
 
 #### Email Addresses
 ```bash
-` \b[a-zA-Z0-9._%+-]+@(?!(dosisneighborhood\.corp)\b)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b
+\b[a-zA-Z0-9._%+-]+@(?!(dosisneighborhood\.corp)\b)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b
 ```
 
 ![Email address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_5.png){ width="500" height="350" }
@@ -79,67 +79,18 @@ We can use ```sed``` to do the replacements and combine all of them with semicol
 s/\./[.]/g; s/@/[@]/g; s/http/hxxp/g; s/:\//[://]/g
 ```
 
-![Defang all](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_6.png){ width="500" height="350" }
+![Defang all](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_8.png){ width="800" height="650" }
 
-This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
+We submit the report to the security team and It is accepted.
 
-### Admonitions
+![Report submitted and completed](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_9.png){ width="700" height="550" }
 
-!!! warning "Anchor the decorations"
-    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don’t want them floating off into the tropical sunset!
-
-!!! info "Palm tree lighting tip"
-    While on the island, make sure to hang your Christmas lights on a palm tree. It’s not only festive but also a great beacon for Santa to find you!
-
-### Images
-
-![Terminal output](../img/objectives/o1/terminal_output_o1.png)
-
-### Diagrams
-
-```mermaid
-sequenceDiagram
-  autonumber
-  Santa->>Elf: Hey Elf, is the Naughty-or-Nice List secured?
-  loop Security Check
-      Elf->>Elf: Ensuring list is encrypted
-  end
-  Note right of Elf: Using candy-cane encryption!
-  Elf-->>Santa: Safe and sound, Santa!
-  Santa->>Reindeer: Rudolph, did you patch the sleigh's software?
-  Note left of Reindeer: Checking for reindeerOS updates...
-  Reindeer-->>Santa: All patched and glowing bright!
-```
-
-### Code blocks
-
-```bash linenums="1" hl_lines="7" title="Countdown script (with line 7 highlighted)"
-#!/bin/bash
-echo "Christmas Holiday Countdown"
-
-days_until_xmas=$(($(date -d "Dec 25" +%j) - $(date +%j)))
-
-if [ $days_until_xmas -ge 0 ]; then
-  echo "Only $days_until_xmas days until Christmas!"
-else
-  echo "Christmas has passed! Hope you had a great time!"
-fi
-```
-
-### Tables
-
-| Activity             | Santa's Verdict       | Elf Comments                    |
-| :------------------- | :-------------------- | :------------------------------ |
-| Iceberg Surfing      | Risky Business        | "Lost three surfboards!"        |
-| Polar Bear Hugs      | Approach with Caution | "Fluffy but... brisk."          |
-| Snow Fort Building   | Highly Recommended    | "Elf-sized doorways only."      |
-| Aurora Light Chasing | Magical Experience    | "Better than Christmas lights!" |
-| Penguin Parade       | Absolute Must-See     | "They're oddly organized!"      |
 
 !!! success "Answer"
-    Insert the answer to the objective here.
+    Solved in the game
 
 ## Response
 
-!!! quote "Insert Elf Name"
-    Copy the final part of the conversation with Elf Name here.
+!!! quote "Ed Skoudis"
+    Well you just made that look like a piece of cake! Though I prefer cookies...I know where to find the best in town!<br/>
+    Thanks again! See ya 'round!
