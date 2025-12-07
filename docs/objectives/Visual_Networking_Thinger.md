@@ -2,89 +2,88 @@
 icon: material/text-box-outline
 ---
 
-# Insert Objective 4 Title
+# Visual Networking Thinger
+![Visual Networking Thinger](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_1.png)
 
-**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 4 website](https://.../)
+**Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Direct link**: [Visual Networking Thinger](https://visual-networking.holidayhackchallenge.com/)
 
 ## Objective
 
 !!! question "Request"
-    Insert the objective description from your badge.
+    Skate over to Jared at the frozen pond for some network magic and learn the ropes by the hockey rink.
 
-??? quote "Insert Elf Name"
-    Copy the first part of the conversation with Elf Name here<br/>
-    You can use `<br/>` to ensure each sentence starts on a new line.
+??? quote "Jared Folkins"
+    Jared Folkins here! My favorite Christmas movie is White Christmas. You should find me on the socials and tell me what yours is.<br/>
+    You know, I think Santa is right! It truly is better to give than to receive.<br/>
+    I love singing Carols with my family! 🎵O holy night, the stars are brightly shining…🎵<br/>
 
-## Hints
 
-??? tip "Insert Hint 1 Title"
-    Along the way you will receive different hints. Insert them here.
-
-??? tip "Insert Hint 2 Title"
-    Along the way you will receive different hints. Insert them here.
 
 ## Solution
 
-This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
+### Challenge 1 : DNS lookup
 
-### Admonitions
+- Client [DNS Request]
+    - Port : 53
+    - Domain name : visual-networking.holidayhackchallenge.com
+    - Request Type : A
+- DNS Server [DNS Response]
+    - Response Value : 34.160.145.134
+    - Response Type : A
 
-!!! warning "Anchor the decorations"
-    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don’t want them floating off into the tropical sunset!
+![Challenge 1 : DNS lookup](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_2.png)
 
-!!! info "Palm tree lighting"
-    While on the island, make sure to hang your Christmas lights on a palm tree. It’s not only festive but also a great beacon for Santa to find you!
 
-### Images
+### Challenge 2 : TCP 3-Way Handshake
 
-![Terminal output](../img/objectives/o4/terminal_output_o4.png)
+Now that we have the IP address (34[.]160[.]145[.]134).
 
-### Diagrams
+- Client sends SYN flag to the server with the above IP.
+- Server responds with SYN-ACK
+- Client sends ACK
+    
+![Challenge 2 : TCP 3-Way Handshake](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_3.png)
 
-```mermaid
-sequenceDiagram
-  autonumber
-  Santa->>Elf: Hey Elf, is the Naughty-or-Nice List secured?
-  loop Security Check
-      Elf->>Elf: Ensuring list is encrypted
-  end
-  Note right of Elf: Using candy-cane encryption!
-  Elf-->>Santa: Safe and sound, Santa!
-  Santa->>Reindeer: Rudolph, did you patch the sleigh's software?
-  Note left of Reindeer: Checking for reindeerOS updates...
-  Reindeer-->>Santa: All patched and glowing bright!
-```
+### Challenge 3: HTTP GET Request
 
-### Code blocks
+Now that we have TCP connection established, client can send a GET HTTP request.
 
-```bash linenums="1" hl_lines="7" title="Countdown script (with line 7 highlighted)"
-#!/bin/bash
-echo "Christmas Holiday Countdown"
+- Client [HTTP Request]
+    - HTTP Verb : GET
+    - HTTP Version : HTTP/1.1
+    - Host : visual-networking.holidayhackchallenge.com
+    - User-Agent : SomeRandomUserAgent
+- Web server [HTTP Response]
+    
+    
+![Challenge 3: HTTP GET Request](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_4.png)
 
-days_until_xmas=$(($(date -d "Dec 25" +%j) - $(date +%j)))
+### Challenge 4: TLS Handshake
 
-if [ $days_until_xmas -ge 0 ]; then
-  echo "Only $days_until_xmas days until Christmas!"
-else
-  echo "Christmas has passed! Hope you had a great time!"
-fi
-```
+For the secure connection, client and server need a different handshake.
 
-### Tables
+![Challenge 4: HTTP GET Request](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_5.png)
 
-| Activity             | Santa's Verdict       | Elf Comments                    |
-| :------------------- | :-------------------- | :------------------------------ |
-| Iceberg Surfing      | Risky Business        | "Lost three surfboards!"        |
-| Polar Bear Hugs      | Approach with Caution | "Fluffy but... brisk."          |
-| Snow Fort Building   | Highly Recommended    | "Elf-sized doorways only."      |
-| Aurora Light Chasing | Magical Experience    | "Better than Christmas lights!" |
-| Penguin Parade       | Absolute Must-See     | "They're oddly organized!"      |
+
+### Challenge 5: HTTPS GET Request
+
+- Client [HTTP Request]
+    - HTTP Verb : GET
+    - HTTP Version : HTTP/1.1
+    - Host : visual-networking.holidayhackchallenge.com
+    - User-Agent : SomeRandomUserAgent
+- Web server [HTTP Response]
+
+![Challenge 5: HTTPS GET Request](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_6.png)
+
+Challenge is now completed.
+![Challenge 6: Challenge is now completed](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_7.png)
 
 !!! success "Answer"
-    Insert the answer to the objective here.
+    Completed in the game.
 
 ## Response
 
-!!! quote "Insert Elf Name"
-    Copy the final part of the conversation with Elf Name here.
+!!! quote "Jared Folkins"
+    Wonderful! You've truly shown that giving your best effort brings the greatest reward - now that's the Christmas spirit! <br/>
