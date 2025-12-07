@@ -3,7 +3,7 @@ icon: material/text-box-outline
 ---
 
 # Holiday Hack Orientation
-![Meeting with Lynn Schifano](../img/objectives/orientation/orientation2.png)
+![Meeting with Lynn Schifanogit commit](../img/objectives/orientation/orientation2.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
