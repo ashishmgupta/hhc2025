@@ -2,7 +2,7 @@
 icon: material/text-box-outline
 ---
 
-# Orientation
+# The Open Door
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 **Direct link**: [Objective 1 terminal](https://.../)
