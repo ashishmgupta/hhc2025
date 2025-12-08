@@ -2,89 +2,106 @@
 icon: material/text-box-outline
 ---
 
-# Orientation
+# Spare Key
+![Spare key](../img/objectives/Spare_Key/Spare_Key_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 1 terminal](https://.../)
+**Direct link**: [Spare Key](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSSpareKey)
 
 ## Objective
 
 !!! question "Request"
-    ashish - Insert the objective description from your badge.
+    Help Goose Barry near the pond identify which identity has been granted excessive Owner permissions at the subscription level, violating the principle of least privilege.
 
-??? quote "Insert Elf Name"
-    Copy the first part of the conversation with Elf Name here<br/>
-    You can use `<br/>` to ensure each sentence starts on a new line.
-
-## Hints
-
-??? tip "Insert Hint 1 Title"
-    Along the way you will receive different hints. Insert them here.
-
-??? tip "Insert Hint 2 Title"
-    Along the way you will receive different hints. Insert them here.
+??? quote "Goose Barry"
+    You want me to say what exactly? Do I really look like someone who says MOOO?
+    The Neighborhood HOA hosts a static website on Azure Storage.
+    An admin accidentally uploaded an infrastructure config file that contains a long-lived SAS token.
+    Use Azure CLI to find the leak and report exactly where it lives.
 
 ## Solution
+### Goal 1
+Let's start by listing all resource groups. <br/>
+$ az group list -o table<br/>
+This will show all resource groups in a readable table format.
 
-This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
-
-### Admonitions
-
-!!! warning "Anchor the decorations"
-    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don’t want them floating off into the tropical sunset!
-
-!!! info "Palm tree lighting tip"
-    While on the island, make sure to hang your Christmas lights on a palm tree. It’s not only festive but also a great beacon for Santa to find you!
-
-### Images
-
-![Terminal output](../img/objectives/o1/terminal_output_o1.png)
-
-### Diagrams
-
-```mermaid
-sequenceDiagram
-  autonumber
-  Santa->>Elf: Hey Elf, is the Naughty-or-Nice List secured?
-  loop Security Check
-      Elf->>Elf: Ensuring list is encrypted
-  end
-  Note right of Elf: Using candy-cane encryption!
-  Elf-->>Santa: Safe and sound, Santa!
-  Santa->>Reindeer: Rudolph, did you patch the sleigh's software?
-  Note left of Reindeer: Checking for reindeerOS updates...
-  Reindeer-->>Santa: All patched and glowing bright!
+```
+az group list -o table
 ```
 
-### Code blocks
+![Spare key](../img/objectives/Spare_Key/Spare_Key_2.png)
 
-```bash linenums="1" hl_lines="7" title="Countdown script (with line 7 highlighted)"
-#!/bin/bash
-echo "Christmas Holiday Countdown"
+### Goal 2
+az storage account list --resource-group rg-the-neighborhood -o table <br/>
+This shows what storage accounts exist and their types.<br/>
 
-days_until_xmas=$(($(date -d "Dec 25" +%j) - $(date +%j)))
+```
+ az storage account list --resource-group rg-the-neighborhood -o table
+```
+ 
+![Spare key](../img/objectives/Spare_Key/Spare_Key_3.png)
 
-if [ $days_until_xmas -ge 0 ]; then
-  echo "Only $days_until_xmas days until Christmas!"
-else
-  echo "Christmas has passed! Hope you had a great time!"
-fi
+
+### Goal 3
+Someone mentioned there was a website in here.<br/>
+maybe a static website?<br/>
+try:$ az storage blob service-properties show --account-name <insert_account_name> --auth-mode login<br/>
+
+
+```
+az storage blob service-properties show --account-name neighborhoodhoa --auth-mode login
 ```
 
-### Tables
+![Spare key](../img/objectives/Spare_Key/Spare_Key_4.png)
 
-| Activity             | Santa's Verdict       | Elf Comments                    |
-| :------------------- | :-------------------- | :------------------------------ |
-| Iceberg Surfing      | Risky Business        | "Lost three surfboards!"        |
-| Polar Bear Hugs      | Approach with Caution | "Fluffy but... brisk."          |
-| Snow Fort Building   | Highly Recommended    | "Elf-sized doorways only."      |
-| Aurora Light Chasing | Magical Experience    | "Better than Christmas lights!" |
-| Penguin Parade       | Absolute Must-See     | "They're oddly organized!"      |
+
+### Goal 4
+Let's see what 📦 containers exist in the storage account.<br/>
+💡 Hint: You will need to use az storage container list.<br/>
+We want to list the container and its public access levels.
+```
+az storage container list --account-name neighborhoodhoa --auth-mode login
+```
+![Spare key](../img/objectives/Spare_Key/Spare_Key_5.png)
+
+
+### Goal 5
+Examine what files are in the static website container<br/>
+💡 hint: when using --container-name you might need '<name>'<br/>
+Look 👀 for any files that shouldn't be publicly accessible!<br/>
+
+Looking at the the container named "public"
+```
+az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name public
+```
+![Spare key](../img/objectives/Spare_Key/Spare_Key_6.png)
+
+Looking at the the container named "$web"
+```
+az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name '$web' --output table
+```
+![Spare key](../img/objectives/Spare_Key/Spare_Key_7.png)
+
+### Goal 6
+Take a look at the files here, what stands out?<br/>
+Try examining a suspect file 🕵️:<br/>
+💡 hint: --file /dev/stdout | less will print to your terminal 💻.<br/>
+
+```
+az storage blob download --account-name neighborhoodhoa --auth-mode login --container-name '$web' --name iac/terraform.tfvars --file tfvars.txt --debug
+```
+
+![Spare key](../img/objectives/Spare_Key/Spare_Key_8.png)
+
+### Goal 7
+⚠️   Accidentally uploading config files to $web can leak secrets. 🔐 <br/>
+Challenge Complete! To finish, type: finish
+![Spare key](../img/objectives/Spare_Key/Spare_Key_9.png)
 
 !!! success "Answer"
-    Insert the answer to the objective here.
+    Completed in the game.
 
 ## Response
 
-!!! quote "Insert Elf Name"
-    Copy the final part of the conversation with Elf Name here.
+!!! quote "Goose Barry"
+    There it is. A SAS token with read-write-delete permissions, publicly accessible. <br/>At least someone around here knows how to do a proper security audit.
