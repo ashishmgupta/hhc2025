@@ -3,30 +3,79 @@ icon: material/text-box-outline
 ---
 
 # The Open Door
-
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_1.png)
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 1 terminal](https://.../)
+**Direct link**: [The Open Door](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOpenDoor)
 
 ## Objective
-
 !!! question "Request"
-    ashish - Insert the objective description from your badge.
+    Help Goose Lucas in the hotel parking lot find the dangerously misconfigured Network Security Group rule that's allowing unrestricted internet access to sensitive ports like RDP or SSH.
 
-??? quote "Insert Elf Name"
+??? quote "Goose Lucas"
     Copy the first part of the conversation with Elf Name here<br/>
     You can use `<br/>` to ensure each sentence starts on a new line.
 
-## Hints
-
-??? tip "Insert Hint 1 Title"
-    Along the way you will receive different hints. Insert them here.
-
-??? tip "Insert Hint 2 Title"
-    Along the way you will receive different hints. Insert them here.
 
 ## Solution
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_2.png)
 
-This section explains the different steps taken to solve the challenge. Try to find a good balance between providing sufficient detail and not overloading the reader with too much information. Use [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/), [images](https://squidfunk.github.io/mkdocs-material/reference/images/), [diagrams](https://squidfunk.github.io/mkdocs-material/reference/diagrams/), [code blocks](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/), and [tables](https://squidfunk.github.io/mkdocs-material/reference/data-tables/) to highlight and structure important information or provide additional clarification.
+### Goal 1
+Welcome back! Let's start by exploring output formats.<br/>
+First, let's see resource groups in JSON format (the default):<br/>
+$ az group list<br/>
+JSON format shows detailed structured data.
+```
+az group list
+```
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_3.png)
+
+### Goal 2
+Great! Now let's see the same data in table format for better readability 👀
+$ az group list -o table
+Notice how -o table changes the output format completely!
+Both commands show the same data, just formatted differently.
+
+```
+az group list -o table
+```
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_4.png)
+
+### Goal 3
+Lets take a look at Network Security Groups (NSGs).
+To do this try: az network nsg list -o table
+This lists all NSGs across resource groups.
+For more information:
+https://learn.microsoft.com/en-us/cli/azure/network/nsg?view=azure-cli-latest
+
+```
+az network nsg list -o table
+```
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_5.png)
+
+
+### Goal 4
+Inspect the Network Security Group (web)  🕵️
+Here is the NSG and its resource group:--name nsg-web-eastus --resource-group theneighborhood-rg1 
+
+Hint: We want to show the NSG details. Use | less to page through the output.
+Documentation: https://learn.microsoft.com/en-us/cli/azure/network/nsg?view=azure-cli-latest#az-network-nsg-show
+
+```
+az network nsg show --name nsg-web-eastus --resource-group theneighborhood-rg1 
+```
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_6.png)
+
+
+### Goal 5
+Inspect the Network Security Group (mgmt)  🕵️
+Here is the NSG and its resource group:--nsg-name nsg-mgmt-eastus --resource-group theneighborhood-rg2 
+
+Hint: We want to list the NSG rules
+Documentation: https://learn.microsoft.com/en-us/cli/azure/network/nsg/rule?view=azure-cli-latest#az-network-nsg-rule-list
+
+```
+az network nsg rule list --nsg-name nsg-mgmt-eastus --resource-group theneighborhood-rg2 
+```
 
 ### Admonitions
 
