@@ -23,7 +23,8 @@ icon: material/text-box-outline
 ## Solution
 
 ### Goal 1 :
-You may not know this but the Azure cli help messages are very easy to access. First, try typing:
+You may not know this but the Azure cli help messages are very easy to access. <br/>
+First, try typing:
 ```
 az help | less
 ```
@@ -35,16 +36,16 @@ Next, you've already been configured with credentials. 🔑
 ```
 az account show | less
 ```
-  - Pipe the output to | less so you can scroll.
-  - Press 'q' to exit less.
+Pipe the output to | less so you can scroll.<br/>
+Press 'q' to exit less.<br/>
 
 ![az account show | less](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_3.png)
 
 
 ### Goal 3 :
-Now that you've run a few commands, Let's take a look at some Azure storage accounts.
-Try: az storage account list | less
-For more information:
+Now that you've run a few commands, Let's take a look at some Azure storage accounts.<br/>
+Try: az storage account list | less <br/>
+For more information:<br/>
 https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest
 
 ```
@@ -59,7 +60,6 @@ Try showing the account that has a common misconfiguration: az storage account s
 ```
 az storage account show --name neighborhood2 | less
 ```
-Output :
 The storage account named "neighborhood2" as "allowBlobPublicAccess" as true.
 
 ![az storage account list | less](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_5.png)
@@ -76,7 +76,7 @@ az storage container list --account-name neighborhood2
 ![az storage container lists](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_6.png)
 
 ### Goal 6
-Let's take a look at the blob list in the public container for neighborhood2.
+Let's take a look at the blob list in the public container for neighborhood2.<br/>
 For more information:
 https://learn.microsoft.com/en-us/cli/azure/storage/blob?view=azure-cli-latest#az-storage-blob-list
 
@@ -88,11 +88,11 @@ az storage blob list --container-name public --account-name neighborhood2
 
 
 ### Goal 7
-Try downloading and viewing the blob file named admin_credentials.txt from the public container.
+Try downloading and viewing the blob file named admin_credentials.txt from the public container.<br/>
 💡 hint: --file /dev/stdout should print in the terminal. Dont forget to use | less!
-
+```
 az storage blob download --container-name public --account-name neighborhood2 --name admin_credentials.txt --file /dev/stdout
-
+```
 ![az storage blob download](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_8.png)
 
 
