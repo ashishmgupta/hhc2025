@@ -113,9 +113,14 @@ nav:
     - Spare Key: 'objectives/Spare_Key.md'
     - The Open Door: 'objectives/The_Open_Door.md'
     - Owner: 'objectives/Owner.md'
-  - Section 2:
-    - Objective 2: 'objectives/o2.md'
-    - Objective 3: 'objectives/o3.md'
+  - Act 2:
+    - Retro Recovery: 'objectives/Retro_Recovery.md'
+    - Mail Detective: 'objectives/Mail_Detective.md'
+    - IDORable Bistro: 'objectives/IDORable_Bistro.md'
+    - Dosis Network Down: 'objectives/Dosis_Network_Down.md'
+    - Rogue Gnome Identity Provider: 'objectives/Rogue_Gnome_Identity_Provider.md'
+    - Quantgnome Leap: 'objectives/Quantgnome_Leap.md'
+    - Going in Reverse: 'objectives/Going_in_Reverse.md'
   - Section 3:
     - Objective 4: 'objectives/o4.md'
     - Objective 5: 'objectives/o5.md'
