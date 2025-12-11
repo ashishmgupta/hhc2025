@@ -81,6 +81,8 @@ https://its-idorable.holidayhackchallenge.com/api/receipt?id=139
 
 We have the name : Bartholomew Quibblefrost
 
+We enter that as the answer and that is accepted. <br/>
+![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_7.png)
 
 !!! success "Answer"
    Bartholomew Quibblefrost
