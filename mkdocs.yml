@@ -1,5 +1,5 @@
 # Reference: https://squidfunk.github.io/mkdocs-material/reference/
-site_name: SANS HHC Write-Up
+site_name: SANS Holiday Hack Challenge 2025 Write-Up
 site_author: Ashish Gupta
 site_description: Write-Up for SANS Holiday Hack Challenge 2025 
 theme:

