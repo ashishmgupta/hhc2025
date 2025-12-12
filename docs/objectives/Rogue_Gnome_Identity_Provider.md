@@ -24,7 +24,7 @@ icon: material/text-box-outline
 !!! question "Request"
    Hike over to Paul in the park for a gnomey authentication puzzle adventure. What malicious firmware image are the gnomes downloading?
 
-??? quote "Janusz Jasinski"
+??? quote "Paul Beckett"
 As a pentester, I proper love a good privilege escalation challenge, and that's exactly what we've got here.<br/>
 The challenge website notes the router firmware version and the hardware version at the bottom.<br/>
 I've got access to a Gnome's Diagnostic Interface at gnome-48371.atnascorp with the creds gnome:SittingOnAShelf, but it's just a low-privilege account.<br/>
@@ -285,6 +285,6 @@ We submit that as the answer and Its accepted.
    refrigeration-botnet.bin
 
 ## Response
-!!! quote "Janusz Jasinski"
+!!! quote "Paul Beckett"
     Brilliant work on that privilege escalation! You've successfully gained admin access to the diagnostic interface.<br/>
     Now we finally know what updates the gnomes have been receiving - proper good pentesting skills in action!

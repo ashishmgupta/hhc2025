@@ -12,7 +12,7 @@ icon: material/text-box-outline
 
 ## Hints
 ??? tip "Going in Reverse"
-   Holy cow! Another retro floppy disk, what are the odds? Well it looks like this one is intact.
+    Holy cow! Another retro floppy disk, what are the odds? Well it looks like this one is intact.
 ??? tip "Going in Reverse"
     Maybe it is encrypted OR encoded?
 ??? tip "Going in Reverse"
