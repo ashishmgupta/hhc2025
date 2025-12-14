@@ -121,9 +121,13 @@ nav:
     - Rogue Gnome Identity Provider: 'objectives/Rogue_Gnome_Identity_Provider.md'
     - Quantgnome Leap: 'objectives/Quantgnome_Leap.md'
     - Going in Reverse: 'objectives/Going_in_Reverse.md'
-  - Section 3:
-    - Objective 4: 'objectives/o4.md'
-    - Objective 5: 'objectives/o5.md'
-    - Snowblind Ambush: 'objectives/snowblind_ambush.md'
+  - Act 3:
+    - Gnome Tea: 'objectives/Gnome_Tea.md'
+    - Hack-a-Gnome: 'objectives/Hack_a_Gnome.md'
+    - Snowcat RCE & Priv-Esc: 'objectives/Snowcat-RCE-&-Priv-Esc.md'
+    - Schrodingers_Scope: 'objectives/Schrodingers_Scope.md'
+    - Find and Shutdown Frostys Snowglobe Machine: 'objectives/Find-and-Shutdown-Frostys-Snowglobe-Machine.md'
+    - On the Wire: 'objectives/On-the-Wire.md'
+    - Free Ski: 'objectives/Free_Ski.md'
 - Extras:
   - Easter Eggs: 'easter_eggs.md'
