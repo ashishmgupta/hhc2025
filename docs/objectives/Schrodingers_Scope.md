@@ -36,10 +36,12 @@ icon: material/text-box-outline
 Initial page.<br/>
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_2.png)
 
-Upon just browsing around, 
-![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_12.png), we accumulate violation because of background requests to URL /gnomeU
+Upon just browsing around, we accumulate violations because of background requests to URL /gnomeU. <br/>
 We first need to take that out so we don't get interrupted repeatedly.<br/>
 For example : <br/>
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_12.png)
+
 ```
 https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/gnomeU?id=308c8a1b-2f54-4e12-9f1f-fae78d758c9e
 ```
@@ -71,7 +73,7 @@ and in addition, we have our credentials to login.<br/>
 UserName : teststudent <br/>
 Password : 2025h0L1d4y5 <br/>
 
-But we get "Invalid Forwarding IP" error.
+But we get "Invalid Forwarding IP" error.<br/>
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_5.png)
 
 Forwarding IP could be related to the IP used in the X-Forwarded-For header.<br/>
@@ -184,4 +186,4 @@ We intercept the request with a repeater and and send ```eb72a05369dcb44c``` as 
 
 ## Response
 !!! quote "Kevin"
-        ...<br/>
+        ...
