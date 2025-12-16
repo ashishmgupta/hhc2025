@@ -43,11 +43,16 @@ For example : <br/>
 ```
 https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/gnomeU?id=308c8a1b-2f54-4e12-9f1f-fae78d758c9e
 ```
-This is called from a JS file.
-![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_13.png)
+We just add a network request blocking for that URL.
+```
+https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/gnomeU*
+```
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_15.png)
 
-We will need to empty out the src of that img tag by modifying the server response so that URL is not called.
-![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_14.png)
+After the above blocking, all the requests to that URL would be blocked and we wont be bothered by Gnomes.
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_16.png)
+
 
 ??? quote "The hint about the sitemap"
 "Things like a sitemap can be helpful, even if it is old or incomplete."
@@ -100,9 +105,83 @@ $1
 With the above change, the courses list link appears.
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_11.png)<br/>
 
+One of the endpoint /register/courseSearchUnlocked was throwing error because It was getting called without the id. We intercept and add the id in this and get successful response.
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_17.png)<br/>
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_18.png)<br/>
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_19.png)<br/>
+
+Vulnerability found : Found commented-out course search. <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_20.png)<br/>
+
+Now we land on the below page. <br/>
+
+```
+https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/register/courses/search?id=4a5b61e7-2a82-4908-94bd-4044b8653592
+```
+
+Searching the above with simple SQL injection payload <br/>
+```
+' OR 1=1 --
+```
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_21.png)<br/>
+
+Shows the course list. <br/> 
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_22.png)<br/>
+
+Vulnerability found : Identified SQL injection vulnerability<br/> 
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_23.png)<br/>
+
+In the above course list there is an interesting one. <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_24.png)<br/>
+
+In the below screen the Gnome notes: <br/>
+??? quote "Gnome on course details page"
+    Have some heart and 'Continue' about your way. If you really 'MUST' do something, just 'Remove' the course. We'll put up another once you're done and in the clear, ok?
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_25.png)<br/>
+
+
+Instead of removing, we report it. <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_26.png)<br/>
+
+Vulnerability reported and accepted <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_27.png)<br/>
+
+Vulnerability found : Reported the unauthorized gnome course<br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_28.png)<br/
+
+```
+https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/register/courses/wip/holiday_behavior
+```
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_29.png)<br/>
+
+It may be referring to the value of the cookie named "registration" <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_30.png)<br/>
+
+Looking at the values of the registration cookie for other courses, registration cookie starts with eb72a05369dcb4 with only last of the 2 digits different.<br/>
+
+So we set up intruder for /register/courses/wip/holiday_behavior<br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_31.png)<br/>
+
+Payload <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_32.png)<br/>
+
+eb72a05369dcb44c shows 200 OK <br/>
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_33.png)<br/>
+
+We intercept the request with a repeater and and send ```eb72a05369dcb44c``` as the registration cookie value.<br/>
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_34.png)<br/>
+
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_35.png)<br/>
+
 !!! success "Answer"
-   Bartholomew Quibblefrost
+   Solved in the game.
 
 ## Response
-!!! quote "Josh Wright"
-    Excellent work! You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>
+!!! quote "Kevin"
+        ...<br/>
