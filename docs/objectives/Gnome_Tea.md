@@ -2,129 +2,169 @@
 icon: material/text-box-outline
 ---
 
-# Hack-a-Gnome
+# Gnome Tea
 
-![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_0.png)
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_0.png)<br/>
 
-**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 **Direct link**: [Going_in_reverse](https://dosis-network-down.holidayhackchallenge.com/)
 
 
 ## Hints
-??? tip "Going in Reverse"
-    Holy cow! Another retro floppy disk, what are the odds? Well it looks like this one is intact.
-??? tip "Going in Reverse"
-    Maybe it is encrypted OR encoded?
-??? tip "Going in Reverse"
-    It looks like the program on the disk contains some weird coding.
+??? tip "Statically Coded"
+    Hopefully they did not rely on hard-coded client-side controls to validate admin access once a user validly logs in. If so, it might be pretty easy to change some variable in the developer console to bypass these controls.
+??? tip "Gnome Tea"
+    I heard rumors that the new GnomeTea app is where all the Gnomes spill the tea on each other. It uses Firebase which means there is a client side config the app uses to connect to all the firebase services
+??? tip "Rules"
+    Hopefully they setup their firestore and bucket security rules properly to prevent anyone from reading them easily with curl. There might be sensitive details leaked in messages.
+??? tip "License"
+    Exif jpeg image data can often contain data like the latitude and longitude of where the picture was taken.
 
 ## Objective
 
 !!! question "Request"
-   Kevin in the Retro Store needs help rewinding tech and going in reverse. Extract the flag and enter it here.
+   Enter the apartment building near 24-7 and help Thomas infiltrate the GnomeTea social network and discover the secret agent passphrase.
 
 ??? quote "Kevin McFarland"
-You know, there's something beautifully nostalgic about stumbling across old computing artifacts. Just last week, I was sorting through some boxes in my garage and came across a collection of 5.25" floppies from my college days - mostly containing terrible attempts at programming assignments and a few games I'd copied from friends.<br/>
+    Hi again. Say, you wouldn't happen to have time to help me out with something?<br/>
 
-Finding an old Commodore 64 disk with a mysterious BASIC program on it? That's like discovering a digital time capsule. The C64 was an incredible machine for its time - 64KB of RAM seemed like an ocean of possibility back then. I spent countless hours as a kid typing in program listings from Compute! magazine, usually making at least a dozen typos along the way.<br/>
+    The gnomes have been oddly suspicious and whispering to each other. In fact, I could've sworn I heard them use some sort of secret phrase. When I laughed right next to one, it said "passphrase denied". I asked what that was all about but it just giggled and ran away.<br/>
 
-The thing about BASIC programs from that era is they were often written by clever programmers who knew how to hide things in plain sight. Sometimes the most interesting discoveries come from reading the code itself rather than watching it execute. It's like being a digital archaeologist - you're not just looking at what the program does, you're understanding how the programmer thought.<br/>
+    I know they've been using [GnomeTea]("https://gnometea.web.app/login") to "spill the tea" on one another, but I can't sign up 'cause I'm obviously not a gnome. I could sure use your expertise to infiltrate this app and figure out what their secret passphrase is.
 
-Take your time with this one. Those old-school programmers had to be creative within such tight constraints. You'll know the flag by the Christmas phrase that pays.
-
-### Item
-We get a BASIC program while talking to Kevin.<br>
-![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_1.png)
+    I've tried a few things already, but as usual the whole... Uh, what's the word I'm looking for here? Oh right, "endeavor", ended up with the rest of my unfinished projects.
 
 ## Solution
 
-#### The BASIC program.
-
-Here in below below code, each character of the user input password (in the variable PASS$)
-is checked if Its matching with the character of the expected password (in the variable ENC_PASS$) in the same position. If any of them dont match, user is sent to line 90 where “ACCESS DENIED” is printed and program end for the user. <br/>
-
-So what if we calculate XOR 7 for each character of the expected password D13URKBT.
-<br/>
-
+https://gnometea.web.app/login references below js file
+https://gnometea.web.app/assets/index-BVLyJWJ_.js
+Which has the the hard coded details
 ```
-10 REM *** COMMODORE 64 SECURITY SYSTEM ***
-20 ENC_PASS$ = "D13URKBT"
-30 ENC_FLAG$ = "DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz"
-40 INPUT "ENTER PASSWORD: "; PASS$
-50 IF LEN(PASS$) <> LEN(ENC_PASS$) THEN GOTO 90
-60 FOR I = 1 TO LEN(PASS$)
-70 IF CHR$(ASC(MID$(PASS$,I,1)) XOR 7) <> MID$(ENC_PASS$,I,1) THEN GOTO 90
-80 NEXT I
-85 FLAG$ = "" : FOR I = 1 TO LEN(ENC_FLAG$) : FLAG$ = FLAG$ + CHR$(ASC(MID$(ENC_FLAG$,I,1)) XOR 7) : NEXT I : PRINT FLAG$
-90 PRINT "ACCESS DENIED"
-100 END
+    apiKey: "AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk",
+    authDomain: "holidayhack2025.firebaseapp.com",
+    projectId: "holidayhack2025",
+    storageBucket: "holidayhack2025.firebasestorage.app",
+    messagingSenderId: "341227752777",
+    appId: "1:341227752777:web:7b9017d3d2d83ccf481e98"
+```
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_1.png)<br/>
+
+Wrote the download_files.py to download all teh files in teh stogareBucket
+Its all jpeg(driver licence) and png files(photos) of the gnomes.
+
+```py title="download_files.py"
+code
 ```
 
-So what if we calculate XOR 7 for each character of the expected password D13URKBT.<br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_2.png)<br/>
+from the hint 
+??? quote "hint about exif" 
+    Exif jpeg image data can often contain data like the latitude and longitude of where the picture was taken.
+Looking for latitude and longitude in teh jpeg files.
+l7VS01K9GKV5ir5S8suDcwOFEpp2_drivers_license.jpeg has the location data
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_3.png)<br/>
 
-```py linenums="1" title="calculate_xor.py"
-#XOR a single character with 7.
-def xor7_char(c):
-	return chr(ord(c) ^ 7)
+This belongs to Barnanby Briefcase. <br/>
+
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_4.png)<br/>
+
+Per the hint the jpeg file might contain the location data. Using exiftool and we get the location data.<br>
+```
+exiftool *.jpeg | grep GPS
+```
+We use a GPS website to get location with latitude and longitude.<br/>
+[https://www.gps-coordinates.net/] ("https://www.gps-coordinates.net/")<br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_5.png)<br/>
 
 
-input_string = input("enter the string : ")
-print(f"input string : {input_string}")
+A location in Australia named Gnomesville. [Google Maps link]("https://www.google.com/maps/place/Gnomesville+Car+Park/@-33.4657638,115.9123758,18z/data=!4m12!1m5!3m4!2zMzPCsDI3JzUzLjkiUyAxMTXCsDU0JzM3LjYiRQ!8m2!3d-33.4649722!4d115.9104444!3m5!1s0x2a31c3adfd91113f:0x4bb9386a1be096f!8m2!3d-33.4655219!4d115.9115959!16s%2Fg%2F11g6yqsdd9?entry=ttu&g_ep=EgoyMDI1MTEwNC4xIKXMDSoASAFQAw%3D%3D") <br/>
 
-xor_string = ""
-for c in input_string:
-    xor_string += xor7_char(c)  
-print(f"xor string : {xor_string}")
+### Get the data
+dms<br/>
+```
+https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/dms?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk > dms.json
 ```
 
+tea<br/>
 ```
-python calculate_xor.py
-```
-Enter the string :
-```
-D13URKBT
+https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/tea?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk > tea.json
 ```
 
-![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_2.png)
-
-But that is just to bypass the logic so we dont get sent to line 90 and exit.<br/>
-Then in the line 85, effectively calculates the XOR 7 of the variable ENC_FLAG$<br/>
-` is a comment in BASIC, so we just need to calculate the XOR 7 for DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz<br/>
-
-```bash title="BASIC program"
-10 REM *** COMMODORE 64 SECURITY SYSTEM ***
-20 ENC_PASS$ = "D13URKBT"
-30 ENC_FLAG$ = "DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz"
-40 INPUT "ENTER PASSWORD: "; PASS$
-50 IF LEN(PASS$) <> LEN(ENC_PASS$) THEN GOTO 90
-60 FOR I = 1 TO LEN(PASS$)
-70 IF CHR$(ASC(MID$(PASS$,I,1)) XOR 7) <> MID$(ENC_PASS$,I,1) THEN GOTO 90
-80 NEXT I
-85 FLAG$ = "" : FOR I = 1 TO LEN(ENC_FLAG$) : FLAG$ = FLAG$ + CHR$(ASC(MID$(ENC_FLAG$,I,1)) XOR 7) : NEXT I : PRINT FLAG$
-90 PRINT "ACCESS DENIED"
-100 END
+gnomes<br/>
 ```
-### Calculating the XOR 7 for DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz
-```
-python calculate_xor.py
-```
-Enter the string :
-```
-DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz
+https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/tea?key=AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk > gnomes.json
 ```
 
-![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_3.png)
+Looking at the dms.json looking for "pass"<br/>
+??? quote "Hint about the password"
+    My password is actually the name of my hometown that I grew up in.<br/>
+    I took my picture of my id there
 
-We get ```CTF{frost-plan:compressors,coolant,oil}``` <br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_6.png)<br/>
 
-We submit the above output and that is accepted as the answer.
+Since the location data was found in the Barnanby Briefcase’s id, It has to be his password based on the above. Now we need to look for his email address.<br/>
+```
+cat gnomes.json | grep email
+```
+The email of Barnanby is : <br/>
+```
+barnabybriefcase@gnomemail.dosis
+```
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_7.png)<br/>
 
-![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_4.png)
+Website  : https://gnometea.web.app/ <br/>
+UserName : barnabybriefcase@gnomemail.dosis <br/>
+Password : gnomesville <br/>
+
+and we are in.<br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_8.png)<br/>
+
+Now looking for the secret passphrase which gnomes use to communicate with each other. It can not be user specific. <br/>
+
+There is a reference of /admin in the : <br/>
+[https://gnometea.web.app/assets/index-BVLyJWJ_.js]("https://gnometea.web.app/assets/index-BVLyJWJ_.js")
+
+When we try to go there :<br/>
+[https://gnometea.web.app/admin]("https://gnometea.web.app/admin")
+We get the below with a label <br/>
+
+window.ADMIN_UID: not set <br/>
+
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_9.png)<br/>
+
+When we inspect the below file<br/>
+[https://gnometea.web.app/assets/index-BVLyJWJ_.js]("https://gnometea.web.app/assets/index-BVLyJWJ_.js")<br/>
+
+We notice ADMIN_UID is expected to have a value:<br/>
+```
+3loaihgxP0VwCTKmkHHFLe6FZ4m2
+```
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_10.png)<br/>
+
+We set that in the browser console.<br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_11.png)<br/>
+
+```
+window_ADMIN_UID="3loaihgxP0VwCTKmkHHFLe6FZ4m2"
+```
+
+Admin page loads showing the secret passphrase:
+```
+GigGigglesGiggler
+```
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_11.png)<br/>
+
+We submit that as the answer and that is accepted.<br/>
+![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_13.png)<br/>
 
 
 !!! success "Answer"
-   CTF{frost-plan:compressors,coolant,oil}
+   GigGigglesGiggler
 
 ## Response
-!!! quote "Kevin McFarland"
-    Excellent work! You've just demonstrated one of the most valuable skills in cybersecurity - the ability to think like the original programmer and unravel their logic without needing to execute a single line of code.<br/>
+!!! quote "Thomas Bouve"
+    Excellent! Now we can communicate with the gnomes. When I tried to talk to one just now it said "passphrase accepted".<br/>
+
+    I asked what they were up to and it said something about going to the old warehouse/data center at the appointed time for the next meeting. No clue what that means though.<br/>
+
+    Anyhoo, that's a pretty big item you helped remove from my pile of unfinished hacking projects. I really appreciate the assist!<br/>
