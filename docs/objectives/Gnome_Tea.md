@@ -53,7 +53,41 @@ Wrote the download_files.py to download all teh files in teh stogareBucket
 Its all jpeg(driver licence) and png files(photos) of the gnomes.
 
 ```py title="download_files.py"
-code
+    import requests
+    import os
+
+    bucket = 'holidayhack2025.firebasestorage.app'
+    file_path = 'tea'  # Firebase path to file
+    file_path_encoded = file_path.replace('/', '%2F')
+
+    url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o'
+
+    # Create folder to save downloads
+    os.makedirs('downloads', exist_ok=True)
+
+    # List all files
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        items = data.get('items', [])
+
+        for item in items:
+            name = item['name']
+            name_encoded = name.replace('/', '%2F')  # URL encode
+            download_url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o/{name_encoded}?alt=media'
+
+            print(f'Downloading: {name}')
+            file_response = requests.get(download_url)
+
+            if file_response.status_code == 200:
+                with open(os.path.join('downloads', os.path.basename(name)), 'wb') as f:
+                    f.write(file_response.content)
+            else:
+                print(f"Failed to download {name}: {file_response.status_code}")
+    else:
+        print("Bucket is not public or listing not allowed:", response.status_code)
+
 ```
 
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_2.png)<br/>
