@@ -129,58 +129,59 @@ We see the messages over websockets <br/>
 The data from the websocket is in JSON format.<br/>
 We write a python script to collect the data from the websockets and convert to CSV.
 
-```py linenums="1" title="collect-1-Wire-data.py"
-    import asyncio
-    import websockets
-    import csv
-    import json
-    import signal
-    import sys
+??? "collect-1-Wire-data.py"
+    ```py linenums="1" title="collect-1-Wire-data.py"
+        import asyncio
+        import websockets
+        import csv
+        import json
+        import signal
+        import sys
 
-    running = True
+        running = True
 
-    def signal_handler(sig, frame):
-        global running
-        print("\n[!] Stopping...")
-        running = False
+        def signal_handler(sig, frame):
+            global running
+            print("\n[!] Stopping...")
+            running = False
 
-    signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGINT, signal_handler)
 
-    async def collect_data():
-        uri = "wss://signals.holidayhackchallenge.com/wire/dq"
+        async def collect_data():
+            uri = "wss://signals.holidayhackchallenge.com/wire/dq"
 
-        # Define all fieldnames, even optional ones
-        fieldnames = ["line", "t", "v", "marker"]
+            # Define all fieldnames, even optional ones
+            fieldnames = ["line", "t", "v", "marker"]
 
-        with open("1-wire.csv", mode="w", newline="") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
+            with open("1-wire.csv", mode="w", newline="") as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
 
-            try:
-                async with websockets.connect(uri) as websocket:
-                    print(f"[+] Connected to {uri}")
-                    while running:
-                        try:
-                            message = await asyncio.wait_for(websocket.recv(), timeout=10)
-                            data = json.loads(message)
+                try:
+                    async with websockets.connect(uri) as websocket:
+                        print(f"[+] Connected to {uri}")
+                        while running:
+                            try:
+                                message = await asyncio.wait_for(websocket.recv(), timeout=10)
+                                data = json.loads(message)
 
-                            # Ensure 'marker' key is present
-                            if "marker" not in data:
-                                data["marker"] = ""
+                                # Ensure 'marker' key is present
+                                if "marker" not in data:
+                                    data["marker"] = ""
 
-                            # Write row with all expected fields
-                            row = {key: data.get(key, "") for key in fieldnames}
-                            writer.writerow(row)
-                            csvfile.flush()
-                            print(f"[>] Logged: {row}")
-                        except asyncio.TimeoutError:
-                            print("[!] Timeout waiting for data... still listening.")
-            except Exception as e:
-                print(f"[!] Error: {e}")
+                                # Write row with all expected fields
+                                row = {key: data.get(key, "") for key in fieldnames}
+                                writer.writerow(row)
+                                csvfile.flush()
+                                print(f"[>] Logged: {row}")
+                            except asyncio.TimeoutError:
+                                print("[!] Timeout waiting for data... still listening.")
+                except Exception as e:
+                    print(f"[!] Error: {e}")
 
-    if __name__ == "__main__":
-        asyncio.run(collect_data())
-```
+        if __name__ == "__main__":
+            asyncio.run(collect_data())
+    ```
 
 **Top 20 rows in the output 1-Wire-data.csv** <br/>
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_4.png) <br/>
@@ -232,7 +233,150 @@ Based on the above concepts and understanding, we can visualize the signal trans
 Based on the data collected in the CSV from the websockets endpoint, we apply a threshold of more than 6 microseconds to identify meaningful transitions. <br/> 
 Any timing difference greater than 6 microseconds is considered a valid signal boundary, while differences of 6 microseconds or less are treated as noise and discarded. <br/>
 
+The below python script does below on high level
 
+1. Load raw 1-Wire timing data
+1. Extract logical bits based on pulse width
+1. Reconstruct bytes using LSB-first ordering
+1. Render output as readable ASCII
+
+??? "decode-1-wire.py"
+    ```py linenums="1" title="decode-1-wire.py"
+    import csv
+
+    # Based on the data collected in the CSV from the websockets endpoint, we apply a threshold of more than 6 microseconds to identify meaningful transitions.
+    # Any timing difference greater than 6 microseconds is considered a valid signal boundary, while differences of 6 microseconds or less are treated as noise and discarded.
+
+    BIT_THRESHOLD_US = 7
+
+    """
+        Reads the csv file containing the 1-wire signal data and convert 
+
+        :param signal: time-ordered list of (timestamp, value) tuples, where value  represents the logic level on the data line (1 = high, 0 = low), and timestamp is  measured in microseconds.
+        :return: bit stream
+    """
+    def load_signal_data(csv_filename):
+        signal = []
+
+        with open(csv_filename, newline="") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                try:
+                    t = int(row["t"]) if row["t"] else None
+                    v = int(row["v"]) if row["v"] else None
+
+                    if t is not None and v is not None:
+                        signal.append((t, v))
+                except Exception:
+                    continue
+
+        return signal
+
+
+
+    """
+        The extract_bits function is responsible for converting raw 1-Wire signal transitions into logical bits (0 and 1) based on pulse timing.
+
+        :param signal: csv file path
+        :return: List of time-ordered list of (timestamp, value) tuples, where value represents the logic level on the data line (1 = high, 0 = low), and timestamp is  measured in microseconds.
+    """
+    def extract_bits(signal):
+        bits = []
+        i = 1
+
+        while i < len(signal):
+            t_prev, v_prev = signal[i - 1]
+            t_curr, v_curr = signal[i]
+
+            # Detect falling edge (1 → 0)
+            if v_prev == 1 and v_curr == 0:
+                fall_time = t_curr
+
+                # Look ahead for rising edge (0 → 1)
+                for j in range(i + 1, len(signal)):
+                    t_next, v_next = signal[j]
+
+                    if v_next == 1:
+                        pulse_width = t_next - fall_time
+
+                        # Short pulse → bit 1, long pulse → bit 0
+                        bit = 1 if pulse_width < BIT_THRESHOLD_US else 0
+                        bits.append(bit)
+
+                        i = j  # Jump to end of this pulse
+                        break
+
+            i += 1
+
+        return bits
+
+    """
+        Reconstructs byte values from an LSB-first bit stream.
+
+        The input bit stream is processed in groups of eight bits. Each group is
+        assembled into a single byte by placing each bit into its corresponding
+        bit position (least-significant-bit first). The resulting bytes are
+        returned as integer values.
+
+        :param bits: List of bits (0 or 1) extracted from the signal
+        :return: List of reconstructed byte values
+    """
+    def bits_to_bytes(bits):
+        bytes_out = []
+        
+        # For loop with step of 8 because we need to group bits to byte
+        for i in range(0, len(bits), 8):
+            # getting the 8 bits
+            byte_bits = bits[i:i + 8]
+            if len(byte_bits) < 8:
+                break
+            # Here we have a group of 8 bits
+
+
+            byte = 0
+            # Enumerate theough the bits we collected - using the bit value as well Its position
+            for bit_position, bit_value in enumerate(byte_bits):
+                # bit_val << bit_pos would put bit in position "bit_position".
+                # Because now bits are received sequentially and must be accumulated into a single byte without overwriting previously decoded bits, a bitwise OR operation is used to merge each shifted bit into the byte.
+                byte |= (bit_value << bit_position)
+
+            bytes_out.append(byte)
+
+        return bytes_out
+
+
+    def bytes_to_ascii(byte_list):
+        message = ""
+
+        for b in byte_list:
+            if 32 <= b <= 126:  # Printable ASCII
+                message += chr(b)
+            else:
+                message += f"\\x{b:02x}"
+
+        return message
+
+
+    if __name__ == "__main__":
+        csv_file = "1-wire.csv"
+
+        print("[*] Loading signal...")
+        signal = load_signal_data(csv_file)
+
+        print("[*] Extracting bits...")
+        bits = extract_bits(signal)
+        print(f"[*] Extracted {len(bits)} bits ({len(bits) // 8} bytes)")
+
+        print("[*] Converting to bytes...")
+        byte_values = bits_to_bytes(bits)
+
+        print("[*] Message in ASCII:")
+        ascii_output = bytes_to_ascii(byte_values)
+        print(ascii_output)
+
+    ```
+We run the script and get the key as "icy". <br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_6.png)
 
 !!! success "Answer"
    Bartholomew Quibblefrost
