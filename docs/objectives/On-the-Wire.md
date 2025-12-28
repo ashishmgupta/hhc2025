@@ -115,7 +115,7 @@ icon: material/text-box-outline
 This challenge consists of 3 parts of decoding 3 communication protocols : 1-Wire, SPI and I2C with information in 1-wire and SPI to retrieve the temperature value reported by the I²C device at address 0x3C.
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_1.png)
 
-### 1-Wire signal
+### 1-Wire protocol
 
 #### Collecting the 1-wire signals
 We see the messages over websockets <br/>
@@ -377,6 +377,29 @@ The below python script does below on high level
     ```
 We run the script and get the key as "icy". <br/>
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_6.png)
+
+### SPI protocol
+??? Fundamentals of SPI protocol
+    **What is SPI?** <br/>
+    SPI, stands for Serial Peripheral Interface, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, SD cards, and displays. It's known for being pretty fast and straightforward. <br/>
+
+    **What is MOSI and SCK?** <br/>
+    MOSI stands for "Master Out Slave In", which means it’s the line on which the master device sends data out to a slave device. <br/>
+    SCK is the "Serial Clock". This is the line that the master uses to send a clock signal to keep everything in sync.<br/>
+
+    In other words, with SPI, the master is always driving a clock signal, and it’s pushing data out through the MOSI line. The slave devices listen to that clock and pick up the data accordingly.
+
+    **How SPI is different from 1-Wire protocol?** <br/>
+    in a 1-wire protocol, you typically have just one data line that handles both sending and receiving bits. <br/>
+    1-Wire is simpler in terms of wiring, but it’s not as fast or as flexible as SPI. <br/>
+    SPI is generally faster and more suited for situations where you need to move data quickly and have multiple devices.
+
+    **What are the practical examples where SPI is used?** <br/>
+    When you insert an SD card to a RaspberryPI, Raspberry Pi is the master controlling the communication and telling the SD card which is the slave device when to send data and when to receive it. This communication happens over SPI.<br/>
+    Raspberry Pi (the master) sends the actual data to the SD card over MOSI line. <br/>
+    Raspberry Pi also sends the clock signal on the SCK line so the SD card knows WHEN to read each bit of data that's coming in on MOSI.
+
+
 
 !!! success "Answer"
    Bartholomew Quibblefrost
