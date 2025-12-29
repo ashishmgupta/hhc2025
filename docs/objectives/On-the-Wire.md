@@ -390,7 +390,7 @@ We run the script and get the key as "icy". <br/>
     In other words, with SPI, the master is always driving a clock signal, and it’s pushing data out through the MOSI line. The slave devices listen to that clock and pick up the data accordingly.
 
     **How SPI is different from 1-Wire protocol?** <br/>
-    in a 1-wire protocol, you typically have just one data line that handles both sending and receiving bits. <br/>
+    In a 1-wire protocol, you typically have just one data line that handles both sending and receiving bits. <br/>
     1-Wire is simpler in terms of wiring, but it’s not as fast or as flexible as SPI. <br/>
     SPI is generally faster and more suited for situations where you need to move data quickly and have multiple devices.
 
@@ -399,7 +399,331 @@ We run the script and get the key as "icy". <br/>
     Raspberry Pi (the master) sends the actual data to the SD card over MOSI line. <br/>
     Raspberry Pi also sends the clock signal on the SCK line so the SD card knows WHEN to read each bit of data that's coming in on MOSI.
 
+In the challenge, the MOSI and SCK line data are transmitted via two websocket endpoints.<br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_7.png)<br/>
 
+#### High level tasks :
+1. Collection of data
+1. Decoding of SPI data
+    1. Extract the bitstream from the the collected data
+    1. Convert the bits to bytes
+    1. XOR decrypt the bytes using the key 'icy'
+    1. Print the ASCII to get the key
+
+#### Collection of data :
+Collect MOSI and SCK data from websocket endpoints to one CSV file and order the data on timestamp. <br/>
+??? "Python script : Collecting the SPI data"
+    ```py  linenums="1"
+    import asyncio
+    import csv
+    import json
+    import websockets
+
+    MOSI_WS = "wss://signals.holidayhackchallenge.com/wire/mosi"
+    SCK_WS  = "wss://signals.holidayhackchallenge.com/wire/sck"
+
+    OUTPUT_FILE = "spi_events_sorted.csv"
+
+    events = []
+
+
+    async def collect_signal(ws_url):
+        async with websockets.connect(ws_url) as websocket:
+            async for message in websocket:
+                data = json.loads(message)
+                events.append({
+                    "line": data.get("line", ""),
+                    "t": data.get("t", ""),
+                    "v": data.get("v", ""),
+                    "marker": data.get("marker", "")
+                })
+
+
+    def sort_events():
+        def safe_int(v):
+            try:
+                return int(v)
+            except (ValueError, TypeError):
+                return -1
+
+        events.sort(key=lambda e: safe_int(e["t"]))
+
+
+    def write_csv():
+        with open(OUTPUT_FILE, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=["line", "t", "v", "marker"])
+            writer.writeheader()
+            writer.writerows(events)
+
+
+    async def main():
+        print("[*] Collecting SPI signals (Ctrl+C to stop)")
+
+        tasks = [
+            asyncio.create_task(collect_signal(MOSI_WS)),
+            asyncio.create_task(collect_signal(SCK_WS)),
+        ]
+
+        try:
+            await asyncio.gather(*tasks)
+        finally:
+            # This ALWAYS runs — even on Ctrl+C
+            print("\n[*] Stopping collection")
+            for t in tasks:
+                t.cancel()
+
+            print("[*] Sorting events by timestamp")
+            sort_events()
+
+            print(f"[*] Writing sorted CSV to {OUTPUT_FILE}")
+            write_csv()
+
+            print("[+] Done")
+
+
+    if __name__ == "__main__":
+        try:
+            asyncio.run(main())
+        except KeyboardInterrupt:
+            # Prevent ugly traceback
+            pass
+    ```
+
+*Excerpt data*: <br/>
+```
+line,t,v,marker
+sck,30000,0,
+mosi,30000,1,data-bit
+sck,30000,0,
+mosi,30000,1,data-bit
+sck,30000,0,
+mosi,30000,1,data-bit
+sck,30000,0,
+sck,35000,1,sample
+sck,35000,1,sample
+sck,35000,1,sample
+```
+
+#### Decoding the SPI data
+
+1.  **Extract the bitstream from the the collected data** <br/>
+The basic principle here is to collect the most recent MOSI value at the time of the SCK sample event In the below example, the bit 1 from MOSI first line below will be extracted.<br/>
+   
+``` py linenums="1"
+mosi,30000,1,data-bit
+sck,30000,0,
+sck,35000,1,sample
+```
+
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_9.png)<br/>
+
+1. **Convert the bits to bytes**<br/>
+Take bitstream and pack them into 8-bit bytes, assuming MSB-first order (the first bit we see becomes the leftmost bit of the byte). <br/>
+Bits are assembled using the formula:
+```
+byte = (byte << 1) | bit
+```
+
+1.  **XOR decrypt the bytes using the key 'icy'** <br/>
+We have the key 'icy' (0x69, 0x63, 0x79) from 1-wire decoding. We use the key to XOR decrypt the bytes.
+
+1. **Print the ASCII to get the key**<br/>
+Print the printable range 0x20 (space) to 0x7E (~). We replace anything non-printable with [.]. This reveals readable ASCII, including the key "bananza".
+
+??? "Python script : Decoding the SPI data"
+    ```py linenums="1"
+    import csv
+
+    INPUT_FILE = "spi_events_sorted.csv"
+
+    XOR_KEY = b"icy"
+
+
+    # -------------------------------
+    # Stage 1: Load sorted events
+    # -------------------------------
+    def load_sorted_events(csv_file):
+        events = []
+        with open(csv_file, newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                events.append(row)
+        return events
+
+
+    # -------------------------------
+    # Stage 2: Decode SPI bitstream
+    # -------------------------------
+    def decode_bitstream(events):
+        bitstream = []
+
+        current_mosi = None
+        seen_sample_timestamps = set()
+
+        for row in events:
+            line = row.get("line", "")
+            t = row.get("t", "")
+            v = row.get("v", "")
+            marker = row.get("marker", "")
+
+            if line == "mosi":
+                try:
+                    current_mosi = int(v)
+                except (ValueError, TypeError):
+                    continue
+
+            elif line == "sck" and marker == "sample":
+                if t in seen_sample_timestamps:
+                    continue
+                seen_sample_timestamps.add(t)
+
+                if current_mosi is None:
+                    continue
+
+                bitstream.append(current_mosi)
+
+        return bitstream
+
+
+    # -------------------------------
+    # Stage 3: Bits → Bytes (MSB-first)
+    # -------------------------------
+    def bits_to_bytes(bitstream):
+        bytes_out = []
+        current_byte = 0
+        bit_count = 0
+
+        for bit in bitstream:
+            current_byte = (current_byte << 1) | bit
+            bit_count += 1
+
+            if bit_count == 8:
+                bytes_out.append(current_byte)
+                current_byte = 0
+                bit_count = 0
+
+        return bytes_out
+
+
+    # -------------------------------
+    # Stage 4: Pretty-print bytes
+    # -------------------------------
+    def print_bytes_hex_ascii(byte_values, label):
+        print(f"\n=== {label} ===")
+        for i in range(0, len(byte_values), 16):
+            chunk = byte_values[i:i + 16]
+            hex_part = " ".join(f"{b:02x}" for b in chunk)
+            ascii_part = "".join(chr(b) if 0x20 <= b <= 0x7E else "." for b in chunk)
+            print(f"{hex_part:<48}  {ascii_part}")
+
+
+    # -------------------------------
+    # Stage 5: XOR decryption
+    # -------------------------------
+    def xor_decrypt(byte_values, key):
+        decrypted = []
+        key_len = len(key)
+
+        for i, b in enumerate(byte_values):
+            decrypted.append(b ^ key[i % key_len])
+
+        return decrypted
+
+
+    # -------------------------------
+    # Main orchestration
+    # -------------------------------
+    def main():
+        events = load_sorted_events(INPUT_FILE)
+
+        bitstream = decode_bitstream(events)
+        print(f"[+] Decoded {len(bitstream)} bits")
+
+        byte_values = bits_to_bytes(bitstream)
+        print(f"[+] Assembled {len(byte_values)} bytes")
+
+        print_bytes_hex_ascii(byte_values, "RAW SPI BYTES")
+
+        decrypted_bytes = xor_decrypt(byte_values, XOR_KEY)
+        print_bytes_hex_ascii(decrypted_bytes, "XOR-DECRYPTED BYTES (key='icy')")
+
+
+    if __name__ == "__main__":
+        main()
+    ```
+Decoding the stream from SPI shows the key 'bananza'.
+
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_10.png)<br/>
+
+
+### I2C protocol
+??? "Fundamentals"
+    **What is I²C?** <br/>
+    I²C, stands for Inter-Integrated Circuit, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, EEPROMs, and real-time clock modules. It’s designed to use fewer wires and to allow multiple devices to share the same bus. <br/>
+
+    **What is SDA and SCL?** <br/>
+    SDA stands for “Serial Data Line”, which means it’s the line on which data is sent and received between the master and slave devices. <br/>
+    SCL is the “Serial Clock Line”. This is the line that the master uses to send a clock signal to keep everything in sync. <br/>
+
+    In other words, with I²C, the master is always driving a clock signal on SCL, and data is exchanged on the SDA line. The slave devices listen to that clock and read or drive data on SDA accordingly.
+
+    **How I²C is different from 1-Wire protocol?** <br/>
+    In a 1-wire protocol, you typically have just one data line that handles both sending and receiving bits. <br/>
+    I²C uses two separate lines: one for data (SDA) and one for clock (SCL). <br/>
+    I²C is more structured than 1-Wire and supports features like device addressing and acknowledgments.
+
+    **How I²C is different from SPI?** <br/>
+    SPI uses separate data lines and a dedicated chip-select for each slave device. <br/>
+    I²C allows multiple devices to share the same two wires by using device addresses instead of chip-select lines. <br/>
+    SPI is generally faster, while I²C is simpler in terms of wiring and scaling to multiple devices.
+
+    **What are the practical examples where I²C is used?** <br/>
+    When you connect sensors like temperature sensors, EEPROM chips, or real-time clock modules to a Raspberry Pi, the communication often happens over I²C. <br/>
+    Raspberry Pi (the master) controls the communication by sending a clock signal on the SCL line. <br/>
+    Both the Raspberry Pi and the slave devices send and receive data over the SDA line, with data being read when the clock signal is high.
+
+In the challenge, the SDA and SCL line data are transmitted via two separate websocket endpoints.<br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_11.png)<br/>
+
+
+### High level tasks
+1. Collection of I2C data
+1. Decoding of I2C data
+    1. Extract the bitstream from the collected data
+    1. Convert the bits to bytes
+    1. Handle I²C protocol-specific bits
+    1. XOR decrypt the bytes using the key 'bananza'
+    1. Print the ASCII output
+
+**Collection of I2C data**<br/>
+Collect SDA and SCL data from websocket endpoints into a single CSV file and order the data by timestamp.
+This ordering reconstructs the chronological behavior of the I2C bus.
+
+**Decoding of I2C data**<br/>
+
+1. **Extract the bitstream from the collected data** <br/>
+The basic principle here is to extract the SDA value when the SCL line is high.
+In I2C, data is valid and must be sampled while SCL is high.
+Each SCL high period contributes one data bit from SDA.
+So, in conclusion, when SCL shows "sample", take the most recent SDA value.
+
+1. **Convert the bits to bytes** <br/>
+Take the extracted bitstream and pack it into 8-bit bytes, assuming MSB-first order, which is standard for I2C.
+Bits are assembled using ```byte = (byte << 1) | bit```
+
+1. **Handle I²C protocol-specific bits** <br/>
+From the hint : <br/>
+Every 9th bit is an ACK (acknowledgment) bit - ignore these when decoding data<br/>
+The first byte in each transaction is the device address (7 bits) plus a R/W bit<br/>
+You may need to filter for specific device addresses <br/>
+
+1. **XOR decrypt the bytes using the key 'bananza'**<br/>
+The decoded data bytes are XOR-decrypted using the repeating key bananza, which was obtained from the SPI decoding stage.
+
+1. **Print the ASCII output**<br/>
+Print bytes in both hex and ASCII format.
+Printable ASCII characters (0x20–0x7E) are displayed directly, while non-printable values are replaced with ..
+This reveals readable ASCII content.
 
 !!! success "Answer"
    Bartholomew Quibblefrost
