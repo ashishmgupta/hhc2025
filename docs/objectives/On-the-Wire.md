@@ -116,6 +116,65 @@ This challenge consists of 3 parts of decoding 3 communication protocols : 1-Wir
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_1.png)
 
 ### 1-Wire protocol
+??? "Fundamentals of 1-Wire protocol"
+    **What is 1-Wire?**
+    1-Wire is a communication protocol designed to transfer data between a master device (like a microcontroller or Raspberry Pi) and one or more peripheral devices (such as temperature sensors) using just a single data wire, plus ground.<br/>
+
+    As the name suggests, all communication happens over one shared data line, which makes 1-Wire very simple from a wiring perspective. Because of this simplicity, it’s commonly used for low-speed, low-power devices where minimizing wires and hardware complexity is important.<br/>
+
+    **What is the Data Line in 1-Wire?**
+    In 1-Wire, there is only one signal line, usually called DQ or DATA.<br/>
+    This single wire is used for: <br/>
+    - Sending data from the master to the device
+    - Sending data from the device back to the master
+    - Synchronization (there is no separate clock line)
+    The data line is normally held high using a pull-up resistor.<br/>
+    Both the master and the slave devices communicate by pulling the line low for specific durations of time.<br/>
+
+    So instead of using a separate clock (like I²C’s SCL), 1-Wire encodes data entirely using timing.<br/>
+
+    **How does communication work without a clock?**<br/>
+
+    Unlike I²C, 1-Wire has no clock line.<br/>
+
+    Instead:<br/>
+    - The master controls all timing
+    - Data bits are represented by how long the line stays low
+    
+    In simple terms:<br/>
+    - A short low pulse represents one type of bit 
+    - A long low pulse represents another type of bit
+
+    Both the master and the device agree on these timing rules beforehand (defined by the 1-Wire protocol).<br/>
+    The device measures the duration of the low pulse to determine whether the bit is a 0 or a 1.<br/>
+
+    This is why, when analyzing 1-Wire captures, you often look at microsecond-level timing differences between signal transitions.<br/>
+
+    **How does the master and device communicate?**<br/>
+        - The master always initiates communication
+        - The master sends commands by pulling the data line low in specific timing patterns
+        - Devices respond by pulling the same line low during assigned time slots
+
+    Multiple devices can share the same wire because:<br/>
+        - Each device has a unique 64-bit ROM address
+        - The master can talk to a specific device or broadcast to all devices on the bus
+    
+    **What are practical examples where 1-Wire is used?**
+    A very common example is the DS18B20 temperature sensor.<br/>
+
+    Typical setup:<br/>
+        - A Raspberry Pi or microcontroller acts as the master.<br/>
+        - One or more DS18B20 sensors are connected to the same single data wire<br/>
+
+    The master:<br/>
+    - Discovers devices by their unique IDs
+    - Requests temperature readings
+    - Receives the temperature data back over the same wire
+    
+    Because only one data wire is required, 1-Wire is often used when:
+    - Wiring needs to be simple
+    - Devices are physically spread out
+    - Data rates are low but reliability matters
 
 #### Collecting the 1-wire signals
 We see the messages over websockets <br/>
@@ -379,7 +438,7 @@ We run the script and get the key as "icy". <br/>
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_6.png)
 
 ### SPI protocol
-??? Fundamentals of SPI protocol
+??? "Fundamentals of SPI protocol"
     **What is SPI?** <br/>
     SPI, stands for Serial Peripheral Interface, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, SD cards, and displays. It's known for being pretty fast and straightforward. <br/>
 
@@ -699,6 +758,92 @@ In the challenge, the SDA and SCL line data are transmitted via two separate web
 Collect SDA and SCL data from websocket endpoints into a single CSV file and order the data by timestamp.
 This ordering reconstructs the chronological behavior of the I2C bus.
 
+??? "Python script : Collecting the I2C data [SDA and SCL lines] from websocket endpoints"
+    ```py linenums="1"
+    import asyncio
+    import json
+    import csv
+    from websockets import connect
+
+    # I2C WebSocket endpoints
+    SDA_WS = "wss://signals.holidayhackchallenge.com/wire/sda"
+    SCL_WS = "wss://signals.holidayhackchallenge.com/wire/scl"
+
+    OUTPUT_CSV = "i2c_combined_sorted.csv"
+
+    # Shared frame buffer
+    frames = []
+    stop_event = asyncio.Event()
+
+    # Fixed CSV columns
+    CSV_FIELDS = [
+        "line",
+        "t",
+        "v",
+        "marker",
+        "byteIndex",
+        "bitIndex",
+        "type"
+    ]
+
+
+    def normalize_frame(data):
+        """
+        Ensure all expected CSV fields exist.
+        Missing fields are filled with empty string.
+        """
+        return {field: data.get(field, "") for field in CSV_FIELDS}
+
+
+    async def collect(ws_url):
+        async with connect(ws_url) as ws:
+            while not stop_event.is_set():
+                try:
+                    msg = await ws.recv()
+                    data = json.loads(msg)
+                    frames.append(normalize_frame(data))
+                except Exception:
+                    break
+
+
+    def write_sorted_csv():
+        print("[*] Sorting frames by timestamp...")
+
+        frames.sort(
+            key=lambda x: int(x["t"]) if x["t"] != "" else 0
+        )
+
+        print(f"[*] Writing {len(frames)} rows to {OUTPUT_CSV}")
+        with open(OUTPUT_CSV, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+            writer.writeheader()
+            writer.writerows(frames)
+
+
+    async def main():
+        tasks = [
+            asyncio.create_task(collect(SDA_WS)),
+            asyncio.create_task(collect(SCL_WS)),
+        ]
+
+        try:
+            await asyncio.gather(*tasks)
+        except KeyboardInterrupt:
+            print("\n[*] Ctrl+C detected — stopping capture...")
+            stop_event.set()
+
+            # Allow collectors to exit cleanly
+            await asyncio.sleep(0.2)
+
+        finally:
+            write_sorted_csv()
+
+
+    if __name__ == "__main__":
+        asyncio.run(main())
+
+    ```
+
 **Decoding of I2C data**<br/>
 
 1. **Extract the bitstream from the collected data** <br/>
@@ -725,10 +870,267 @@ Print bytes in both hex and ASCII format.
 Printable ASCII characters (0x20–0x7E) are displayed directly, while non-printable values are replaced with ..
 This reveals readable ASCII content.
 
+??? "Python script : Decoding the I2C data"
+    ```py linenums="1"
+    import csv
+    import re
+    from collections import defaultdict
+
+    CSV_FILE = "i2c_events_sorted.csv"
+    TARGET_ADDR_7BIT = 0x3C
+    XOR_KEY = "bananza"
+
+
+    def safe_int(x):
+        """
+        Convert CSV string fields to int safely.
+        Returns None if empty/invalid.
+        """
+        if x is None:
+            return None
+        s = str(x).strip()
+        if s == "":
+            return None
+        try:
+            return int(s)
+        except ValueError:
+            return None
+
+
+    def xor_with_key(data_bytes, key):
+        """
+        XOR decrypt (or encrypt) with a repeating ASCII key.
+        """
+        key_bytes = [ord(c) for c in key]
+        out = []
+        for i, b in enumerate(data_bytes):
+            out.append(b ^ key_bytes[i % len(key_bytes)])
+        return out
+
+
+    def print_bytes_hex_ascii(byte_values, label):
+        """
+        Print bytes in hex + ASCII (printable range only).
+        """
+        print(f"\n=== {label} ===")
+        for i in range(0, len(byte_values), 16):
+            chunk = byte_values[i:i + 16]
+            hex_part = " ".join(f"{b:02x}" for b in chunk)
+            ascii_part = "".join(chr(b) if 0x20 <= b <= 0x7E else "." for b in chunk)
+            print(f"{hex_part:<48}  {ascii_part}")
+
+
+    def read_rows(csv_file):
+        """
+        Read CSV rows and normalize fields.
+        Skips totally empty 'welcome' style rows.
+        """
+        rows = []
+        with open(csv_file, newline="") as f:
+            reader = csv.DictReader(f)
+
+            for row in reader:
+                line = (row.get("line") or "").strip().lower()
+                marker = (row.get("marker") or "").strip().lower()
+                typ = (row.get("type") or "").strip().lower()
+
+                t = safe_int(row.get("t"))
+                v = safe_int(row.get("v"))
+                byte_index = safe_int(row.get("byteIndex"))
+                bit_index = safe_int(row.get("bitIndex"))
+
+                # Skip rows that have no meaningful signal info (e.g., welcome rows)
+                if line == "" and marker == "" and typ == "" and t is None and v is None:
+                    continue
+
+                rows.append({
+                    "line": line,
+                    "t": t,
+                    "v": v,
+                    "marker": marker,
+                    "byteIndex": byte_index,
+                    "bitIndex": bit_index,
+                    "type": typ,
+                })
+
+        return rows
+
+
+    def split_transactions(rows):
+        """
+        Group rows into I2C transactions using marker == 'start' and marker == 'stop'.
+
+        Returns: list of list-of-rows
+        """
+        txns = []
+        current = []
+        in_txn = False
+
+        for r in rows:
+            m = r["marker"]
+
+            if m == "start":
+                # start a new transaction
+                if current:
+                    # if something was accumulated but never stopped, keep it
+                    txns.append(current)
+                current = [r]
+                in_txn = True
+                continue
+
+            if in_txn:
+                current.append(r)
+
+            if in_txn and m == "stop":
+                txns.append(current)
+                current = []
+                in_txn = False
+
+        # If capture ends mid-transaction, keep it
+        if current:
+            txns.append(current)
+
+        return txns
+
+
+    def bits_msb_first_to_byte(bits_by_index):
+        """
+        bits_by_index: dict {bitIndex: bitValue} for bitIndex 0..7 (MSB-first ordering)
+        We assemble: bitIndex 0 is the MSB, bitIndex 7 is the LSB.
+        """
+        value = 0
+        for i in range(0, 8):
+            b = bits_by_index.get(i)
+            if b not in (0, 1):
+                # Missing bit -> fail
+                return None
+            value |= (b << (7 - i))
+        return value
+
+
+    def decode_transaction(txn_rows):
+        """
+        Decode one I2C transaction:
+        - Build address byte from marker == 'address-bit' rows using bitIndex
+        - Build data bytes from marker == 'data-bit' rows grouped by byteIndex/bitIndex
+
+        Returns:
+        (slave_addr_7bit, rw_bit, payload_bytes_list)
+        or (None, None, []) if cannot decode.
+        """
+        # ---- Address bits ----
+        addr_bits = {}
+        for r in txn_rows:
+            if r["marker"] == "address-bit" and r["line"] == "sda":
+                bi = r["bitIndex"]
+                if bi is not None and r["v"] in (0, 1):
+                    addr_bits[bi] = r["v"]
+
+        addr_byte = bits_msb_first_to_byte(addr_bits)
+        if addr_byte is None:
+            return (None, None, [])
+
+        rw_bit = addr_byte & 0x01
+        slave_addr_7bit = addr_byte >> 1
+
+        # ---- Data bits -> bytes ----
+        # Group all SDA data-bit rows by byteIndex
+        bytes_bits = defaultdict(dict)  # {byteIndex: {bitIndex: bit}}
+        for r in txn_rows:
+            if r["marker"] == "data-bit" and r["line"] == "sda":
+                byte_i = r["byteIndex"]
+                bit_i = r["bitIndex"]
+                if byte_i is None or bit_i is None:
+                    continue
+                if r["v"] not in (0, 1):
+                    continue
+                bytes_bits[byte_i][bit_i] = r["v"]
+
+        payload = []
+        for byte_i in sorted(bytes_bits.keys()):
+            bval = bits_msb_first_to_byte(bytes_bits[byte_i])
+            if bval is None:
+                # If a byte is incomplete, skip it (or break — skipping is safer in noisy captures)
+                continue
+            payload.append(bval)
+
+        return (slave_addr_7bit, rw_bit, payload)
+
+
+    def extract_payload_for_device(rows, target_addr_7bit):
+        """
+        Walk through all transactions, decode them, and concatenate payload bytes
+        for target address (0x3C).
+        """
+        txns = split_transactions(rows)
+
+        all_payload = []
+        seen_addresses = []
+
+        for txn in txns:
+            addr, rw, payload = decode_transaction(txn)
+            if addr is None:
+                continue
+
+            seen_addresses.append(addr)
+
+            if addr == target_addr_7bit:
+                # This is a transaction for our device
+                all_payload.extend(payload)
+
+        return seen_addresses, all_payload
+
+
+    def main():
+        rows = read_rows(CSV_FILE)
+
+        seen_addresses, payload = extract_payload_for_device(rows, TARGET_ADDR_7BIT)
+
+        # Print which devices were seen
+        if seen_addresses:
+            uniq = sorted(set(seen_addresses))
+            print("[+] Found I2C device addresses:", ", ".join(f"0x{x:02X}" for x in uniq))
+        else:
+            print("[-] No decodable I2C transactions found.")
+            return
+
+        if not payload:
+            print(f"[-] No payload bytes found for target device 0x{TARGET_ADDR_7BIT:02X}")
+            return
+
+        print(f"[+] Total payload bytes from device 0x{TARGET_ADDR_7BIT:02X}: {len(payload)}")
+
+        # Raw bytes
+        print_bytes_hex_ascii(payload, f"Raw I2C Payload (device 0x{TARGET_ADDR_7BIT:02X})")
+
+        # XOR decrypt
+        decrypted = xor_with_key(payload, XOR_KEY)
+        print_bytes_hex_ascii(decrypted, f"Decrypted Output (XOR key: {XOR_KEY})")
+
+        # Extract ASCII temperature
+        decoded_text = bytes(decrypted).decode(errors="replace")
+        match = re.search(r"\d+\.\d+", decoded_text)
+        if match:
+            temp = match.group(0)
+            print(f"\n[+] Temperature found in ASCII: {temp} °C")
+        else:
+            print("\n[-] No temperature-like float found in decrypted ASCII.")
+
+
+    if __name__ == "__main__":
+        main()
+    ```
+
+Decoding the I2C data with the key bananza shows the temperature at address 0x3C as 32.84. <br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_12.png)<br/>
+
 !!! success "Answer"
-   Bartholomew Quibblefrost
+   32.84 <br/>
+   ![On the Wire](../img/objectives/On-the-wire/On-the-wire_13.png)<br/>
 
 
 ## Response
-!!! quote "Josh Wright"
-    Excellent work! You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>
+!!! quote "Evan Booth"
+    Nice work! You cracked that signal encoding like a pro.<br/>
+    Turns out the weirdness had a method to it after all - just like most of my builds!<br/>
+
