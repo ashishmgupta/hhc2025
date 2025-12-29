@@ -112,8 +112,7 @@ icon: material/text-box-outline
 
 
 ## Solution
-This challenge consists of 3 parts of decoding 3 communication protocols : 1-Wire, SPI and I2C with information in 1-wire and SPI to retrieve the temperature value reported by the I²C device at address 0x3C.
-![On the Wire](../img/objectives/On-the-wire/On-the-wire_1.png)
+
 
 ### 1-Wire protocol
 ??? "Fundamentals of 1-Wire protocol"
@@ -176,8 +175,16 @@ This challenge consists of 3 parts of decoding 3 communication protocols : 1-Wir
     - Devices are physically spread out
     - Data rates are low but reliability matters
 
+#### High level tasks :
+1. Collection of data
+1. Decoding of SPI data
+    1. Extract the bitstream from the the collected data
+    1. Convert the bits to bytes
+    1. Print the ASCII to get the key
+
 #### Collecting the 1-wire signals
 We see the messages over websockets <br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_1.png) <br/>
 
 | Header                                                         | 
 | ---------------------------------------------------------------|
@@ -188,7 +195,7 @@ We see the messages over websockets <br/>
 The data from the websocket is in JSON format.<br/>
 We write a python script to collect the data from the websockets and convert to CSV.
 
-??? "collect-1-Wire-data.py"
+??? "Python script : Collect the 1-wire data [dq line] in a CSV from websocket endpoint"
     ```py linenums="1" title="collect-1-Wire-data.py"
         import asyncio
         import websockets
@@ -292,14 +299,7 @@ Based on the above concepts and understanding, we can visualize the signal trans
 Based on the data collected in the CSV from the websockets endpoint, we apply a threshold of more than 6 microseconds to identify meaningful transitions. <br/> 
 Any timing difference greater than 6 microseconds is considered a valid signal boundary, while differences of 6 microseconds or less are treated as noise and discarded. <br/>
 
-The below python script does below on high level
-
-1. Load raw 1-Wire timing data
-1. Extract logical bits based on pulse width
-1. Reconstruct bytes using LSB-first ordering
-1. Render output as readable ASCII
-
-??? "decode-1-wire.py"
+??? "Python script : Decoding the 1-wire data"
     ```py linenums="1" title="decode-1-wire.py"
     import csv
 
@@ -393,7 +393,7 @@ The below python script does below on high level
 
 
             byte = 0
-            # Enumerate theough the bits we collected - using the bit value as well Its position
+            # Enumerate through the bits we collected - using the bit value as well Its position
             for bit_position, bit_value in enumerate(byte_bits):
                 # bit_val << bit_pos would put bit in position "bit_position".
                 # Because now bits are received sequentially and must be accumulated into a single byte without overwriting previously decoded bits, a bitwise OR operation is used to merge each shifted bit into the byte.
@@ -471,7 +471,7 @@ In the challenge, the MOSI and SCK line data are transmitted via two websocket e
 
 #### Collection of data :
 Collect MOSI and SCK data from websocket endpoints to one CSV file and order the data on timestamp. <br/>
-??? "Python script : Collecting the SPI data"
+??? "Python script : Collecting the SPI data [MOSI and SCK lines] in one CSV from their respective websocket endpoints"
     ```py  linenums="1"
     import asyncio
     import csv
