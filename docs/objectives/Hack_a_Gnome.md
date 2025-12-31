@@ -42,12 +42,19 @@ icon: material/text-box-outline
 
 
 ## Solution
-- Find a user we can get in with
+- Find a user we can login with
     - Found /userAvailable indicating if a given user exists or not
-    - brute force /userAvailable with common names 
-- Login 
+    - brute force /userAvailable with common names to get the users
+- Login with the user
     - Find the sql injection in /userAvailable
     - Brute force the password hash
+    - Crack the hash to get the password for the user
+- Get the canbus_client.py from the remote machine
+    - Get RCE on the remote machine using the prototype injection
+    - Download the canbus_client.py and README.md from the remote machine
+- Control the gnome move with modified canbus_client.py
+    - Bruteforce the command map with different hex ranges
+    - Control the gnome with correct command map
 
 
 
