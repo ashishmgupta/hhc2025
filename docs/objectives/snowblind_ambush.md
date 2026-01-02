@@ -515,7 +515,9 @@ hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
 
 
 !!! success "Answer"
-    hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}<br/>
+    ```
+    hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
+    ```
     ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_29.png) 
 ## Response
 

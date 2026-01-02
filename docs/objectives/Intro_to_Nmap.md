@@ -60,7 +60,7 @@ nmap -p 8080 -sV 127.0.12.25
 Output :<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_6.png)
 
-## Goal 6 
+## Goal 6 :
 Sometimes you just want to interact with a port, which is a perfect job for Ncat! <br/>
 Use the ncat tool to connect to TCP port 24601 on 127.0.12.25 and view the banner returned.
 ```

@@ -2,7 +2,7 @@
 icon: material/text-box-outline
 ---
 
-# IDORable Bistro
+# Schrodingers Scope
 
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_0.png)
 
