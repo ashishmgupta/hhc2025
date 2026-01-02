@@ -3,11 +3,13 @@
 ![Group photo](./img/misc/title_image.png)
 
 ## Introduction
-[SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge) is a free cybersecurity event I make a point to complete every year. It consistently pushes me into uncomfortable territory—old protocols, unfamiliar concepts, and challenges I never expected to touch, let alone solve.
+[SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge) is a free cybersecurity event I make a point to complete every year. <br/>
+It consistently pushes me into uncomfortable and unfamiliar concepts, and challenges I never expected to touch, let alone solve.
 
 Those long, frustrating hours are exactly what make the payoff worth it.<br/>
 
-This write-up walks through how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. It’s not the only way to solve them—just the path that worked for me.<br/>
+This write-up walks through how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. <br/>
+It’s not the only way to solve them—just the path that worked for me.<br/>
 
 
 ??? tip "Navigation tip"
