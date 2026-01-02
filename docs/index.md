@@ -4,13 +4,14 @@
 
 ## Introduction
 [SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge){:target="_blank" rel="noopener"} is a free cybersecurity event I make a point to complete every year. <br/>
-It consistently pushes me into uncomfortable and unfamiliar concepts, and challenges I never expected to touch, let alone solve.
+It's real fun and consistently pushes me into uncomfortable and unfamiliar concepts I never expected to touch, let alone solve the related challenges.
 
 Those long, frustrating hours are exactly what make the payoff worth it.<br/>
 
 This write-up walks through how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. <br/>
 It’s not the only way to solve them—just the path that worked for me.<br/>
 
+My son, Aarush has been interested in this since he was 6 years old, and since then the Holiday Hack Challenge has become one of the most eagerly anticipated events of the year for us.
 
 ??? tip "Navigation tip"
     Even with less than 50 pages, there's still quite a bit of information to read through. To make things a little easier, you can use ++"P"++ or ++","++ to go to the previous section, ++"N"++ or ++"."++ to navigate to the next section, and ++"S"++, ++"F"++, or ++"/"++ to open up the search dialog.
