@@ -3,7 +3,7 @@
 ![Group photo](./img/misc/title_image.png)
 
 ## Introduction
-[SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge) is a free cybersecurity event I make a point to complete every year. <br/>
+[SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge){:target="_blank" rel="noopener"} is a free cybersecurity event I make a point to complete every year. <br/>
 It consistently pushes me into uncomfortable and unfamiliar concepts, and challenges I never expected to touch, let alone solve.
 
 Those long, frustrating hours are exactly what make the payoff worth it.<br/>
