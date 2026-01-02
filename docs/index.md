@@ -18,7 +18,10 @@ It’s not the only way to solve them—just the path that worked for me.<br/>
     **TL;DR** if you keep pressing ++"N"++ or ++"."++ from this point forward, you'll hit all the content in the right order! :smile:
 
 ## Answers
-
+The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
+Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
+Below are the answers for each challenge.<br/>
+Some of the challenges were interactive, solved in the game itself and therefore don't have any answer.
 === "Act I"
 
     !!! success "Holiday Hack Orientation - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
@@ -31,7 +34,7 @@ It’s not the only way to solve them—just the path that worked for me.<br/>
         [Solved in the game](./objectives/Neighborhood_Watch_Bypass.md).
 
     !!! success "Santa's Gift-Tracking Service Port Mystery - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Santa_Gift-Tracking_Service_Port_Mystery.md) here.
+        [Solved in the game](./objectives/Santa_Gift-Tracking_Service_Port_Mystery.md).
 
     !!! success "Visual Networking Thinger - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
         [Solved in the game](./objectives/Visual_Networking_Thinger.md).
