@@ -30,7 +30,7 @@ icon: material/text-box-outline
 
 ## Solution
 
-![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_01.png)
+![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_01.png) <br/>
 We get an IP address following the instructions :<br/>
 
 | Click on the gator      | Click on "Time Travel"                         | Get an IP address 
@@ -483,6 +483,7 @@ We extract the /etc/shadow data from the bluc channel of the PNG file using the 
 | ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_24.png)   | ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_25.png)  |
 
 We take the extracted /etc/shadow content from the PNG and run John the ripper on it. <br/>
+**Note :** I needed to replace that * in front of 5$ of the root's password hash with $. <br/>
 ```
 john --wordlist=/usr/share/wordlists/rockyou.txt exfiltered_20260101_120940_extracted_etc_shadow.txt
 ```

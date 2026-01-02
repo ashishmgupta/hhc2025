@@ -11,11 +11,11 @@ icon: material/text-box-outline
 
 
 ## Hints
-??? tip "Going in Reverse"
+??? tip "Hint 1"
     Holy cow! Another retro floppy disk, what are the odds? Well it looks like this one is intact.
-??? tip "Going in Reverse"
+??? tip "Hint 2"
     Maybe it is encrypted OR encoded?
-??? tip "Going in Reverse"
+??? tip "Hint 3"
     It looks like the program on the disk contains some weird coding.
 
 ## Objective
@@ -24,13 +24,13 @@ icon: material/text-box-outline
    Kevin in the Retro Store needs help rewinding tech and going in reverse. Extract the flag and enter it here.
 
 ??? quote "Kevin McFarland"
-You know, there's something beautifully nostalgic about stumbling across old computing artifacts. Just last week, I was sorting through some boxes in my garage and came across a collection of 5.25" floppies from my college days - mostly containing terrible attempts at programming assignments and a few games I'd copied from friends.<br/>
+    You know, there's something beautifully nostalgic about stumbling across old computing artifacts. Just last week, I was sorting through some boxes in my garage and came across a collection of 5.25" floppies from my college days - mostly containing terrible attempts at programming assignments and a few games I'd copied from friends.<br/>
 
-Finding an old Commodore 64 disk with a mysterious BASIC program on it? That's like discovering a digital time capsule. The C64 was an incredible machine for its time - 64KB of RAM seemed like an ocean of possibility back then. I spent countless hours as a kid typing in program listings from Compute! magazine, usually making at least a dozen typos along the way.<br/>
+    Finding an old Commodore 64 disk with a mysterious BASIC program on it? That's like discovering a digital time capsule. The C64 was an incredible machine for its time - 64KB of RAM seemed like an ocean of possibility back then. I spent countless hours as a kid typing in program listings from Compute! magazine, usually making at least a dozen typos along the way.<br/>
 
-The thing about BASIC programs from that era is they were often written by clever programmers who knew how to hide things in plain sight. Sometimes the most interesting discoveries come from reading the code itself rather than watching it execute. It's like being a digital archaeologist - you're not just looking at what the program does, you're understanding how the programmer thought.<br/>
+    The thing about BASIC programs from that era is they were often written by clever programmers who knew how to hide things in plain sight. Sometimes the most interesting discoveries come from reading the code itself rather than watching it execute. It's like being a digital archaeologist - you're not just looking at what the program does, you're understanding how the programmer thought.<br/>
 
-Take your time with this one. Those old-school programmers had to be creative within such tight constraints. You'll know the flag by the Christmas phrase that pays.
+    Take your time with this one. Those old-school programmers had to be creative within such tight constraints. You'll know the flag by the Christmas phrase that pays.
 
 ### Item
 We get a BASIC program while talking to Kevin.<br>
@@ -123,8 +123,9 @@ We submit the above output and that is accepted as the answer.
 
 
 !!! success "Answer"
-   CTF{frost-plan:compressors,coolant,oil}
-
+    ```
+    CTF{frost-plan:compressors,coolant,oil}
+    ```
 ## Response
 !!! quote "Kevin McFarland"
     Excellent work! You've just demonstrated one of the most valuable skills in cybersecurity - the ability to think like the original programmer and unravel their logic without needing to execute a single line of code.<br/>

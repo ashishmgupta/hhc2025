@@ -59,6 +59,6 @@ We could connect to the port and the objective is completed.<br/>
 
 ## Response
 
-!!! quote "Insert Elf Name"
+!!! quote "Yori Kvitchko"
     Great work - thank you!<br/>
     Geez, maybe you can be my intern now!<br/>

@@ -148,6 +148,6 @@ The challenge is now completed.<br/>
 
 ## Response
 
-!!! quote "Insert Elf Name"
+!!! quote "Goose Lucas"
     Ha! 'Properly protected' they said. More like 'properly exposed to the entire internet'!<br/>
     Good catch, amigo.

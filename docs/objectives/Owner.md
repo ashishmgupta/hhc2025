@@ -100,6 +100,6 @@ This completes the challenge.<br/>
     Completed in the game.
 
 ## Response
-!!! quote "Insert Elf Name"
+!!! quote "Goose James"
     You found the permanent assignments! CLUCK! <br/>
     See, I'm not crazy - the security really WAS misconfigured. Now maybe I can finally get some peace and quiet...

@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_0.png)<br/>
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Going_in_reverse](https://dosis-network-down.holidayhackchallenge.com/)
+**Direct link**: [Gnome Tea](https://gnometea.web.app/login?&challenge=termGnomeTea&id=967be673-ae19-4fe5-97a9-962616026ddb&area=apartment)
 
 
 ## Hints
@@ -25,7 +25,7 @@ icon: material/text-box-outline
 !!! question "Request"
    Enter the apartment building near 24-7 and help Thomas infiltrate the GnomeTea social network and discover the secret agent passphrase.
 
-??? quote "Kevin McFarland"
+??? quote "Thomas Bouve"
     Hi again. Say, you wouldn't happen to have time to help me out with something?<br/>
 
     The gnomes have been oddly suspicious and whispering to each other. In fact, I could've sworn I heard them use some sort of secret phrase. When I laughed right next to one, it said "passphrase denied". I asked what that was all about but it just giggled and ran away.<br/>
@@ -193,7 +193,9 @@ We submit that as the answer and that is accepted.<br/>
 
 
 !!! success "Answer"
-   GigGigglesGiggler
+    ```
+    GigGigglesGiggler
+    ```
 
 ## Response
 !!! quote "Thomas Bouve"

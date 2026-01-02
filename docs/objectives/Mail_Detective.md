@@ -12,8 +12,8 @@ icon: material/text-box-outline
 
 ## Hints
 ??? tip "Did You Say Curl?"
-   If I heard this correctly...our sneaky security gurus found a way to interact with the IMAP server using Curl! Yes...the CLI HTTP tool! Here are some helpful docs I found <br/>
-   https://everything.curl.dev/usingcurl/reademail.html
+      If I heard this correctly...our sneaky security gurus found a way to interact with the IMAP server using Curl! Yes...the CLI HTTP tool! Here are some helpful docs I found <br/>
+      https://everything.curl.dev/usingcurl/reademail.html
 
 
 ## Objective
@@ -22,7 +22,7 @@ icon: material/text-box-outline
    Help Mo in City Hall solve a curly email caper and crack the IMAP case. <br/>
    What is the URL of the pastebin service the gnomes are using?
 
-??? quote "Mark DeVito"
+??? quote "Maurice Wilson"
     Hey there! I'm Mo, on loan from the Air Force, and let me tell you - Counter Hack is the best job I have ever had! <br/>
 
     So here's our situation: those gnomes have been sending JavaScript-enabled emails to everyone in the neighborhood, and it's causing chaos.<br/>
@@ -40,7 +40,7 @@ icon: material/text-box-outline
 
 
 ## Solution
-Initial prompt.
+Initial prompt : <br/>
 ![Mail Detective](../img/objectives/Mail_Detective/Mail_Detective_1.png)
 
 Connect to the mail server with the given credentials. <br/>
@@ -72,7 +72,9 @@ https://frostbin.atnas.mail/api/paste
 
 
 !!! success "Answer"
+   ```
    https://frostbin.atnas.mail/api/paste
+   ```
 
 ## Response
 !!! quote "Maurice Wilson"

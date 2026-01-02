@@ -14,7 +14,7 @@ icon: material/text-box-outline
     Meet Eric in the hotel parking lot for Nmap know-how and scanning secrets. Help him connect to the wardriving rig on his motorcycle!
 
 
-??? quote "Eric"
+??? quote "Eric Pursley"
     Hey, I'm Eric. As you can see, I'm an avid motorcyclist. And I love traveling the world with my wife.<br/>
     I enjoy being creative and making things. For example, a cybersecurity tool called Zero-E that I'm quite proud of, and the Baldur's Gate 3 mod called Manaflare. I'm even in the BG3 credits!<br/>
     I also make tools, ranges, and HHC worlds for Counter Hack. Yup, including the one you're in right now.<br/>
@@ -60,7 +60,9 @@ nmap -p 8080 -sV 127.0.12.25
 Output :<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_6.png)
 
-## Goal 6 : Sometimes you just want to interact with a port, which is a perfect job for Ncat!  Use the ncat tool to connect to TCP port 24601 on 127.0.12.25 and view the banner returned.
+## Goal 6 
+Sometimes you just want to interact with a port, which is a perfect job for Ncat! <br/>
+Use the ncat tool to connect to TCP port 24601 on 127.0.12.25 and view the banner returned.
 ```
 nc 127.0.12.25 24601
 ```
@@ -74,5 +76,5 @@ After connecting to the port 24601 via ncat, the objective is completed.
 
 ## Response
 
-!!! quote "Insert Elf Name"
+!!! quote "Eric Pursley"
     Excellent! You stayed laser-focused and didn't let any distractions lead you astray - that's exactly how you reach your goals!

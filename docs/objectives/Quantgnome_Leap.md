@@ -11,13 +11,13 @@ icon: material/text-box-outline
 
 
 ## Hints
-??? tip "Quantgnome Leap"
-   Process information is very useful to determine where an application configuration file is located. I bet there is a secret located in that application directory, you just need the right user to read it!
-??? tip "Quantgnome Leap"
+??? tip "Hint 1"
+    Process information is very useful to determine where an application configuration file is located. I bet there is a secret located in that application directory, you just need the right user to read it!
+??? tip "Hint 2"
     User keys are like presents. The keys are kept in a hidden location until they need to be used. Hidden files in Linux always start with a dot. Since everything in Linux is a file, directories that start with a dot are also...hidden!
-??? tip "Quantgnome Leap"
+??? tip "Hint 3"
     If you want to create SSH keys, you would use the ssh-keygen tool. We have a special tool that generates post-quantum cryptographic keys. The suffix is the same as ssh-keygen. It is only the first three letters that change.
-??? tip "Quantgnome Leap"
+??? tip "Hint 4"
     When you give a present, you often put a label on it to let someone know that the present is for them. Sometimes you even say who the present is from. The label is always put on the outside of the present so the public knows the present is for a specific person. SSH keys have something similar called a comment. SSH keys sometimes have a comment that can help determine who and where the key can be used.
 
 
@@ -26,10 +26,10 @@ icon: material/text-box-outline
 !!! question "Request"
    Charlie in the hotel has quantum gnome mysteries waiting to be solved. What is the flag that you find?
 
-??? quote "Charloe Goldner"
-Things are getting strange, and I think we’ve wandered into a quantum conundrum!<br/>
-If you help me unravel these riddles, we might just outsmart future quantum computers.<br/>
-Cryptic puzzles, quirky gnomes, and post-quantum secrets—will you leap with me?<br/>
+??? quote "Charlie Goldner"
+        Things are getting strange, and I think we’ve wandered into a quantum conundrum!<br/>
+        If you help me unravel these riddles, we might just outsmart future quantum computers.<br/>
+        Cryptic puzzles, quirky gnomes, and post-quantum secrets—will you leap with me?<br/>
 
 
 ## Solution
@@ -129,7 +129,9 @@ We submit that as the answer and It is accepted.
 ![Quantgnome_Leap](../img/objectives/Quantgnome_Leap/Quantgnome_Leap_13.png)
 
 !!! success "Answer"
-   HHC{L3aping_0v3r_Quantum_Crypt0}
+    ```
+    HHC{L3aping_0v3r_Quantum_Crypt0}
+    ```
 
 ## Response
 !!! quote "Charlie Goldner"

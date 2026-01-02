@@ -27,7 +27,7 @@ icon: material/text-box-outline
     Now get out there and show that mountain who's boss!
 
 ### Item
-We get an executable named [FreeSki.exe](Free_Ski/Free_Ski.exe) while talking to Olivia.<br>
+We get an executable named [FreeSki.exe](../Free_Ski/FreeSki.exe) while talking to Olivia.<br>
 Its a PyInstaller-compiled executable containing a SkiFree-inspired skiing game with hidden treasure chests and flag mechanics.
 
 
@@ -438,7 +438,9 @@ frosty_yet_predictably_random
 We submit that as the answer and that is accepted. <br/>
 
 !!! success "Answer"
-   frosty_yet_predictably_random<br/>
+   ```
+   frosty_yet_predictably_random
+   ```
    ![Free_Ski](../img/objectives/Free_Ski/Free_Ski_6.png)<br/>
 
 ## Response

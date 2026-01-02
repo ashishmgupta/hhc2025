@@ -2,7 +2,7 @@
 icon: material/text-box-outline
 ---
 
-# Dosis_Network_Down
+# Dosis Network Down
 
 ![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_0.png)
 
@@ -12,22 +12,22 @@ icon: material/text-box-outline
 
 ## Hints
 ??? tip "Version"
-   I can't believe nobody created a backup account on our main router...the only thing I can think of is to check the version number of the router to see if there are any...ways around it...
+      I can't believe nobody created a backup account on our main router...the only thing I can think of is to check the version number of the router to see if there are any...ways around it...
 ??? tip "UCI"
-    You know...if my memory serves me correctly...there was a lot of fuss going on about a UCI (I forgot the exact term...) for that router.
+      You know...if my memory serves me correctly...there was a lot of fuss going on about a UCI (I forgot the exact term...) for that router.
 
 
 ## Objective
 
 !!! question "Request"
-   Drop by JJ's 24-7 for a network rescue and help restore the holiday cheer. <br/>
-   What is the WiFi password found in the router's config?
+      Drop by JJ's 24-7 for a network rescue and help restore the holiday cheer. <br/>
+      What is the WiFi password found in the router's config?
 
 ??? quote "Janusz Jasinski"
-Alright then. Those bloody gnomes 'ave proper messed about with the neighborhood's wifi - changed the admin password, probably mucked up all the settings, the lot.<br/>
-Now I can't get online and it's doing me 'ead in, innit?<br/>
-We own this router, so we're just takin' back what's ours, yeah?<br/>
-You reckon you can 'elp me 'ack past whatever chaos these little blighters left be'ind?
+      Alright then. Those bloody gnomes 'ave proper messed about with the neighborhood's wifi - changed the admin password, probably mucked up all the settings, the lot.<br/>
+      Now I can't get online and it's doing me 'ead in, innit?<br/>
+      We own this router, so we're just takin' back what's ours, yeah?<br/>
+      You reckon you can 'elp me 'ack past whatever chaos these little blighters left be'ind?
 
 ## Solution
 The challenge website notes the router firmware version and the hardware version at the bottom.
@@ -94,8 +94,9 @@ The answer is accepted. <br/>
 
 
 !!! success "Answer"
+   ```
    SprinklesAndPackets2025!
-
+   ```
 ## Response
 !!! quote "Janusz Jasinski"
     Brilliant work, that. Got me connection back and sent those gnomes packin' from the router.<br/>

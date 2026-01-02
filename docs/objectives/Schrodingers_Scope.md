@@ -6,7 +6,7 @@ icon: material/text-box-outline
 
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_0.png)
 
-**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-solid-star::fontawesome-regular-star:<br/>
+**Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star:<br/>
 **Direct link**: [Schrodingers Scope](https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/)
 
 
@@ -57,12 +57,12 @@ After the above blocking, all the requests to that URL would be blocked and we w
 
 
 ??? quote "The hint about the sitemap"
-"Things like a sitemap can be helpful, even if it is old or incomplete."
-This is the first thing we are going to look at.
+    "Things like a sitemap can be helpful, even if it is old or incomplete."
+
 [Site map](https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/register/sitemap) <br/>
-![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_3.png)
+![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_3.png) <br/>
 Remember - in order to be in scope, we can only try paths under /register.<br/>
-So, nothing prevents us to use the sitemap to see what other paths noted there and use them under /register. 
+So, nothing prevents us to use the sitemap to see what other paths noted there and use them under /register. <br/>
 For example, in the below example, we use /register/dev/dev_todos and that reveals the password for "teststudent". 
 
 [/register/dev/dev_tools](https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/register/dev/dev_tools) <br/>
@@ -70,9 +70,10 @@ For example, in the below example, we use /register/dev/dev_todos and that revea
 
 and we get our first vulnerability reported.<br/>
 and in addition, we have our credentials to login.<br/>
-UserName : teststudent <br/>
-Password : 2025h0L1d4y5 <br/>
-
+```
+UserName : teststudent 
+Password : 2025h0L1d4y5
+```
 But we get "Invalid Forwarding IP" error.<br/>
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_5.png)
 

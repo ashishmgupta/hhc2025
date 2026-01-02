@@ -103,9 +103,9 @@ echo test | base64 -d
 
 
 !!! success "Answer"
-    merry christmas to all and to all a good night
+    ```merry christmas to all and to all a good night```
 
 ## Response
-!!! quote "Insert Elf Name"
+!!! quote "Mark DeVito"
     Excellent work! You've successfully recovered that deleted file and decoded the hidden message. <br/>
     Sometimes the old ways are the best ways. Vintage file systems never truly forget what they've seen. Play some Star Trek... it actually works.

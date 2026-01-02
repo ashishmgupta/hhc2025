@@ -12,7 +12,7 @@ icon: material/text-box-outline
 
 ## Hints
 ??? tip "QR Codes"
-   I have been seeing a lot of receipts lying around with some kind of QR code on them. I am pretty sure they are for Duke Dosis's Holiday Bistro. Interesting...see you if you can find one and see what they are all about...
+    I have been seeing a lot of receipts lying around with some kind of QR code on them. I am pretty sure they are for Duke Dosis's Holiday Bistro. Interesting...see you if you can find one and see what they are all about...
 ??? tip "Will the Real ID Please..."
     Sometimes...developers put in a lot of effort to anonymyze information by using randomly generated identifiers...but...there are also times where the "real" ID is used in a separate Network request...
 ??? tip "What's For Lunch?"
@@ -26,17 +26,17 @@ We get a receipt outside the Sarabune bistro.<br>
 ## Objective
 
 !!! question "Request"
-   Josh has a tasty IDOR treat for you—stop by Sasabune for a bite of vulnerability. <br/>
-   What is the name of the gnome?
+    Josh has a tasty IDOR treat for you—stop by Sasabune for a bite of vulnerability. <br/>
+    What is the name of the gnome?
 
 ??? quote "Josh Wright"
-    I need your help with something urgent.
+    I need your help with something urgent. <br/>
 
-A gnome came through Sasabune today, poorly disguising itself as human - apparently asking for frozen sushi, which is almost as terrible as that fusion disaster I had to endure that one time.
+    A gnome came through Sasabune today, poorly disguising itself as human - apparently asking for frozen sushi, which is almost as terrible as that fusion disaster I had to endure that one time.<br/>
 
-Based on my previous work finding IDOR bugs in restaurant payment systems, I suspect we can exploit a similar vulnerability here.
+    Based on my previous work finding IDOR bugs in restaurant payment systems, I suspect we can exploit a similar vulnerability here.<br/>
 
-I was...[at a talk](https://www.youtube.com/watch?v=hzrhtHrhwno) recently...and learned some interesting things about some of these payment systems. <br/> Let's use that receipt to dig deeper and unmask this gnome's true identity.
+    I was...[at a talk](https://www.youtube.com/watch?v=hzrhtHrhwno) recently...and learned some interesting things about some of these payment systems. <br/> Let's use that receipt to dig deeper and unmask this gnome's true identity.
 
 
 
@@ -83,8 +83,10 @@ We have the name : Bartholomew Quibblefrost
 
 
 !!! success "Answer"
-   Bartholomew Quibblefrost
-
+```
+Bartholomew Quibblefrost
+```
 ## Response
 !!! quote "Josh Wright"
-    Excellent work! You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>
+    Excellent work! <br/>
+    You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>

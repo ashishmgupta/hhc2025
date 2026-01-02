@@ -1125,7 +1125,9 @@ Decoding the I2C data with the key bananza shows the temperature at address 0x3C
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_12.png)<br/>
 
 !!! success "Answer"
-   32.84 <br/>
+    ```
+    32.84
+    ```
    ![On the Wire](../img/objectives/On-the-wire/On-the-wire_13.png)<br/>
 
 
