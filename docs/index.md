@@ -26,72 +26,72 @@ Some of the challenges were interactive, solved in the game itself and therefore
 === "Act I"
 
     !!! success "Holiday Hack Orientation - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Write "answer" in the upper pane of the terminal](objectives/orientation.md).
+        [Write "answer" in the upper pane of the terminal](objectives/orientation.md){:target="_blank" rel="noopener"}.
 
     !!! success "Its All About Defang - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Its_All_About_Defang.md).
+        [Solved in the game](./objectives/Its_All_About_Defang.md){:target="_blank" rel="noopener"}.
 
     !!! success "Neighborhood Watch Bypass - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Neighborhood_Watch_Bypass.md).
+        [Solved in the game](./objectives/Neighborhood_Watch_Bypass.md){:target="_blank" rel="noopener"}.
 
     !!! success "Santa's Gift-Tracking Service Port Mystery - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Santa_Gift-Tracking_Service_Port_Mystery.md).
+        [Solved in the game](./objectives/Santa_Gift-Tracking_Service_Port_Mystery.md){:target="_blank" rel="noopener"}.
 
     !!! success "Visual Networking Thinger - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Visual_Networking_Thinger.md).
+        [Solved in the game](./objectives/Visual_Networking_Thinger.md){:target="_blank" rel="noopener"}.
 
     !!! success "Visual Firewall Thinger - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Visual_Firewall_Thinger.md).
+        [Solved in the game](./objectives/Visual_Firewall_Thinger.md){:target="_blank" rel="noopener"}.
 
     !!! success "Intro to Nmap - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Intro_to_Nmap.md).
+        [Solved in the game](./objectives/Intro_to_Nmap.md){:target="_blank" rel="noopener"}.
 
     !!! success "Blob Storage Challenge in the Neighborhood - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Blob_Storage_Challenge_in_the_Neighborhood.md).
+        [Solved in the game](./objectives/Blob_Storage_Challenge_in_the_Neighborhood.md){:target="_blank" rel="noopener"}.
 
     !!! success "Spare Key - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Spare_Key.md).
+        [Solved in the game](./objectives/Spare_Key.md){:target="_blank" rel="noopener"}.
 
     !!! success "The Open Door - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/The_Open_Door.md).
+        [Solved in the game](./objectives/The_Open_Door.md){:target="_blank" rel="noopener"}.
 
 === "Act II"
     !!! success "Retro Recovery - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [merry christmas to all and to all a good night](./objectives/Retro_Recovery.md).
+        [merry christmas to all and to all a good night](./objectives/Retro_Recovery.md){:target="_blank" rel="noopener"}.
 
     !!! success "Mail Detective - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [https://frostbin.atnas.mail/api/paste](./objectives/Mail_Detective.md).
+        [https://frostbin.atnas.mail/api/paste](./objectives/Mail_Detective.md){:target="_blank" rel="noopener"}.
 
     !!! success "IDORable Bistro - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Bartholomew Quibblefrost](./objectives/IDORable_Bistro.md).
+        [Bartholomew Quibblefrost](./objectives/IDORable_Bistro.md){:target="_blank" rel="noopener"}.
 
     !!! success "Dosis Network Down - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [SprinklesAndPackets2025!](./objectives/IDORable_Bistro.md).
+        [SprinklesAndPackets2025!](./objectives/IDORable_Bistro.md){:target="_blank" rel="noopener"}.
 
     !!! success "Rogue Gnome Identity Provider - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [SprinklesAndPackets2025!](./objectives/Rogue_Gnome_Identity_Provider.md).
+        [SprinklesAndPackets2025!](./objectives/Rogue_Gnome_Identity_Provider.md){:target="_blank" rel="noopener"}.
 
     !!! success "Quantgnome Leap - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [HHC{L3aping_0v3r_Quantum_Crypt0}](./objectives/Quantgnome_Leap.md).
+        [HHC{L3aping_0v3r_Quantum_Crypt0}](./objectives/Quantgnome_Leap.md){:target="_blank" rel="noopener"}.
 
 === "Act III"
     !!! success "Gnome Tea - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [GigGigglesGiggler](./objectives/Gnome_Tea.md).
+        [GigGigglesGiggler](./objectives/Gnome_Tea.md){:target="_blank" rel="noopener"}.
 
     !!! success "Snowcat RCE & Priv Esc - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [8ade723d-9968-45c9-9c33-7606c49c2201](./objectives/Snowcat-RCE-%26-Priv-Esc.md).
+        [8ade723d-9968-45c9-9c33-7606c49c2201](./objectives/Snowcat-RCE-%26-Priv-Esc.md){:target="_blank" rel="noopener"}.
 
     !!! success "Schrodingers Scope - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:"
-        [Solved in the game](./objectives/Schrodingers_Scope.md).
+        [Solved in the game](./objectives/Schrodingers_Scope.md){:target="_blank" rel="noopener"}.
 
     !!! success "On-the-Wire - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star:"
-        [32.84](./objectives/On-the-Wire.md).
+        [32.84](./objectives/On-the-Wire.md){:target="_blank" rel="noopener"}.
 
     !!! success "Free Ski - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:"
-        [frosty_yet_predictably_random](./objectives/Free_Ski.md).
+        [frosty_yet_predictably_random](./objectives/Free_Ski.md){:target="_blank" rel="noopener"}.
 
     !!! success "Snowblind Ambush - :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:"
-        [hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}](./objectives/snowblind_ambush.md).
+        [hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}](./objectives/snowblind_ambush.md){:target="_blank" rel="noopener"}.
 
 ## Conclusion
 
