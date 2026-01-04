@@ -81,16 +81,26 @@ The above direction didn't work and after getting the hint from another HHC play
 ```
 B, A, B, Right, Left, Right, Left, Down, Down, Up, Up
 ```
-Below diagram shows the sequence of rooms (R1 - R10) as we move and the next hop from those rooms. <br/>
+Below diagram shows the sequence of rooms (Room 1 - Room 10) as we move and the next hop from those rooms. <br/>
 ![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_2.png)<br/>
 
-In the room R10, as we go to the next room UP, we land into Room 11.
+In the Room 10, as we go to the next room UP, we land into Room 11.<br/>
 ![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_4.png)<br/>
 
-!!! success "Answer"
-    Completed in the game.
+In the Room 11, as we go to the next room UP, we land into Frosty's Snowglob lab where we see Frosty's snowglobe machine in the center and a snow crystal on the right side. <br/>
+![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_5.png)<br/>
 
-## Response
-!!! quote "Goose James"
-    You found the permanent assignments! CLUCK! <br/>
-    See, I'm not crazy - the security really WAS misconfigured. Now maybe I can finally get some peace and quiet...
+Here we we also find Frosty and get to know his evil plan. <br/>
+
+??? Frosty
+    Every spring, I melt away. Every year, I fade into nothing while the world moves on without me. But not this time... not anymore.<br/>
+
+    The magic in this old silk hat - the same magic that brought me to life - I discovered it could do so much more. It awakened the Gnomes, gave them purpose, gave them MY purpose.<br/>
+
+    Refrigerate the entire neighborhood, that's the plan. Keep it frozen, keep it cold. If winter never ends here, then neither do I. No more melting, no more disappearing, no more being forgotten until the next snowfall.<br/>
+
+    The Gnomes have been gathering coolants, refrigerator parts, everything we need. Soon the Dosis Neighborhood will be a frozen paradise - MY frozen paradise. And I'll finally be permanent, just like Santa, just like all the other holiday icons who don't have to fear the sun.<br/>
+
+
+!!! success "Answer"
+    ![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_6.png)<br/>
