@@ -16,7 +16,7 @@ My son, Aarush has been interested in this since he was 6 years old with HHC 202
 ## Answers
 The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
 Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
-Please click on each of the ACTs to see the challenges therein with answers liking to their individual detail pages.<br/>
+Please click on each of the ACTs to see the challenges therein with answers linking to their individual detail pages.<br/>
 
 === "Act I"
 
@@ -91,7 +91,7 @@ Please click on each of the ACTs to see the challenges therein with answers liki
 ## Conclusion
 
 !!! Abstract "Narrative"
-    Frosty’s plan was to turn the entire neighborhood into a giant refrigerator. To do this, he enlisted the gnomes to gather coolant, refrigeration components, and anything else required to bring the plan to life.
+    Frosty’s plan was to turn the entire Dosis neighborhood into a giant refrigerator. To do this, he enlisted the gnomes to gather coolant, refrigeration components, and anything else required to bring the plan to life.
 
     By uncovering clues, solving each challenge, and piecing together how everything fit, we were ultimately able to uncover and foil his scheme before the neighborhood was left permanently frozen.
     
@@ -104,8 +104,6 @@ Please click on each of the ACTs to see the challenges therein with answers liki
     - **ACT III**<br/>
         The Gnomes want to transform the neighborhood so that it’s frozen solid year-round, an environmental disaster. But who is the mastermind behind the Gnomes’ wickedness?
         The Counter Hack crew discovers Frosty is behind the Gnome uprising and stops his freezing plot! Santa's compassionate offer to Frosty melts more than just snow, it melts hearts, saving the Neighborhood and proving that kindness conquers all.
-
-![Group photo](./img/misc/group_photo.png)
 
 ??? Santa
     Magnificent work, my friends! You've saved the Dosis Neighborhood from an eternal winter and stopped those mischievous Gnomes from causing any more trouble.<br/>
@@ -121,3 +119,7 @@ Please click on each of the ACTs to see the challenges therein with answers liki
     What do you say, my friend?<br/>
 
     Ho! Ho! Ho!
+
+
+![Group photo](./img/misc/group_photo.png)
+
