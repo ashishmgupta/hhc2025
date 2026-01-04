@@ -519,7 +519,11 @@ hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
     hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
     ```
     ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_29.png) 
+
 ## Response
 
 !!! quote "Torkel Opsahl"
     Fantastisk! You've climbed through every security layer like a true Thor's Warrior - that was one epic adventure!
+
+We are greeted with Santa and all the CounterHack team members with credits rolling.<br/>
+    ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/meet_santa.png) 

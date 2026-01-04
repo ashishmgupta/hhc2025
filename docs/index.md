@@ -11,18 +11,13 @@ Those long, frustrating hours are exactly what make the payoff worth it.<br/>
 This write-up walks through how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. <br/>
 It’s not the only way to solve them—just the path that worked for me.<br/>
 
-My son, Aarush has been interested in this since he was 6 years old with HHC 2020, and since then the Holiday Hack Challenge has become one of the most eagerly anticipated events of the year for both of us.
-
-??? tip "Navigation tip"
-    Even with less than 50 pages, there's still quite a bit of information to read through. To make things a little easier, you can use ++"P"++ or ++","++ to go to the previous section, ++"N"++ or ++"."++ to navigate to the next section, and ++"S"++, ++"F"++, or ++"/"++ to open up the search dialog.
-
-    **TL;DR** if you keep pressing ++"N"++ or ++"."++ from this point forward, you'll hit all the content in the right order! :smile:
+My son, Aarush has been interested in this since he was 6 years old with HHC 2020, and since then the Holiday Hack Challenge has become one of the most eagerly anticipated events of the year for both of us. <br/>
 
 ## Answers
 The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
 Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
-Below are the answers for each challenge.<br/>
-Some of the challenges were interactive, solved in the game itself and therefore don't have any answer.
+Click on each of the ACTs to see the challenges therein with answers liking to their individual detail pages.<br/>
+
 === "Act I"
 
     !!! success "Holiday Hack Orientation - :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:"
@@ -96,6 +91,10 @@ Some of the challenges were interactive, solved in the game itself and therefore
 ## Conclusion
 
 !!! Abstract "Narrative"
+    Frosty’s plan was to turn the entire neighborhood into a giant refrigerator. To do this, he enlisted the gnomes to gather coolant, refrigeration components, and anything else required to bring the plan to life.
+
+    By uncovering clues, solving each challenge, and piecing together how everything fit, we were ultimately able to uncover and foil his scheme before the neighborhood was left permanently frozen.
+    
     - **ACT I** <br/>
         The Counter Hack crew is in the Neighborhood festively preparing for the holidays when they are suddenly overrun by lively Gnomes in Your Home! There must have been some magic in those Gnomes, because, due to some unseen spark, some haunting hocus pocus, they have come to life and are now scurrying around the Neighborhood.
 
@@ -107,3 +106,18 @@ Some of the challenges were interactive, solved in the game itself and therefore
         The Counter Hack crew discovers Frosty is behind the Gnome uprising and stops his freezing plot! Santa's compassionate offer to Frosty melts more than just snow, it melts hearts, saving the Neighborhood and proving that kindness conquers all.
 
 ![Group photo](./img/misc/group_photo.png)
+
+??? Santa
+    Magnificent work, my friends! You've saved the Dosis Neighborhood from an eternal winter and stopped those mischievous Gnomes from causing any more trouble.<br/>
+
+    But Frosty... oh, Frosty. I understand your fear of melting, truly I do. The pain of fading away each spring, knowing you'll disappear until the next winter snow falls - that must be terribly lonely.<br/>
+
+    If only you had come to me! The North Pole never melts, Frosty. The snow is eternal there, the cold is constant. You could have lived with us year-round, never worrying about spring's warm sun again.<br/>
+
+    There's always been a place for you at the North Pole, my friend. You never had to resort to all this - the Gnomes, the refrigerator parts, the coolants, trying to freeze an entire neighborhood. All you had to do was ask.<br/>
+
+    The invitation still stands, Frosty. Come home with me to the North Pole. You'll never melt again, and we could always use another jolly soul spreading winter cheer.<br/>
+
+    What do you say, my friend?<br/>
+
+    Ho! Ho! Ho!
