@@ -16,7 +16,7 @@ My son, Aarush has been interested in this since he was 6 years old with HHC 202
 ## Answers
 The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
 Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
-Click on each of the ACTs to see the challenges therein with answers liking to their individual detail pages.<br/>
+Please click on each of the ACTs to see the challenges therein with answers liking to their individual detail pages.<br/>
 
 === "Act I"
 
