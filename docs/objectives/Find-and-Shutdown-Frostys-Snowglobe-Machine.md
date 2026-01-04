@@ -69,6 +69,23 @@ We have "imanok", so for use the direction would be inverse: <br/>
 A, B, Right, Left,Right, Left,Down, Down, Up, Up
 ```
 
+During the navigation we keep to North using the compass on the left bottom of the screen.<br/>
+![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_3.png)<br/>
+
+The above direction didn't work and after getting the hint from another HHC player, I added B in front, so It became the below.
+- A means go to door marked 'A'
+- B means go to door marked 'B'
+- Down means just go to the next door down.
+- Down means just go to the next door up.
+
+```
+B, A, B, Right, Left, Right, Left, Down, Down, Up, Up
+```
+Below diagram shows the sequence of rooms (R1 - R10) as we move and the next hop from those rooms. <br/>
+![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_2.png)<br/>
+
+In the room R10, as we go to the next room UP, we land into Room 11.
+![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_4.png)<br/>
 
 !!! success "Answer"
     Completed in the game.
