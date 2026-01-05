@@ -37,6 +37,11 @@ icon: material/text-box-outline
 
 
 ```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
 flowchart TD
 
   %% =======================

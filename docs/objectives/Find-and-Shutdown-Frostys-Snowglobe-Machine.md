@@ -10,8 +10,13 @@ icon: material/text-box-outline
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
 
-## Objective
+## Hints
+??? tip "Backwards, You Should Look"
+    The Elder also recalled a story of another "computer person" like yourself who managed to find an intern that got lost inside the Data Center about 10 years ago. But that was before the reconstruction, so the current route likely isn't exactly the same. Maybe you can search for the Data Center's past in the historical archives that is the Internet for more information that may be helpful.
+??? tip "A Code in the Dark, You Must Find"
+   The Elder Gnome said the route to the old secret lab inside the Data Center starts on the far East wing inside the building, and that the hallways leading to it are probably pitch dark. He also said the employees that used to work there left some kind of code outside the building as a reminder of the route. Perhaps you can search in the vicinity of the Data Center for this code.
 
+## Objective
 !!! question "Request"
     You've heard murmurings around the city about a wise, elderly gnome having a change of heart. <br/>
     He must have information about where Frosty's Snowglobe Machine is.<br/> 
@@ -22,7 +27,55 @@ icon: material/text-box-outline
     A change of heart, I have had, yes. Among the gnomes plotting to freeze the neighborhood, I once was. Wrong, we are. Help you now, I shall.<br/>
     The route to the old secret lab inside the Data Center, begins on the far East wing inside the building, it does. Pitch dark, the hallways leading to it probably are, hmm.<br/>
     A code outside the building, the employees who once worked there left, yes. A reminder of the route, it serves. Search in the vicinity of the Data Center for this code, perhaps you can.<br/>
-    
+
+## High-Level Details
+1. **Observe & Decode** : 
+Identify the visual encoding outside the data center and extract the hidden instruction.
+
+1. **Derive Navigation Logic** :
+Reverse the Konami Code concept and translate it into in-game movement rules.
+
+1. **Navigate & Confront**:
+Follow the derived path through the maze to reach Frosty’s lab and stop the machine.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "20px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Discover["Discover & Decode"]
+    direction LR
+    A[Inspect markings outside data center]
+    B[Map black/white blocks to binary]
+    C[Convert binary to ASCII]
+    D[Derive string: imanok]
+    E[Recognize reversed Konami reference]
+    A --> B --> C --> D --> E
+  end
+
+  subgraph Derive["Derive Navigation Logic"]
+    direction LR
+    F[Recall standard Konami code]
+    G[Reverse Konami sequence]
+    H[Translate inputs to movement rules]
+    I[Adjust sequence with door logic]
+    F --> G --> H --> I
+  end
+
+  subgraph Navigate["Navigate & Shutdown"]
+    direction LR
+    J[Follow path through data center rooms]
+    K[Traverse Room 1 → Room 11 following the movement rules]
+    L[Reach Frosty’s hidden lab]
+    M[Come out of the lab with snow crystal]
+    J --> K --> L --> M
+  end
+
+  Discover --> Derive --> Navigate
+```
 ## Solution
 Outside the datacenter we see white and black blocks/markings.<br/>
 ![Find and Shutdown Frostys Snowglobe Machine](../img/objectives/Find_and_Shutdown_Frostys_Snowglobe_Machine/img_1.png)<br/>

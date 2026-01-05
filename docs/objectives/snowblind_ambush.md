@@ -3,6 +3,8 @@ icon: material/text-box-outline
 ---
 # Snowblind Ambush
 
+![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_01.png) <br/>
+
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:<br/>
 **Direct link**: [Snowblind Ambush](https://hhc25-gatexor-prod.holidayhackchallenge.com/timey-whimey?env=prod&page=snowblind&&challenge=termSnowblind){:target="_blank" rel="noopener"}
 
@@ -28,9 +30,54 @@ icon: material/text-box-outline
     I think ```admin``` is having trouble, remembering his password. <br/>
     I wonder how he is retaining access, I'm sure someone or something is helping him remembering. Ask around!
 
+## High-Level Details
+1. **Access** – Discover the exposed chatbot interface, recover admin credentials through encoded disclosure, and authenticate to the application.
+
+1. **Exploit** – Abuse server-side template injection with obfuscated payloads to gain remote code execution and a reverse shell.
+
+1. **Escalate** – Leverage a backup process to exfiltrate system secrets, crack root credentials, and shut down Frosty’s infrastructure.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Row1["Access"]
+    direction LR
+    A[Discover chatbot service]
+    B[Extract encoded admin password]
+    C[Authenticate as admin]
+    A --> B --> C
+  end
+
+  subgraph Row2["Exploit"]
+    direction LR
+    D[Identify template injection]
+    E[Obfuscate payload]
+    F[Execute remote commands]
+    G[Gain reverse shell]
+    D --> E --> F --> G
+  end
+
+  subgraph Row3["Escalate"]
+    direction LR
+    H[Trigger backup exfiltration]
+    I[Recover shadow data]
+    J[Crack root password]
+    K[Execute shutdown API]
+    H --> I --> J --> K
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
+
 ## Solution
 
-![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_01.png) <br/>
+
 We get an IP address following the instructions :<br/>
 
 | Click on the gator      | Click on "Time Travel"                         | Get an IP address 

@@ -38,6 +38,11 @@ icon: material/text-box-outline
 3. **Recover** – Access the final account and retrieve the flag.
 
 ```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
 flowchart TD
 
   subgraph Row1["Enumerate"]

@@ -31,7 +31,40 @@ icon: material/text-box-outline
 !!! question "Request"
     Kevin in the Retro Store ponders pentest paradoxes—can you solve Schrödinger's Scope?
 
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "20px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
 
+  subgraph Discover["Discover and Stabilize"]
+    direction LR
+    A[gnomeU background violations]
+    B[Block gnomeU requests]
+    A --> B
+  end
+
+  subgraph Enumerate["Enumerate and Access"]
+    direction LR
+    C[Exposed sitemap]
+    D[Access hidden dev endpoints]
+    E[Hardcoded credentials]
+    F[Login as teststudent with X-Forwarded-For header]
+    C --> D --> E --> F
+  end
+
+  subgraph Exploit["Exploit and Report"]
+    direction LR
+    G[Hidden course in commented UI]
+    H[SQL injection to get unauth gnome course]
+    I[Predictable registration cookie]
+    G --> H --> I
+  end
+
+  Discover --> Enumerate --> Exploit
+```
 ## Solution
 Initial page.<br/>
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_2.png)

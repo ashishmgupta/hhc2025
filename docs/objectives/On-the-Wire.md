@@ -110,7 +110,52 @@ icon: material/text-box-outline
     I've been trying to make sense of the patterns, but it's like trying to build a robot hand out of a coffee maker - you need the right approach.<br/>
     Think you can help me decode whatever weirdness is being transmitted out there?
 
+## High-Level details
+1. **1-Wire Decode** – Capture DQ traffic, decode pulse widths into bits, reconstruct bytes (LSB-first), and extract the initial XOR key (icy).
 
+1. **SPI Decode** – Capture MOSI/SCK traffic, sample data on clock edges, reconstruct bytes (MSB-first), XOR-decrypt using key "icy", and recover the next key ("bananza").
+
+1. **I2C Decode** – Capture SDA/SCL traffic, decode I2C transactions, filter device address 0x3C, XOR-decrypt using "bananza", and extract the temperature value.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Discover[1-Wire]
+    direction LR
+    A[Capture 1-Wire data DQ]
+    B[Decode pulse widths to bits]
+    C[Assemble bytes LSB first]
+    D[Extract ASCII key icy]
+    A --> B --> C --> D
+  end
+
+  subgraph Decode[SPI]
+    direction LR
+    E[Capture SPI data MOSI and SCK]
+    F[Sample MOSI on clock edges]
+    G[Assemble bytes MSB first]
+    H[XOR decrypt using key icy]
+    I[Extract next key bananza]
+    E --> F --> G --> H --> I
+  end
+
+  subgraph Extract[I2C]
+    direction LR
+    J[Capture I2C data SDA and SCL]
+    K[Decode transactions and ACK bits]
+    L[Filter device address 0x3C]
+    M[XOR decrypt using key bananza]
+    N[Extract temperature value]
+    J --> K --> L --> M --> N
+  end
+
+  Discover --> Decode --> Extract
+```
 ## Solution
 
 

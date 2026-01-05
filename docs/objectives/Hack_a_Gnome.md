@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Hack-a-Gnome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Hack-a-Gnome](https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
+**Direct link**: [Hack-a-Gnome](https://hhc25-smartgnomehack-prod.holidayhackchallenge.com?id=c8196dc2-72fe-40bd-9878-13154a1de00a){:target="_blank" rel="noopener"}
 
 
 ## Hints
@@ -40,6 +40,48 @@ icon: material/text-box-outline
 
     Ready to help me turn one of these rebellious bots against its own kind?<br/>
 
+## High-Level Steps
+
+1. **Compromise Access** – Enumerate users and exploit NoSQL injection to obtain valid credentials.
+2. **Escalate Control** – Use prototype pollution to achieve remote command execution.
+3. **Take Over Hardware** – Modify CAN bus commands to fully control the smart gnome.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "20px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Phase1["Compromise Access"]
+    A[Bruteforce existing users]
+    B[NoSQL injection]
+    C[Extract password hash]
+    D[Crack hash]
+    E[Login to app]
+    A --> B --> C --> D --> E
+  end
+
+  subgraph Phase2["Escalate Control"]
+    F[Prototype pollution]
+    G[Template injection]
+    H[Remote command execution]
+    I[Reverse shell]
+    F --> G --> H --> I
+  end
+
+  subgraph Phase3["Take Over Hardware"]
+    J[Access CAN bus client]
+    K[Bruteforce CAN IDs]
+    L[Fix movement mapping]
+    M[Control gnome]
+    N[Shutdown factory]
+    J --> K --> L --> M --> N
+  end
+
+  Phase1 --> Phase2 --> Phase3
+```
 
 ## Solution
 - Find a user we can login with

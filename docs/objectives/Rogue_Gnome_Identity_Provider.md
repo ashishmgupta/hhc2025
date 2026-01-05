@@ -40,6 +40,11 @@ icon: material/text-box-outline
 3. **Access** – Authenticate as admin and extract the firmware details.
 
 ```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
 flowchart TD
 
   subgraph Row1["Observe"]

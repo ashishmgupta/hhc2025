@@ -33,9 +33,36 @@ icon: material/text-box-outline
     If Frosty's plan works and everything freezes over, our customers won't be having the best possible experience—they'll be having the coldest possible experience! We need to stop this before the whole neighborhood becomes one giant freezer.<br/>
 
 
+### High-Level Steps
+
+1. **Gain Initial RCE** – Exploit Snowcat’s Tomcat-based deserialization vulnerability.
+2. **Identify Privilege Escalation** – Locate SUID root weather monitoring binaries.
+3. **Escalate & Extract Key** – Inject commands to read the unused authorization key.
+
+```mermaid
+flowchart TD
+
+  subgraph Phase1["Remote Code Execution"]
+    A[Snowcat service]
+    B[CVE-2025-24813<br/>Deserialization]
+    C[Command execution<br/>as user]
+    A --> B --> C
+  end
+
+  subgraph Phase2["Privilege Escalation"]
+    D[SUID weather binary]
+    E[Command injection]
+    F[Root execution]
+    G[Read unused API key]
+    D --> E --> F --> G
+  end
+
+  Phase1 --> Phase2
+```
+
 ## Solution
 Listing the files we have in the challenge. <br/>
-![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_1.png){ width="300" } <br/>
+![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_1.png) <br/>
 
 ??? "CVE-2025-24813.py"
 
@@ -209,9 +236,9 @@ We enter as the answer and that is accepted.</br>
 
 
 !!! success "Answer"
-    ```
-    8ade723d-9968-45c9-9c33-7606c49c2201
-    ```
+```
+8ade723d-9968-45c9-9c33-7606c49c2201
+```
 We enter that in the challenge and Its accepted.<br/>
 ![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_10.png)
 

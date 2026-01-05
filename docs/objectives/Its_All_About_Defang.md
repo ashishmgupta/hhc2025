@@ -68,7 +68,6 @@ flowchart TD
     Remember, the new Phishing Threat Analysis Station (PTAS) is still under construction. Even though the regex patterns are provided, they haven't been fine tuned. Some of the matches may need to be manually removed.
 
 ## Solution
-### Summary
 This challenge shows a phishing message from which we needed to extract IOCs (domains, IP addresses, URLs and email addresses) and defanging them meaning replace the malicious content
 with harmless placeholders and report them.
 

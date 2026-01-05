@@ -30,7 +30,49 @@ icon: material/text-box-outline
 We get an executable named [FreeSki.exe](../Free_Ski/FreeSki.exe) while talking to Olivia.<br>
 Its a PyInstaller-compiled executable containing a SkiFree-inspired skiing game with hidden treasure chests and flag mechanics.
 
+## High-Level Details
+1. **Extract** – Unpack the PyInstaller executable to recover the embedded Python bytecode.
 
+1. **Reverse** – Decompile the game logic, identify deterministic treasure generation, and locate the unused flag-decoding routine.
+
+1. **Decode** – Recreate treasure values, reseed the RNG, XOR-decode the encoded flag, and recover the plaintext.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Row1["Extract"]
+    direction LR
+    A[FreeSki executable]
+    B[PyInstaller extraction]
+    C[Recovered pyc files]
+    A --> B --> C
+  end
+
+  subgraph Row2["Reverse"]
+    direction LR
+    D[Decompile game logic]
+    E[Identify treasure generation]
+    F[Locate flag decode routine]
+    D --> E --> F
+  end
+
+  subgraph Row3["Decode"]
+    direction LR
+    G[Recreate treasure values]
+    H[Seed RNG deterministically]
+    I[XOR decode flag]
+    J[Recover plaintext flag]
+    G --> H --> I --> J
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 ## Solution
 Clone the the pyinstxtracter repo.<br/>
 ```

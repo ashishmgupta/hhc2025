@@ -4,7 +4,7 @@ icon: material/text-box-outline
 
 # Owner
 
-![Owner](../img/objectives/Owner/Owner_0.png)
+![Owner](../img/objectives/Owner/Owner_0.png){ width="500" }
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 **Direct link**: [Owner](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOwner){:target="_blank" rel="noopener"}

