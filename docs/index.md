@@ -4,7 +4,7 @@
 
 ## Introduction
 [SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge){:target="_blank" rel="noopener"} is a free cybersecurity event I make a point to complete every year. <br/>
-It's real fun and consistently pushes me into uncomfortable and unfamiliar concepts I never expected to touch, let alone solve the related challenges.
+It's real fun and consistently pushes me into learning uncomfortable and unfamiliar concepts I never expected to touch, let alone solve the related challenges.
 
 Those long, frustrating hours are exactly what make the payoff worth it.<br/>
 
