@@ -29,6 +29,42 @@ icon: material/text-box-outline
       We own this router, so we're just takin' back what's ours, yeah?<br/>
       You reckon you can 'elp me 'ack past whatever chaos these little blighters left be'ind?
 
+## High-Level Steps
+
+1. **Identify** – Identify the router version and applicable vulnerabilities.
+2. **Exploit** – Execute commands via the command-injection vulnerability.
+3. **Extract** – Retrieve the WiFi credentials from the router configuration.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Identify"]
+    direction LR
+    A[Check router model and firmware]
+    B[Research known vulnerabilities]
+    C[Found CVE-2023-1389]
+    A --> B --> C
+  end
+
+  subgraph Row2["Exploit"]
+    direction LR
+    D[Craft malicious request]
+    E[Execute arbitrary command]
+    D --> E
+  end
+
+  subgraph Row3["Extract"]
+    direction LR
+    F[Read wireless config file]
+    G[Recover WiFi password]
+    H[Objective completed]
+    F --> G --> H
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
+
 ## Solution
 The challenge website notes the router firmware version and the hardware version at the bottom.
 ```

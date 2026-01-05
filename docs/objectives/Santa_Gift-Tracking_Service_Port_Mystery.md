@@ -20,7 +20,7 @@ icon: material/text-box-outline
     Think you can check out this terminal for me? I need to use cURL to access the gift tracker system, but it has me stumped.<br/>
     Please see what you can do!<br/>
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Recon** – Enumerate listening ports and running services.
 2. **Discovery** – Review documentation to identify the correct service access method.

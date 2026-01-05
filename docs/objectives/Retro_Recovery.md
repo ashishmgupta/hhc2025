@@ -39,6 +39,40 @@ icon: material/text-box-outline
 We get a floppy from when we talk to Mark.<br>
 ![Retro Recovery](../img/objectives/Retro_Recovery/Retro_Recovery_1.png)
 
+## High-Level Steps
+
+1. **Explore** – Mount and inspect the disk image.
+2. **Recover** – Restore deleted files from the image.
+3. **Decode** – Decode the recovered data to reveal the message.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Explore"]
+    direction LR
+    A[Mount disk image]
+    B[List file contents]
+    A --> B
+  end
+
+  subgraph Row2["Recover"]
+    direction LR
+    C[Scan for deleted files]
+    D[Recover file with TestDisk]
+    C --> D
+  end
+
+  subgraph Row3["Decode"]
+    direction LR
+    E[Inspect recovered file]
+    F[Decode embedded data]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 ## Solution
 We mount the image to explore the files in it.
 
@@ -98,7 +132,7 @@ Decoding that base64 shows below
 We see if this is accepted as the answer and It was!
 
 ```
-echo test | base64 -d
+echo "bWVycnkgY2hyaXN0bWFzIHRvIGFsbCBhbmQgdG8gYWxsIGEgZ29vZCBuaWdodAo=" | base64 -d
 ```
 
 

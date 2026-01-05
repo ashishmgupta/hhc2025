@@ -34,8 +34,8 @@ icon: material/text-box-outline
 
 
 ## Solution
-Listing the files we have in the challange. <br/>
-![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_1.png) <br/>
+Listing the files we have in the challenge. <br/>
+![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_1.png){ width="300" } <br/>
 
 ??? "CVE-2025-24813.py"
 

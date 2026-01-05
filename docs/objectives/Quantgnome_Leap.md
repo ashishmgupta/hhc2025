@@ -31,6 +31,43 @@ icon: material/text-box-outline
         If you help me unravel these riddles, we might just outsmart future quantum computers.<br/>
         Cryptic puzzles, quirky gnomes, and post-quantum secrets—will you leap with me?<br/>
 
+## High-Level Steps
+
+1. **Enumerate** – Analyze SSH key comments to identify valid users.
+2. **Pivot** – Authenticate across multiple users using chained SSH keys.
+3. **Recover** – Access the final account and retrieve the flag.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Enumerate"]
+    direction LR
+    A[Inspect SSH public keys]
+    B[Extract user names from comments]
+    A --> B
+  end
+
+  subgraph Row2["Pivot"]
+    direction LR
+    C[Login as gnome1]
+    D[Login as gnome2]
+    E[Login as gnome3]
+    F[Login as gnome4]
+    C --> D --> E --> F
+  end
+
+  subgraph Row3["Recover"]
+    direction LR
+    G[Login as admin]
+    H[Locate SSH daemon directory]
+    I[Read flag file]
+    J[Objective completed]
+    G --> H --> I --> J
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 From the hint: <br/>
@@ -129,10 +166,10 @@ We submit that as the answer and It is accepted.
 ![Quantgnome_Leap](../img/objectives/Quantgnome_Leap/Quantgnome_Leap_13.png)
 
 !!! success "Answer"
-    ```
-    HHC{L3aping_0v3r_Quantum_Crypt0}
-    ```
-
+```
+HHC{L3aping_0v3r_Quantum_Crypt0}
+```
+![Quantgnome_Leap](../img/objectives/Quantgnome_Leap/Quantgnome_Leap_14.png)
 ## Response
 !!! quote "Charlie Goldner"
     That was wild—who knew quantum gnomes could hide so many secrets?<br/>

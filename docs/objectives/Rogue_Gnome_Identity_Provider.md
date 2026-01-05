@@ -31,6 +31,44 @@ icon: material/text-box-outline
         The gnomes are getting some dodgy updates, and I need admin access to see what's actually going on.<br/>
         Ready to help me find a way to bump up our access level, yeah?
 
+
+
+## High-Level Steps
+
+1. **Observe** – Analyze the JWT authentication flow and trust relationships.
+2. **Forge** – Create a malicious JWKS and generate an admin JWT.
+3. **Access** – Authenticate as admin and extract the firmware details.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Observe"]
+    direction LR
+    A[Authenticate to IdP]
+    B[Capture and analyze JWT]
+    A --> B
+  end
+
+  subgraph Row2["Forge"]
+    direction LR
+    C[Generate RSA key pair]
+    D[Host malicious JWKS]
+    E[Forge admin JWT]
+    C --> D --> E
+  end
+
+  subgraph Row3["Access"]
+    direction LR
+    F[Exchange forged JWT for session]
+    G[Access admin interface]
+    H[Identify firmware image]
+    I[Objective completed]
+    F --> G --> H --> I
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 ## Solution
 
 The challenge console mentions a file named ~/notes. </br>
@@ -78,7 +116,6 @@ The challenge console mentions a file named ~/notes. </br>
     **Analyze the JWT**
     jwt_tool.py <insert-JWT>
 
-### High level steps
 We follow the below steps in the below order : <br/>
 
  - In the challenge
@@ -286,9 +323,10 @@ We submit that as the answer and Its accepted.
 
 
 !!! success "Answer"
-    ```
-   refrigeration-botnet.bin
-    ```
+```
+refrigeration-botnet.bin
+```
+![Rogue_Gnome_Identity_Provider](../img/objectives/Rogue_Gnome_Identity_Provider/Rogue_Gnome_Identity_Provider_13.png)
 ## Response
 !!! quote "Paul Beckett"
     Brilliant work on that privilege escalation! You've successfully gained admin access to the diagnostic interface.<br/>

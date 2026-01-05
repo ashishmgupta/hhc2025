@@ -37,6 +37,38 @@ icon: material/text-box-outline
 
     Counter Hack really is the best job I have ever had, especially when we get to solve problems like this!<br/>
 
+## High-Level Steps
+
+1. **Connect** – Authenticate to the IMAP server using curl.
+2. **Enumerate** – Retrieve and review messages from the spam folder.
+3. **Extract** – Identify the malicious pastebin URL from the email content.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Connect"]
+    direction LR
+    A[Authenticate to IMAP server]
+  end
+
+  subgraph Row2["Enumerate"]
+    direction LR
+    B[List spam messages]
+    C[Fetch email contents]
+    B --> C
+  end
+
+  subgraph Row3["Extract"]
+    direction LR
+    D[Search email for indicators]
+    E[Identify pastebin URL]
+    F[Objective completed]
+    D --> E --> F
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 
 ## Solution
@@ -75,7 +107,7 @@ https://frostbin.atnas.mail/api/paste
    ```
    https://frostbin.atnas.mail/api/paste
    ```
-
+   ![Mail Detective](../img/objectives/Mail_Detective/Mail_Detective_6.png)
 ## Response
 !!! quote "Maurice Wilson"
     Outstanding work! You've mastered using curl for IMAP - that's some serious command-line skills that would make any Air Force tech proud.<br/>

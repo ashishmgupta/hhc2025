@@ -19,7 +19,7 @@ icon: material/text-box-outline
     You've been asked to audit their storage security configuration to ensure no sensitive data is publicly accessible.
     Recent security reports suggest some storage accounts might have public blob access enabled, creating potential data exposure risks.
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Enumerate** – List Azure storage accounts and review configuration.
 2. **Identify** – Find storage accounts with public blob access enabled.

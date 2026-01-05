@@ -25,7 +25,7 @@ icon: material/text-box-outline
     Don't worry about breaking anything; that's half the fun of learning!
     Ready to dig in?
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Understand** – Analyze the network layout and security zones.
 2. **Configure** – Define firewall rules to allow only required traffic.
@@ -68,15 +68,15 @@ Firewall Configuration Goals <br/>
 Network map <br/>
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_3.png)
 
-## Goal 1 : Internet to DMZ: Allow only HTTP and HTTPS traffic
+### Goal 1 : Internet to DMZ: Allow only HTTP and HTTPS traffic
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_4.png)
-## Goal 2 : DMZ to Internal: Allow HTTP, HTTPS, and SSH traffic
+### Goal 2 : DMZ to Internal: Allow HTTP, HTTPS, and SSH traffic
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_5.png)
-## Goal 3 : Internal to DMZ: Allow HTTP, HTTPS, and SSH traffic
+### Goal 3 : Internal to DMZ: Allow HTTP, HTTPS, and SSH traffic
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_5.png)
-## Goal 4 : Internal to Cloud: Allow HTTP, HTTPS, SSH, and SMTP traffic
+### Goal 4 : Internal to Cloud: Allow HTTP, HTTPS, SSH, and SMTP traffic
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_6.png)
-## Goal 5 : Internal to Workstations: Allow all traffic types
+### Goal 5 : Internal to Workstations: Allow all traffic types
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_7.png)
 
 

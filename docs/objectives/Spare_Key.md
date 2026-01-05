@@ -19,7 +19,7 @@ icon: material/text-box-outline
     An admin accidentally uploaded an infrastructure config file that contains a long-lived SAS token.
     Use Azure CLI to find the leak and report exactly where it lives.
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Enumerate** – Identify Azure resources and storage accounts.
 2. **Inspect** – Review containers and static website files for sensitive data.

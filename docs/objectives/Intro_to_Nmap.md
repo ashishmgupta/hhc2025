@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap){:target="_blank" rel="noopener"}
+**Direct link**: [Intro to Nmap](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -21,7 +21,7 @@ icon: material/text-box-outline
     But most of the time, I'm helping organizations in the real world be more secure. I do a bunch of different kinds of pentesting, but speciailize in network and physical.<br/>
     Some advice: stay laser-focused on your goals and don't let the distractions life throws at you lead you astray. That's how I ended up at Counter Hack!
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Scan** – Discover open ports using Nmap.
 2. **Identify** – Enumerate services and versions on discovered ports.
@@ -61,7 +61,7 @@ flowchart TD
 The initial prompt <br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_2.png)
 
-## Goal 1 : 
+### Goal 1 : 
 When run without any options, nmap performs a TCP port scan of the top 1000 ports. Run a default nmap scan of 127.0.12.25 and see which port is open.
 
 ```
@@ -70,7 +70,7 @@ When run without any options, nmap performs a TCP port scan of the top 1000 port
 Output :<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_3.png)
 
-## Goal 2 : 
+### Goal 2 : 
 Sometimes the top 1000 ports are not enough. Run an nmap scan of all TCP ports on 127.0.12.25 and see which port is open.
 ```
  nmap -p- 127.0.12.25
@@ -78,7 +78,7 @@ Sometimes the top 1000 ports are not enough. Run an nmap scan of all TCP ports o
 Output :<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_4.png)
 
-## Goal 3 : 
+### Goal 3 : 
 Nmap can also scan a range of IP addresses.  Scan the range 127.0.12.20 - 127.0.12.28 and see which has a port open. 
 ```
 nmap -p- 127.0.12.20-28
@@ -87,7 +87,7 @@ Output : <br/>
 We see a port 8080 open.<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_5.png)
 
-## Goal 5 : 
+### Goal 5 : 
 Nmap has a version detection engine, to help determine what services are running on a given port. What service is running on 127.0.12.25 TCP port 8080?
 ```
 nmap -p 8080 -sV 127.0.12.25
@@ -95,7 +95,7 @@ nmap -p 8080 -sV 127.0.12.25
 Output :<br/>
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_6.png)
 
-## Goal 6 :
+### Goal 6 :
 Sometimes you just want to interact with a port, which is a perfect job for Ncat! <br/>
 Use the ncat tool to connect to TCP port 24601 on 127.0.12.25 and view the banner returned.
 ```

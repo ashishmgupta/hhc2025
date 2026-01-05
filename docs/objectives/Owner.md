@@ -19,7 +19,7 @@ icon: material/text-box-outline
     The Neighborhood network admins use RBAC fo access control.<br/>
     Your task is to audit their RBAC configuration to ensure they're following security best practices.
 
-### High-Level Steps
+## High-Level Steps
 
 1. **Enumerate** – Identify subscriptions and their Owner role assignments.
 2. **Investigate** – Examine groups and nested memberships for excessive privileges.
@@ -61,7 +61,7 @@ flowchart TD
 ```
 az account list --query "[].name"
 ```
-![Owner](../img/objectives/Owner/Owner_1.png)
+![Owner](../img/objectives/Owner/Owner_1.png){ width="1000" }
 
 ### Goal 2
 You can do some more advanced queries using conditional filtering with custom output. <br/>
@@ -72,7 +72,7 @@ Cool! 😎  [?condition] filters what you want, {custom:fields} makes clean outp
 az account list --query "[?state=='Enabled'].{Name:name, ID:id}"
 ```
 
-![Owner](../img/objectives/Owner/Owner_2.png)
+![Owner](../img/objectives/Owner/Owner_2.png){ width="1000" }
 
 
 ### Goal 3
@@ -82,7 +82,7 @@ Try: az role assignment list --scope "/subscriptions/{ID of first Subscription}"
 ```
 az role assignment list --scope "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64" --query [?roleDefinition=='Owner']
 ```
-![Owner](../img/objectives/Owner/Owner_3.png)
+![Owner](../img/objectives/Owner/Owner_3.png){ width="1000" }
 
 ### Goal 4
 Ok 🤔 — there is a group present for the Owners permission; however, we've been assured this is a 🔐 PIM enabled group.<br/>
@@ -95,7 +95,7 @@ This below subscription has a group which is not PIM-Owner. Rather, there is a g
 ```
 az role assignment list --scope "/subscriptions/065cc24a-077e-40b9-b666-2f4dd9f3a617" --query [?roleDefinition=='Owner']
 ```
-![Owner](../img/objectives/Owner/Owner_5.png)
+![Owner](../img/objectives/Owner/Owner_5.png){ width="1000" }
 
 
 
@@ -108,7 +108,7 @@ Remember: | less lets you scroll through long output
 ```
 az ad member list --group "6b982f2f-78a0-44a8-b915-79240b2b4796"
 ```
-![Owner](../img/objectives/Owner/Owner_7.png)
+![Owner](../img/objectives/Owner/Owner_7.png){ width="1000" }
 
 ### Goal 5
 Well 😤, that's annoying. Looks like we have a nested group! <br/>
@@ -117,7 +117,7 @@ Let's run the command one more time against this group.<br/>
 ```
 az ad member list --group "631ebd3f-39f9-4492-a780-aef2aec8c94e"
 ```
-![Owner](../img/objectives/Owner/Owner_8.png)
+![Owner](../img/objectives/Owner/Owner_8.png){ width="1000" }
 
 ### Goal 6
 elevated access instead of permanent assignments. <br/>
@@ -129,7 +129,7 @@ finish
 ```
 
 This completes the challenge.<br/>
-![Owner](../img/objectives/Owner/Owner_8.png)
+![Owner](../img/objectives/Owner/Owner_8.png){ width="1000" }
 
 !!! success "Answer"
     Completed in the game.

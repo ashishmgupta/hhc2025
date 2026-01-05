@@ -3,7 +3,7 @@ icon: material/text-box-outline
 ---
 
 # The Open Door
-![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_1.png)
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
@@ -18,7 +18,7 @@ icon: material/text-box-outline
     You can use `<br/>` to ensure each sentence starts on a new line.
 
 
-### High-Level Steps
+## High-Level Steps
 1. **Enumerate** – Identify Network Security Groups and their associated rules.
 2. **Inspect** – Review NSG rules for overly permissive internet access.
 3. **Confirm** – Validate the risky rule exposing sensitive ports.
@@ -53,6 +53,8 @@ flowchart TD
 ```
 
 ## Solution
+The Console <br/>
+![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_1.png)
 
 ### Goal 1
 Welcome back! Let's start by exploring output formats.<br/>

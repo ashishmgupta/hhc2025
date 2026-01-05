@@ -24,14 +24,40 @@ icon: material/text-box-outline
 
     Can you help me? No pressure...<br/>
 
-## High level steps
-1. Extract IOCs [domains, IP addresses, URLs and email addresses] using regex.
-1. Defang IOCs using string replacements.
-1. Submit the defanged IOCs to the Counter Hack Security Team.
+## High-Level Steps
 
-**What does defang mean?** <br/>
-Defang means make something harmless by removing what makes it dangerous.
-In this context, we have phishing emails with malicious links
+1. **Extract** – Use regex to identify IOCs in the phishing message.
+2. **Defang** – Convert malicious indicators into a harmless format.
+3. **Report** – Submit the defanged IOCs to the security team.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Extract"]
+    direction LR
+    A[Parse phishing message]
+    B[Extract domains, IPs, URLs, emails]
+    A --> B
+  end
+
+  subgraph Row2["Defang"]
+    direction LR
+    C[Replace dots, at signs, and protocols]
+    D[Produce defanged IOCs]
+    C --> D
+  end
+
+  subgraph Row3["Report"]
+    direction LR
+    E[Submit IOC report]
+    F[Security team accepts report]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Hints
 
@@ -43,7 +69,7 @@ In this context, we have phishing emails with malicious links
 
 ## Solution
 ### Summary
-This challenge shows a phishing message from which we needed to extract IOCs (domains, IP addresses, URLs and email adddresses) and defanging them meaning replace the malicious content
+This challenge shows a phishing message from which we needed to extract IOCs (domains, IP addresses, URLs and email addresses) and defanging them meaning replace the malicious content
 with harmless placeholders and report them.
 
 ### Step 1 : Extract IOCs using regex

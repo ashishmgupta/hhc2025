@@ -38,7 +38,40 @@ We get a receipt outside the Sarabune bistro.<br>
 
     I was...[at a talk](https://www.youtube.com/watch?v=hzrhtHrhwno) recently...and learned some interesting things about some of these payment systems. <br/> Let's use that receipt to dig deeper and unmask this gnome's true identity.
 
+## High-Level Steps
 
+1. **Discover** – Identify receipt endpoints from the QR code.
+2. **Test** – Enumerate receipt IDs to confirm an IDOR vulnerability.
+3. **Extract** – Retrieve the target receipt and identify the gnome.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Discover"]
+    direction LR
+    A[Scan QR code]
+    B[Identify receipt endpoint]
+    A --> B
+  end
+
+  subgraph Row2["Test"]
+    direction LR
+    C[Modify receipt ID parameter]
+    D[Enumerate receipt IDs]
+    C --> D
+  end
+
+  subgraph Row3["Extract"]
+    direction LR
+    E[Locate matching receipt]
+    F[Identify gnome name]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 Scanning the QR code has below<br>

@@ -36,6 +36,40 @@ icon: material/text-box-outline
 We get a BASIC program while talking to Kevin.<br>
 ![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_1.png)
 
+## High-Level Steps
+
+1. **Analyze** – Inspect the BASIC program logic.
+2. **Reverse** – Undo the XOR-based obfuscation.
+3. **Recover** – Extract and submit the decoded flag.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Analyze"]
+    direction LR
+    A[Read BASIC program]
+    B[Identify XOR-based checks]
+    A --> B
+  end
+
+  subgraph Row2["Reverse"]
+    direction LR
+    C[Derive XOR key]
+    D[Apply XOR to encoded values]
+    C --> D
+  end
+
+  subgraph Row3["Recover"]
+    direction LR
+    E[Decode flag string]
+    F[Obtain plaintext flag]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 ## Solution
 
 #### The BASIC program.
@@ -60,7 +94,7 @@ So what if we calculate XOR 7 for each character of the expected password D13URK
 100 END
 ```
 
-So what if we calculate XOR 7 for each character of the expected password D13URKBT.<br/>
+So what if we calculate XOR 7 for each character of the expected password ```D13URKBT```.<br/>
 
 ```py linenums="1" title="calculate_xor.py"
 #XOR a single character with 7.
@@ -87,9 +121,9 @@ D13URKBT
 
 ![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_2.png)
 
-But that is just to bypass the logic so we dont get sent to line 90 and exit.<br/>
-Then in the line 85, effectively calculates the XOR 7 of the variable ENC_FLAG$<br/>
-` is a comment in BASIC, so we just need to calculate the XOR 7 for DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz<br/>
+But that is just to bypass the logic so we don't get sent to line 90 and exit.<br/>
+Then the line 85 effectively calculates the XOR 7 of the variable ENC_FLAG$<br/>
+` is a comment in BASIC, so we just need to calculate the XOR 7 for ```DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz```<br/>
 
 ```bash title="BASIC program"
 10 REM *** COMMODORE 64 SECURITY SYSTEM ***
@@ -119,13 +153,12 @@ We get ```CTF{frost-plan:compressors,coolant,oil}``` <br/>
 
 We submit the above output and that is accepted as the answer.
 
+!!! success "Answer"
+```
+CTF{frost-plan:compressors,coolant,oil}
+```
 ![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_4.png)
 
-
-!!! success "Answer"
-    ```
-    CTF{frost-plan:compressors,coolant,oil}
-    ```
 ## Response
 !!! quote "Kevin McFarland"
     Excellent work! You've just demonstrated one of the most valuable skills in cybersecurity - the ability to think like the original programmer and unravel their logic without needing to execute a single line of code.<br/>
