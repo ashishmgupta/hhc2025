@@ -6,8 +6,9 @@ icon: material/text-box-outline
 ![Meeting with Ed Skoudis](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Its all about defang](https://its-all-about-defang.holidayhackchallenge.com/?id=3cac49be-9584-47b6-8dff-e92c260d676f){:target="_blank" rel="noopener"}
-
+**Direct link**: [Its all about defang](https://its-all-about-defang.holidayhackchallenge.com/?id=3cac49be-9584-47b6-8dff-e92c260d676f){:target="_blank" rel="noopener"}<br/> 
+**Area**: City Hall<br/> 
+**In-game avatar**: Ed Skoudis
 
 
 ## Objective
@@ -24,6 +25,14 @@ icon: material/text-box-outline
 
     Can you help me? No pressure...<br/>
 
+## Hints
+
+??? tip "Defang All The Thingz"
+    The PTAS does a pretty good job at defanging, however, the feature we are still working on is one that defangs ALL scenarios. For now, you will need to write a custom sed command combining all defang options.
+
+??? tip "Extract IOCs"
+    Remember, the new Phishing Threat Analysis Station (PTAS) is still under construction. Even though the regex patterns are provided, they haven't been fine tuned. Some of the matches may need to be manually removed.
+    
 ## High-Level Steps
 
 1. **Extract** – Use regex to identify IOCs in the phishing message.
@@ -59,13 +68,7 @@ flowchart TD
   Row2 --> Row3
 ```
 
-## Hints
 
-??? tip "Defang All The Thingz"
-    The PTAS does a pretty good job at defanging, however, the feature we are still working on is one that defangs ALL scenarios. For now, you will need to write a custom sed command combining all defang options.
-
-??? tip "Extract IOCs"
-    Remember, the new Phishing Threat Analysis Station (PTAS) is still under construction. Even though the regex patterns are provided, they haven't been fine tuned. Some of the matches may need to be manually removed.
 
 ## Solution
 This challenge shows a phishing message from which we needed to extract IOCs (domains, IP addresses, URLs and email addresses) and defanging them meaning replace the malicious content

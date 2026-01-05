@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Visual Firewall Thinger](https://visual-firewall.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
+**Direct link**: [Visual Firewall Thinger](https://visual-firewall.holidayhackchallenge.com/){:target="_blank" rel="noopener"}<br/>
+**Area**: Hotel<br/> 
+**In-game avatar**: Chris Elgee
 
 ## Objective
 

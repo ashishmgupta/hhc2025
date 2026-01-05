@@ -7,7 +7,9 @@ icon: material/text-box-outline
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_0.png)<br/>
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Gnome Tea](https://gnometea.web.app/login?&challenge=termGnomeTea&id=967be673-ae19-4fe5-97a9-962616026ddb&area=apartment){:target="_blank" rel="noopener"}
+**Direct link**: [Gnome Tea](https://gnometea.web.app/login?&challenge=termGnomeTea&id=967be673-ae19-4fe5-97a9-962616026ddb&area=apartment){:target="_blank" rel="noopener"}<br/>
+**Area**: Apartment building near 24-7<br/> 
+**In-game avatar**: Thomas Bouve
 
 
 ## Hints

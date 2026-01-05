@@ -8,6 +8,8 @@ icon: material/text-box-outline
 ![Meeting with Lynn Schifano](../img/objectives/orientation/orientation2.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Area**: In the train<br/> 
+**In-game avatar**: Lynn Schifano
 
 ## Objective
 

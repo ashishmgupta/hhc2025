@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Neighborhood Watch Bypass](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_1.png){ width="500" height="350" }
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Blob Storage Challenge in the Neighborhood](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSBlobstorage){:target="_blank" rel="noopener"}
+**Direct link**: [Blob Storage Challenge in the Neighborhood](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSBlobstorage){:target="_blank" rel="noopener"}<br/>
+**Area**: Near the pond<br/> 
+**In-game avatar**: Goose Grace
 
 ## Objective
 

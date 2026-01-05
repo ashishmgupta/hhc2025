@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Spare key](../img/objectives/Spare_Key/Spare_Key_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Spare Key](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSSpareKey){:target="_blank" rel="noopener"}
+**Direct link**: [Spare Key](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSSpareKey){:target="_blank" rel="noopener"}<br/>
+**Area**: Near the pond<br/> 
+**In-game avatar**: Goose Barry
 
 ## Objective
 

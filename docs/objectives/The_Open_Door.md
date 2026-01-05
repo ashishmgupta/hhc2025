@@ -6,8 +6,9 @@ icon: material/text-box-outline
 ![The Open Door](../img/objectives/The_Open_Door/The_Open_Door_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-
-**Direct link**: [The Open Door](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOpenDoor){:target="_blank" rel="noopener"}
+**Direct link**: [The Open Door](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOpenDoor){:target="_blank" rel="noopener"}<br/>
+**Area**: Hotel parking lot<br/> 
+**In-game avatar**: Goose Lucas
 
 ## Objective
 !!! question "Request"

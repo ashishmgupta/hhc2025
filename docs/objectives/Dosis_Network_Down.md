@@ -7,7 +7,9 @@ icon: material/text-box-outline
 ![Dosis_Network_Down](../img/objectives/Dosis_Network_Down/Dosis_Network_Down_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Dosis_Network_Down](https://dosis-network-down.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
+**Direct link**: [Dosis Network Down](https://dosis-network-down.holidayhackchallenge.com/){:target="_blank" rel="noopener"}<br/>
+**Area**: 24-7<br/> 
+**In-game avatar**: Janusz Jasinski
 
 
 ## Hints

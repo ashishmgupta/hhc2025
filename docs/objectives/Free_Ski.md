@@ -7,6 +7,8 @@ icon: material/text-box-outline
 ![Free_Ski](../img/objectives/Free_Ski/Free_Ski_0.png)<br/>
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:<br/>
+**Area**: Retro Store<br/> 
+**In-game avatar**: Olivia
 
 
 

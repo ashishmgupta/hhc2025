@@ -7,6 +7,8 @@ icon: material/text-box-outline
 ![Retro Recovery](../img/objectives/Retro_Recovery/Retro_Recovery_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
+**Area**: Retro shop<br/> 
+**In-game avatar**: Mark DeVito
 
 ## Hints
 

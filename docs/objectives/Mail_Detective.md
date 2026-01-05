@@ -7,7 +7,9 @@ icon: material/text-box-outline
 ![Mail Detective](../img/objectives/Mail_Detective/Mail_Detective_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Mail Detective](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termCurlyImaps){:target="_blank" rel="noopener"}
+**Direct link**: [Mail Detective](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termCurlyImaps){:target="_blank" rel="noopener"}<br/>
+**Area**: City Hall<br/> 
+**In-game avatar**: Maurice Wilson
 
 
 ## Hints

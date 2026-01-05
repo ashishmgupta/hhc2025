@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Visual Networking Thinger](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Visual Networking Thinger](https://visual-networking.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
+**Direct link**: [Visual Networking Thinger](https://visual-networking.holidayhackchallenge.com/){:target="_blank" rel="noopener"}<br/>
+**Area**: Frozen pond<br/> 
+**In-game avatar**: Jared Folkins
 
 ## Objective
 

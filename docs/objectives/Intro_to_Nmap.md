@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Intro to Nmap](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap){:target="_blank" rel="noopener"}
+**Direct link**: [Intro to Nmap](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap){:target="_blank" rel="noopener"}<br/>
+**Area**: Hotel parking lot<br/> 
+**In-game avatar**: Eric Pursley
 
 ## Objective
 

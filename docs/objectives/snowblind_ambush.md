@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_01.png) <br/>
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:<br/>
-**Direct link**: [Snowblind Ambush](https://hhc25-gatexor-prod.holidayhackchallenge.com/timey-whimey?env=prod&page=snowblind&&challenge=termSnowblind){:target="_blank" rel="noopener"}
+**Direct link**: [Snowblind Ambush](https://hhc25-gatexor-prod.holidayhackchallenge.com/timey-whimey?env=prod&page=snowblind&&challenge=termSnowblind){:target="_blank" rel="noopener"}<br/>
+**Area**: The hotel<br/> 
+**In-game avatar**: Torkel Opsahl
 
 ## Objective
 

@@ -8,7 +8,9 @@ icon: material/text-box-outline
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
-**Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm){:target="_blank" rel="noopener"}
+**Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm){:target="_blank" rel="noopener"}<br/>
+**Area**: Old data center<br/> 
+**In-game avatar**: Kyle Parrish
 
 ## Objective
 

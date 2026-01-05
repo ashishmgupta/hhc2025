@@ -7,7 +7,9 @@ icon: material/text-box-outline
 ![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Snowcat RCE & Priv Esc](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termSnowcat){:target="_blank" rel="noopener"}
+**Direct link**: [Snowcat RCE & Priv Esc](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termSnowcat){:target="_blank" rel="noopener"}<br/>
+**Area**: The hotel<br/> 
+**In-game avatar**: Tom Hessman
 
 
 ## Hints

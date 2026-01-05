@@ -7,11 +7,11 @@ icon: material/text-box-outline
 ![Santa's Gift-Tracking Service Port Mystery](../img/objectives/Santa_Gift-Tracking_Service_Port_Mystery/Santa_Gift-Tracking_Service_Port_Mystery_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-
-**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termGiftTracking){:target="_blank" rel="noopener"}
+**Direct link**: [Santa's Gift-Tracking Service Port Mystery](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termGiftTracking){:target="_blank" rel="noopener"}<br/> 
+**Area**: Near the apartment building<br/> 
+**In-game avatar**: Yori Kvitchko
 
 ## Objective
-
 !!! question "Request"
    Chat with Yori near the apartment building about Santa's mysterious gift tracker and unravel the holiday mystery.
 
