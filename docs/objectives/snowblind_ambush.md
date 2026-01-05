@@ -4,7 +4,7 @@ icon: material/text-box-outline
 # Snowblind Ambush
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star:<br/>
-**Direct link**: [Snowblind Ambush](https://hhc25-gatexor-prod.holidayhackchallenge.com/timey-whimey?env=prod&page=snowblind&&challenge=termSnowblind)
+**Direct link**: [Snowblind Ambush](https://hhc25-gatexor-prod.holidayhackchallenge.com/timey-whimey?env=prod&page=snowblind&&challenge=termSnowblind){:target="_blank" rel="noopener"}
 
 ## Objective
 

@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Intro to Nmap](../img/objectives/Intro_to_Nmap/Intro_to_Nmap_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap)
+**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termNmap){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -21,6 +21,41 @@ icon: material/text-box-outline
     But most of the time, I'm helping organizations in the real world be more secure. I do a bunch of different kinds of pentesting, but speciailize in network and physical.<br/>
     Some advice: stay laser-focused on your goals and don't let the distractions life throws at you lead you astray. That's how I ended up at Counter Hack!
 
+### High-Level Steps
+
+1. **Scan** – Discover open ports using Nmap.
+2. **Identify** – Enumerate services and versions on discovered ports.
+3. **Interact** – Connect to services to verify access and complete the challenge.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Scan"]
+    direction LR
+    A[Default TCP scan]
+    B[Full port scan]
+    C[IP range scan]
+    A --> B --> C
+  end
+
+  subgraph Row2["Identify"]
+    direction LR
+    D[Locate open port]
+    E[Service and version detection]
+    D --> E
+  end
+
+  subgraph Row3["Interact"]
+    direction LR
+    F[Connect with Ncat]
+    G[Read service banner]
+    H[Objective completed]
+    F --> G --> H
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 The initial prompt <br/>

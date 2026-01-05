@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Visual Firewall Thinger](../img/objectives/Visual_Firewall_Thinger/Visual_Firewall_Thinger_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Visual Firewall Thinger](https://visual-firewall.holidayhackchallenge.com/)
+**Direct link**: [Visual Firewall Thinger](https://visual-firewall.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -25,6 +25,41 @@ icon: material/text-box-outline
     Don't worry about breaking anything; that's half the fun of learning!
     Ready to dig in?
 
+### High-Level Steps
+
+1. **Understand** – Analyze the network layout and security zones.
+2. **Configure** – Define firewall rules to allow only required traffic.
+3. **Validate** – Confirm rule behavior and complete the objective.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Understand"]
+    direction LR
+    A[Identify zones]
+    B[Review firewall goals]
+    A --> B
+  end
+
+  subgraph Row2["Configure"]
+    direction LR
+    C[Internet to DMZ rules]
+    D[DMZ to Internal rules]
+    E[Internal to Cloud rules]
+    C --> D --> E
+  end
+
+  subgraph Row3["Validate"]
+    direction LR
+    F[Test allowed traffic]
+    G[Confirm blocked traffic]
+    H[Objective completed]
+    F --> G --> H
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 
 ## Solution

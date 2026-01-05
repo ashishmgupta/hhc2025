@@ -6,7 +6,9 @@ icon: material/text-box-outline
 ![Meeting with Ed Skoudis](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Its all about defang](https://its-all-about-defang.holidayhackchallenge.com/)
+**Direct link**: [Its all about defang](https://its-all-about-defang.holidayhackchallenge.com/?id=3cac49be-9584-47b6-8dff-e92c260d676f){:target="_blank" rel="noopener"}
+
+
 
 ## Objective
 
@@ -22,6 +24,14 @@ icon: material/text-box-outline
 
     Can you help me? No pressure...<br/>
 
+## High level steps
+1. Extract IOCs [domains, IP addresses, URLs and email addresses] using regex.
+1. Defang IOCs using string replacements.
+1. Submit the defanged IOCs to the Counter Hack Security Team.
+
+**What does defang mean?** <br/>
+Defang means make something harmless by removing what makes it dangerous.
+In this context, we have phishing emails with malicious links
 
 ## Hints
 
@@ -42,14 +52,14 @@ with harmless placeholders and report them.
 ([a-zA-Z]+\.)*[a-zA-Z]+\.(?!corp\b)[a-zA-Z]{4}
 ```
 
-![Domains extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_2.png){ width="500" height="350" }
+![Domains extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_2.png)
 
 #### IP Address
 ```bash
 \b(?!10\.)(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}\b
 ```
 
-![IP Address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_3.png){ width="500" height="350" }
+![IP Address extraction](../img/objectives/Its_All_About_Defang/Its_All_About_Defang_3.png)
 
 #### URLs
 ```bash

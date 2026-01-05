@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Visual Networking Thinger](../img/objectives/Visual_Networking_Thinger/Visual_Networking_Thinger_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Visual Networking Thinger](https://visual-networking.holidayhackchallenge.com/)
+**Direct link**: [Visual Networking Thinger](https://visual-networking.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -18,7 +18,39 @@ icon: material/text-box-outline
     You know, I think Santa is right! It truly is better to give than to receive.<br/>
     I love singing Carols with my family! 🎵O holy night, the stars are brightly shining…🎵<br/>
 
+## High-Level Steps
 
+1. Resolve – Perform a DNS lookup to translate the service hostname into an IP address.
+1. Establish – Build the network connection step-by-step (TCP handshake, optional TLS handshake).
+1. Request – Send HTTP/HTTPS requests over the established connection to retrieve the content and complete the challenge.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Resolve"]
+    direction LR
+    A["DNS lookup (Hostname -> IP)"]
+  end
+
+  subgraph Row2["Establish"]
+    direction LR
+    B[TCP 3-Way Handshake]
+    C["TLS Handshake (secure connection)"]
+    B --> C
+  end
+
+  subgraph Row3["Request"]
+    direction LR
+    D[HTTP / HTTPS GET]
+    E[Response received]
+    F["Challenge completed"]
+    D --> E --> F
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+
+```
 
 ## Solution
 

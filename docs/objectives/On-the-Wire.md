@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![On the Wire](../img/objectives/On-the-wire/On-the-wire_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star:<br/>
-**Direct link**: [On-the-wire](https://signals.holidayhackchallenge.com/?&challenge=termSignals)
+**Direct link**: [On-the-wire](https://signals.holidayhackchallenge.com/?&challenge=termSignals){:target="_blank" rel="noopener"}
 
 
 ## Hints

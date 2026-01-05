@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Schrodingers Scope](../img/objectives/Schrodingers_Scope/Schrodingers_Scope_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star:<br/>
-**Direct link**: [Schrodingers Scope](https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/)
+**Direct link**: [Schrodingers Scope](https://flask-schrodingers-scope-firestore.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
 
 
 ## Hints

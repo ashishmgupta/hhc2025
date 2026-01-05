@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Going_in_reverse](../img/objectives/Going_in_Reverse/Going_in_Reverse_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Going_in_reverse](https://dosis-network-down.holidayhackchallenge.com/)
+**Direct link**: [Going_in_reverse](https://dosis-network-down.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
 
 
 ## Hints

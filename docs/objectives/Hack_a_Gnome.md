@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Hack-a-Gnome](../img/objectives/Hack_a_Gnome/Hack_a_Gnome_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Hack-a-Gnome](https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/)
+**Direct link**: [Hack-a-Gnome](https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/){:target="_blank" rel="noopener"}
 
 
 ## Hints

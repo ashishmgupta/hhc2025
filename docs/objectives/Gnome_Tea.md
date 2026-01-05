@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_0.png)<br/>
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Gnome Tea](https://gnometea.web.app/login?&challenge=termGnomeTea&id=967be673-ae19-4fe5-97a9-962616026ddb&area=apartment)
+**Direct link**: [Gnome Tea](https://gnometea.web.app/login?&challenge=termGnomeTea&id=967be673-ae19-4fe5-97a9-962616026ddb&area=apartment){:target="_blank" rel="noopener"}
 
 
 ## Hints
@@ -36,9 +36,8 @@ icon: material/text-box-outline
 
 ## Solution
 
-https://gnometea.web.app/login references below js file
-https://gnometea.web.app/assets/index-BVLyJWJ_.js
-Which has the the hard coded details
+The [login page](https://gnometea.web.app/login){:target="_blank" rel="noopener"} of the app references the below [index-BVLyJWJ_.js](https://gnometea.web.app/assets/index-BVLyJWJ_.js){:target="_blank" rel="noopener"} file. <br/>
+This JS file has hard coded values. <br/>
 ```
     apiKey: "AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk",
     authDomain: "holidayhack2025.firebaseapp.com",

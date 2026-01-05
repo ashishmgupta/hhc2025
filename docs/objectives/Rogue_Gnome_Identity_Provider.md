@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Rogue_Gnome_Identity_Provider](../img/objectives/Rogue_Gnome_Identity_Provider/Rogue_Gnome_Identity_Provider_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Rogue_Gnome_Identity_Provider](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termRogueGnome)
+**Direct link**: [Rogue_Gnome_Identity_Provider](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termRogueGnome){:target="_blank" rel="noopener"}
 
 
 ## Hints

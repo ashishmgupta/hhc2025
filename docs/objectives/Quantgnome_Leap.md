@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Quantgnome_Leap](../img/objectives/Quantgnome_Leap/Quantgnome_Leap_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Quantgnome_Leap](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termQuantgnome)
+**Direct link**: [Quantgnome_Leap](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termQuantgnome){:target="_blank" rel="noopener"}
 
 
 ## Hints

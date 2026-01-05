@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![Owner](../img/objectives/Owner/Owner_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Owner](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOwner)
+**Direct link**: [Owner](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOwner){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -19,6 +19,41 @@ icon: material/text-box-outline
     The Neighborhood network admins use RBAC fo access control.<br/>
     Your task is to audit their RBAC configuration to ensure they're following security best practices.
 
+### High-Level Steps
+
+1. **Enumerate** – Identify subscriptions and their Owner role assignments.
+2. **Investigate** – Examine groups and nested memberships for excessive privileges.
+3. **Confirm** – Validate permanent Owner access and complete the audit.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Enumerate"]
+    direction LR
+    A[List subscriptions]
+    B[List Owner role assignments]
+    A --> B
+  end
+
+  subgraph Row2["Investigate"]
+    direction LR
+    C[Identify non-PIM Owner group]
+    D[Enumerate group members]
+    E[Trace nested groups]
+    C --> D --> E
+  end
+
+  subgraph Row3["Confirm"]
+    direction LR
+    F[Detect permanent Owner access]
+    G[Least-privilege violation confirmed]
+    H[Objective completed]
+    F --> G --> H
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 

@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Spare key](../img/objectives/Spare_Key/Spare_Key_1.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Spare Key](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSSpareKey)
+**Direct link**: [Spare Key](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSSpareKey){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -18,6 +18,41 @@ icon: material/text-box-outline
     The Neighborhood HOA hosts a static website on Azure Storage.
     An admin accidentally uploaded an infrastructure config file that contains a long-lived SAS token.
     Use Azure CLI to find the leak and report exactly where it lives.
+
+### High-Level Steps
+
+1. **Enumerate** – Identify Azure resources and storage accounts.
+2. **Inspect** – Review containers and static website files for sensitive data.
+3. **Confirm** – Analyze exposed configuration files to confirm the secret leak.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Enumerate"]
+    direction LR
+    A[List resource groups]
+    B[List storage accounts]
+    A --> B
+  end
+
+  subgraph Row2["Inspect"]
+    direction LR
+    C[Check static website settings]
+    D[List containers and blobs]
+    C --> D
+  end
+
+  subgraph Row3["Confirm"]
+    direction LR
+    E[Download suspect file]
+    F[Identify exposed SAS token]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 ### Goal 1

@@ -8,7 +8,7 @@ icon: material/text-box-outline
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
-**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termGiftTracking)
+**Direct link**: [Objective 1 terminal](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termGiftTracking){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -19,6 +19,31 @@ icon: material/text-box-outline
     I was Ed's lost intern back in 2015, but I was found!<br/>
     Think you can check out this terminal for me? I need to use cURL to access the gift tracker system, but it has me stumped.<br/>
     Please see what you can do!<br/>
+
+### High-Level Steps
+
+1. **Recon** – Enumerate listening ports and running services.
+2. **Discovery** – Review documentation to identify the correct service access method.
+3. **Access** – Connect to the service port to complete the objective.
+
+```mermaid
+flowchart LR
+
+  subgraph Recon
+    A[Enumerate listening ports<br/>ss -tlnp]
+  end
+
+  subgraph Discovery
+    B[Review README.txt<br/>and available tools]
+  end
+
+  subgraph Access
+    C[Connect to service<br/>via telnet on port 12321]
+    D[Objective completed]
+  end
+
+  A --> B --> C --> D
+```
 
 
 ## Solution

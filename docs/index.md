@@ -13,10 +13,10 @@ It’s not the only way to solve them—just the path that worked for me.<br/>
 
 My son, Aarush has been interested in this since he was 6 years old with HHC 2020, and since then the Holiday Hack Challenge has become one of the most eagerly anticipated events of the year for both of us. <br/>
 
-## Answers
+## All Answers
 The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
 Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
-Please click on each of the ACTs to see the challenges therein with answers linking to their individual detail pages.<br/>
+Please click on each of the acts to see the challenges therein with answers linking to their individual detail pages.<br/>
 
 === "Act I"
 

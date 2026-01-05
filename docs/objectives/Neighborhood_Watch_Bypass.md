@@ -8,7 +8,7 @@ icon: material/text-box-outline
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
-**Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm)
+**Direct link**: [Neighborhood Watch Bypass](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termDosisAlarm){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -30,6 +30,59 @@ icon: material/text-box-outline
 ??? tip "What Are My Powers?"
     You know, Sudo is a REALLY powerful tool. It allows you to run executables as ROOT!!! There is even a handy switch that will tell you what powers your user has.
 
+## High level steps
+1. Recon – Enumerate sudo privileges and analyze the allowed script to understand how it executes commands.
+1. Exploit – Identify a PATH-hijacking opportunity and replace the non-absolute executable with a malicious one.
+1. Impact – Execute the script with sudo to gain elevated permissions and restore the fire alarm service.
+
+
+```mermaid
+flowchart TD
+
+  %% =======================
+  %% ROW 1 — Recon (LR)
+  %% =======================
+  subgraph Row1["Recon"]
+    direction LR
+    A[Run sudo -l]
+    B[Discover allowed script<br/>system_status.sh]
+    C[Inspect script contents]
+    A --> B --> C
+  end
+
+  %% =======================
+  %% ROW 2 — Exploit (LR)
+  %% =======================
+  subgraph Row2["Exploit"]
+    direction LR
+    D{Uses absolute paths?}
+    E[Identify executable<br/>called via PATH]
+    F[Create fake executable<br/>named w]
+    G[Place fake w in ~/bin]
+    D -->|No| E --> F --> G
+  end
+
+  %% =======================
+  %% ROW 3 — Impact (LR)
+  %% =======================
+  subgraph Row3["Impact"]
+    direction LR
+    H[Run system_status.sh<br/>with sudo]
+    I[Fake w runs as root]
+    J[Modify permissions on<br/>restore_fire_alarm]
+    K[Execute restore_fire_alarm]
+    L[Objective completed]
+    H --> I --> J --> K --> L
+  end
+
+  %% =======================
+  %% ROW CONNECTIONS (NOT NODE CHAINS)
+  %% =======================
+  Row1 --> Row2
+  Row2 --> Row3
+```
+
+
 ## Solution
 
 Clicking on the fire alarm system shows the below:
@@ -47,7 +100,10 @@ When we try that, we get permissions denied.<br/>
 
 The hint mentions a special switch with ```sudo```.  ```-l``` could be the one.
 
-```sudo -l``` shows the user has permission to run /usr/local/bib/system_status.sh with root access.
+```sudo -l``` shows the user has permission to run /usr/local/bin/system_status.sh with root access.
+```
+sudo -l
+```
 
 ![sudo -l switch shows the user has permission to run /usr/local/lib/system_status.sh](../img/objectives/Neighborhood_Watch_Bypass/Neighborhood_Watch_Bypass_3.png){ width="1200" height="1250" }
 

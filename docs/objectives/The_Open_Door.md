@@ -7,7 +7,7 @@ icon: material/text-box-outline
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
 
-**Direct link**: [The Open Door](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOpenDoor)
+**Direct link**: [The Open Door](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSOpenDoor){:target="_blank" rel="noopener"}
 
 ## Objective
 !!! question "Request"
@@ -17,6 +17,40 @@ icon: material/text-box-outline
     Copy the first part of the conversation with Elf Name here<br/>
     You can use `<br/>` to ensure each sentence starts on a new line.
 
+
+### High-Level Steps
+1. **Enumerate** – Identify Network Security Groups and their associated rules.
+2. **Inspect** – Review NSG rules for overly permissive internet access.
+3. **Confirm** – Validate the risky rule exposing sensitive ports.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Enumerate"]
+    direction LR
+    A[List resource groups]
+    B[List Network Security Groups]
+    A --> B
+  end
+
+  subgraph Row2["Inspect"]
+    direction LR
+    C[Review NSG rules]
+    D[Identify internet-exposed ports]
+    C --> D
+  end
+
+  subgraph Row3["Confirm"]
+    direction LR
+    E[Inspect suspect rule details]
+    F[Confirm risky RDP access]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 

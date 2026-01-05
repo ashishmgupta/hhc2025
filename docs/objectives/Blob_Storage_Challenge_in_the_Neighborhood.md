@@ -6,7 +6,7 @@ icon: material/text-box-outline
 ![Neighborhood Watch Bypass](../img/objectives/Blob_Storage_Challenge_in_the_Neighborhood/Blob_Storage_Challenge_in_the_Neighborhood_1.png){ width="500" height="350" }
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [Blob Storage Challenge in the Neighborhood](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSBlobstorage)
+**Direct link**: [Blob Storage Challenge in the Neighborhood](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termMSBlobstorage){:target="_blank" rel="noopener"}
 
 ## Objective
 
@@ -19,6 +19,40 @@ icon: material/text-box-outline
     You've been asked to audit their storage security configuration to ensure no sensitive data is publicly accessible.
     Recent security reports suggest some storage accounts might have public blob access enabled, creating potential data exposure risks.
 
+### High-Level Steps
+
+1. **Enumerate** – List Azure storage accounts and review configuration.
+2. **Identify** – Find storage accounts with public blob access enabled.
+3. **Validate** – Access exposed blobs to confirm data exposure.
+
+```mermaid
+flowchart TD
+
+  subgraph Row1["Enumerate"]
+    direction LR
+    A[List storage accounts]
+    B[Review account settings]
+    A --> B
+  end
+
+  subgraph Row2["Identify"]
+    direction LR
+    C[Detect public blob access]
+    D[List containers and blobs]
+    C --> D
+  end
+
+  subgraph Row3["Validate"]
+    direction LR
+    E[Download public blob]
+    F[Confirm sensitive data exposure]
+    G[Objective completed]
+    E --> F --> G
+  end
+
+  Row1 --> Row2
+  Row2 --> Row3
+```
 
 ## Solution
 
