@@ -199,7 +199,7 @@ We can execute the executable directly with the key we notice in the source code
 ```
 /usr/local/weather/temperature 4b2f3c2d-1f88-4a09-8bd4-d3e5e52e19a6
 ```
-We see the temparature. <br/>
+We see the temperature. <br/>
 ![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_5.png)
 
 Looking at the strings in each of the executables. <br>
@@ -214,8 +214,8 @@ Execute another binary with the temparature.<br/>
 ```
 /usr/local/weather/temperature "'4b2f3c2d-1f88-4a09-8bd4-d3e5e52e19a6; whoami;'"
 ```
-temparature ebinary xecutes with the id to give its output. '; ends the command and begins the next.<br/>
-new comand (whoami) to give its output</br>
+temperature binary executes with the id to give its output. '; ends the command and begins the next.<br/>
+new command (whoami) to give its output</br>
 
 ![Snowcat RCE & Priv Esc](../img/objectives/Snowcat-RCE/Snowcat-RCE_8.png)
 

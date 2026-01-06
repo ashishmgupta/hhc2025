@@ -995,8 +995,8 @@ We can move it to rach the lever on the top left to complete the challenge.
     Time to turn this little rebel against its own manufacturing operation and shut them down for good!
 
 ## Learnings
-1. I first learnt about **prototype pollution** in this challenge.
-When combined with template rendering, It can get us the RCE on the server.
+1. I first learnt about **prototype pollution** in this challenge. Very nice experience!
+When combined with template rendering, It can get us the RCE on the server like It did with /stats page.
 1.  Don't assume the backend database is an RDBMS like SQL server :-). It could also be a NoSQL database and there are ways to determine the field names (e.g. using IS_DEFINED).
 
 

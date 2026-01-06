@@ -341,7 +341,7 @@ refrigeration-botnet.bin
 
 
 ## Learnings
-1. 1. A user-supplied URL in the `jku` claim can allow attackers to control the source of signing keys and forge trusted JWTs.
+1. A user-supplied URL in the `jku` claim can allow attackers to control the source of signing keys and forge trusted JWTs.
 
 ## Prevention & Hardening Notes
 1. Never allow user-controlled `jku` values; JWKS locations should be hard-coded or strictly allowlisted on the server side.
