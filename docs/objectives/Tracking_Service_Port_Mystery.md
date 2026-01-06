@@ -31,10 +31,10 @@ This section explains the different steps taken to solve the challenge. Try to f
 ### Admonitions
 
 !!! warning "Anchor the decorations"
-    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don’t want them floating off into the tropical sunset!
+    Ensure that all festive decorations, especially electrical ones, are securely anchored. We don't want them floating off into the tropical sunset!
 
 !!! info "Palm tree lighting"
-    While on the island, make sure to hang your Christmas lights on a palm tree. It’s not only festive but also a great beacon for Santa to find you!
+    While on the island, make sure to hang your Christmas lights on a palm tree. It's not only festive but also a great beacon for Santa to find you!
 
 ### Images
 

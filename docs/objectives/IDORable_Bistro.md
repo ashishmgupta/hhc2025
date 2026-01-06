@@ -7,7 +7,7 @@ icon: material/text-box-outline
 ![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_0.png)
 
 **Difficulty**: :fontawesome-solid-star::fontawesome-solid-star::fontawesome-regular-star::fontawesome-regular-star::fontawesome-regular-star:<br/>
-**Direct link**: [IDORable Bistro](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termCurlyImaps){:target="_blank" rel="noopener"}<br/>
+**Direct link**: [IDORable Bistro](https://its-idorable.holidayhackchallenge.com){:target="_blank" rel="noopener"}<br/>
 **Area**: Sasabune<br/> 
 **In-game avatar**: Josh Wright
 
@@ -98,7 +98,7 @@ https://its-idorable.holidayhackchallenge.com/api/receipt?id=104
 ![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_4.png)
 
 
-Trying to fuzz the API url with the receipt id from 1 - 200 for “frozen” in the API response and we get a hit.<br/>
+Trying to fuzz the API url with the receipt id from 1 - 200 for "frozen" in the API response and we get a hit.<br/>
 
 Below fuzzes the URL id from 1 to 200 looking for "frozen" in the part of response (because the hint notes that the gnome asked for the "frozen" sushi).<br/>
 ```
@@ -121,7 +121,16 @@ We have the name : Bartholomew Quibblefrost
 ```
 Bartholomew Quibblefrost
 ```
+![IDORable Bistro](../img/objectives/IDORable_Bistro/IDORable_Bistro_8.png)
+
 ## Response
 !!! quote "Josh Wright"
     Excellent work! <br/>
     You've demonstrated textbook penetration testing skills across every challenge - your discipline and methodology are impeccable!.<br/>
+
+## Learnings
+1. This was my first challenge of using QA code hiding identifiers but Its still same old IDOR vulnerability in the API. 
+
+## Prevention & Hardening Notes
+1. QR code or not, enforce authorization checks on every object request server-side, ensuring users can only access resources they are explicitly permitted to view.
+1. Don't use predictable or sequential identifiers in APIs.

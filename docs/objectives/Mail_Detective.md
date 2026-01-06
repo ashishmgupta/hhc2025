@@ -113,3 +113,11 @@ https://frostbin.atnas.mail/api/paste
 ## Response
 !!! quote "Maurice Wilson"
     Outstanding work! You've mastered using curl for IMAP - that's some serious command-line skills that would make any Air Force tech proud.<br/>
+
+## Learnings
+1. You can use curl against IMAP to access emails! I never knew this!
+
+## Prevention & Hardening Notes
+1. If you're in an Office 365 environment and you need to use MAPI, make sure to enforce MFA through conditional access policies so that even MAPI connections are secured.
+1. If you're using MAPI in an on-prem Exchange environment, consider enforcing IP restrictions since standard Outlook clients don't rely on IMAP, and you can limit MAPI access to known networks.  
+

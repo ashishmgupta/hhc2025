@@ -37,7 +37,7 @@ icon: material/text-box-outline
 
 1. **Exploit** – Abuse server-side template injection with obfuscated payloads to gain remote code execution and a reverse shell.
 
-1. **Escalate** – Leverage a backup process to exfiltrate system secrets, crack root credentials, and shut down Frosty’s infrastructure.
+1. **Escalate** – Leverage a backup process to exfiltrate system secrets, crack root credentials, and shut down Frosty's infrastructure.
 
 ```mermaid
 %%{init: {"themeVariables": {
@@ -569,6 +569,19 @@ hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
     ```
     ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/Snowblind_Ambush_29.png) 
 
+
+## Learnings
+1. LLMs and chatbots can leak sensitive information if they are wired directly into backend context without strict guardrails. Even when direct answers are blocked, simple transformations like encoding can still bypass intent.
+2. Any user-controlled input rendered server-side is a red flag. Seeing a value reflected back was enough to suspect template rendering and eventually confirm SSTI.
+3. Filtering "dangerous strings" is brittle. Octal encoding easily bypassed keyword-based defenses.
+4. Backup or maintenance scripts are often overlooked but can become powerful escalation paths when they process attacker-controlled input.
+
+## Prevention & Hardening Notes
+1. Treat AI/chatbot responses as untrusted output. Never allow them access to secrets, credentials, or privileged runtime context.
+2. Do not render user input directly in server-side templates. If templating is required, enforce strict auto-escaping and avoid dynamic evaluation entirely.
+3. Avoid blacklist-based input filtering. Use allowlists and structural validation instead.
+4. Lock down backup and cron-style scripts:
+
 ## Response
 
 !!! quote "Torkel Opsahl"
@@ -576,3 +589,4 @@ hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
 
 We are greeted with Santa and all the CounterHack team members with credits rolling.<br/>
     ![Snowblind Ambush](../img/objectives/Snowblind_Ambush/meet_santa.png) 
+

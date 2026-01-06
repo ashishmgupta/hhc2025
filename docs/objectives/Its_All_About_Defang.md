@@ -132,3 +132,11 @@ We submit the report to the security team and It is accepted.
 !!! quote "Ed Skoudis"
     Well you just made that look like a piece of cake! Though I prefer cookies...I know where to find the best in town!<br/>
     Thanks again! See ya 'round!
+
+## Learnings
+1. An incorrect regex can partially defang an indicator, leaving a live IoC unintentionally exposed.
+1. A single missed character during defanging can turn a safe example back into a live indicator.
+
+## Prevention & Hardening Notes
+1. Use well-tested, standardized defanging and regex patterns rather than ad-hoc when handling IoCs at scale.
+1. Validate output from regex and the defanged output to ensure no live indicators remain before sharing or publishing.

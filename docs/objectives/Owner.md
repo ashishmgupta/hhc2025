@@ -140,3 +140,10 @@ This completes the challenge.<br/>
 !!! quote "Goose James"
     You found the permanent assignments! CLUCK! <br/>
     See, I'm not crazy - the security really WAS misconfigured. Now maybe I can finally get some peace and quiet...
+
+## Learnings
+1. Permanent Owner assignments could be dangerous, especially when they're hidden behind groups and nested memberships.
+
+## Prevention & Hardening Notes
+1. Use Azure PIM for all Owner-level access and avoid permanent Owner assignments at the subscription scope.
+1. Regularly audit RBAC role assignments, including group memberships and nested groups, to ensure least-privilege is actually being enforced.

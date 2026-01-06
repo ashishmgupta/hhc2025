@@ -3,20 +3,21 @@
 ![Group photo](./img/misc/title_image.png)
 
 ## Introduction
-[SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge){:target="_blank" rel="noopener"} is a free cybersecurity event I make a point to complete every year. <br/>
-It's real fun and consistently pushes me into learning uncomfortable and unfamiliar concepts I never expected to touch, let alone solve the related challenges.
+The [SANS Holiday Hack Challenge](https://www.sans.org/cyber-ranges/holiday-hack-challenge){:target="_blank" rel="noopener"}  is a free cybersecurity event I look forward to every year. It's fun, challenging, and consistently pushes me to learn concepts well outside my comfort zone.<br/>
 
-Those long, frustrating hours are exactly what make the payoff worth it.<br/>
+This write-up captures how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. It's not the only way to solve them—just the one that worked for me.<br/>
 
-This write-up walks through how I approached each challenge, the mistakes along the way, and the reasoning behind the solutions. <br/>
-It’s not the only way to solve them—just the path that worked for me.<br/>
+My now 11 year old son Aarush, has been into the Holiday Hack Challenge since HHC 2020, and it's since become one of the most anticipated events of the year for both of us.
 
-My son, Aarush has been interested in this since he was 6 years old with HHC 2020, and since then the Holiday Hack Challenge has become one of the most eagerly anticipated events of the year for both of us. <br/>
+## Background
+Frosty planned to refrigerate the entire neighborhood by using gnomes to collect coolant and refrigerator parts.<br/>
+This write-up shows how we uncovered and stopped that plan by solving the challenges.
+
 
 ## All Answers
 The challenges are grouped into Act 1, Act 2, and Act 3. <br/>
 Each challenge includes a star rating, where a higher number of solid stars indicates greater difficulty.<br/>
-Please click on each of the acts to see the challenges therein with answers linking to their individual detail pages.<br/>
+Click on each act to view the challenges and detailed solutions.<br/>
 
 === "Act I"
 
@@ -91,7 +92,7 @@ Please click on each of the acts to see the challenges therein with answers link
 ## Conclusion
 
 !!! Abstract "Narrative"
-    Frosty’s plan was to turn the entire Dosis neighborhood into a giant refrigerator. To do this, he enlisted the gnomes to gather coolant, refrigeration components, and anything else required to bring the plan to life.
+    Frosty's plan was to turn the entire Dosis neighborhood into a giant refrigerator. To do this, he enlisted the gnomes to gather coolant, refrigeration components, and anything else required to bring the plan to life.
 
     By uncovering clues, solving each challenge, and piecing together how everything fit, we were ultimately able to uncover and foil his scheme before the neighborhood was left permanently frozen.
     
@@ -99,10 +100,10 @@ Please click on each of the acts to see the challenges therein with answers link
         The Counter Hack crew is in the Neighborhood festively preparing for the holidays when they are suddenly overrun by lively Gnomes in Your Home! There must have been some magic in those Gnomes, because, due to some unseen spark, some haunting hocus pocus, they have come to life and are now scurrying around the Neighborhood.
 
     - **ACT II**<br/>
-        The Gnomes’ nefarious plot seems to involve stealing refrigerator parts. But why?
+        The Gnomes' nefarious plot seems to involve stealing refrigerator parts. But why?
 
     - **ACT III**<br/>
-        The Gnomes want to transform the neighborhood so that it’s frozen solid year-round, an environmental disaster. But who is the mastermind behind the Gnomes’ wickedness?
+        The Gnomes want to transform the neighborhood so that it's frozen solid year-round, an environmental disaster. But who is the mastermind behind the Gnomes' wickedness?
         The Counter Hack crew discovers Frosty is behind the Gnome uprising and stops his freezing plot! Santa's compassionate offer to Frosty melts more than just snow, it melts hearts, saving the Neighborhood and proving that kindness conquers all.
 
 ??? Santa

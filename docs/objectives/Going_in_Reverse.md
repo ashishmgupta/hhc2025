@@ -164,3 +164,9 @@ CTF{frost-plan:compressors,coolant,oil}
 ## Response
 !!! quote "Kevin McFarland"
     Excellent work! You've just demonstrated one of the most valuable skills in cybersecurity - the ability to think like the original programmer and unravel their logic without needing to execute a single line of code.<br/>
+
+## Learnings
+1. Reading and understanding code is important - sometimes we don't have to execute the code.
+
+## Prevention & Hardening Notes
+1. Avoid using reversible operations like XOR for protecting secrets. We should treat that as a password and use one-way hash e.g. SHA-256.

@@ -223,3 +223,18 @@ We intercept the request with a repeater and and send ```eb72a05369dcb44c``` as 
 ## Response
 !!! quote "Kevin"
         ...
+
+## Learnings
+
+1. The biggest learning was very non-technical but MOST important - If you are on a pentest engagement, stick to the scope you are given.
+1. Old artifacts like sitemaps are still gold, even when partially outdated.
+1. HTML comments does not actually hide things from the user as they can always look at the HTML source.
+1. Trusting headers like X-Forwarded-For is effectively trusting the attacker.
+1. Predictable cookies turn authorization into a guessing game.
+
+## Prevention & Hardening Notes
+1. Don't ship dev or debug endpoints, especially under production paths.
+1. Never rely on client-supplied headers (XFF) for access control decisions.
+1. Remove dead/commented code from production responses.
+1. Use server-side authorization checks, not UI visibility.
+1. Make cookies non-predictable and bind them to user/session state.

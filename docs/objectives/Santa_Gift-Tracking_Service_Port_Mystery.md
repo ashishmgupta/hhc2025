@@ -87,3 +87,11 @@ We could connect to the port and the objective is completed.<br/>
 !!! quote "Yori Kvitchko"
     Great work - thank you!<br/>
     Geez, maybe you can be my intern now!<br/>
+
+## Learnings
+1. I was reminded NOT to assume services live on "expected" ports. The real clue here was noticing what was listening, not what I thought should be.
+1. Basic enumeration still matters. A simple look at open ports and service behavior revealed more than overthinking the problem ever would.
+
+## Prevention & Hardening Notes
+1. Avoid exposing internal or administrative services on non-standard ports without proper access controls. Obscurity alone doesn't add security.
+1. Continuously inventory and monitor listening services, especially those running on unexpected ports, to catch accidental exposure early.

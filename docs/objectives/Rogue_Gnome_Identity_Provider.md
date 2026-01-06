@@ -338,3 +338,10 @@ refrigeration-botnet.bin
 !!! quote "Paul Beckett"
     Brilliant work on that privilege escalation! You've successfully gained admin access to the diagnostic interface.<br/>
     Now we finally know what updates the gnomes have been receiving - proper good pentesting skills in action!
+
+
+## Learnings
+1. 1. A user-supplied URL in the `jku` claim can allow attackers to control the source of signing keys and forge trusted JWTs.
+
+## Prevention & Hardening Notes
+1. Never allow user-controlled `jku` values; JWKS locations should be hard-coded or strictly allowlisted on the server side.

@@ -31,7 +31,7 @@ icon: material/text-box-outline
 
     If you ever get into collecting things like vintage computers, here is a tip. Never forget to remove the RIFA capacitors from vintage computer power supplies when restoring a system. If not they can pop and fill the room with nasty smoke.<br/>
 
-    I love vintage computing, it’s the very core of where and when it all began. I still enjoy writing programs in BASIC and have started re-learning Apple II assembly language. I started writing code in 1982 on a Commodore CBM.<br/>
+    I love vintage computing, it's the very core of where and when it all began. I still enjoy writing programs in BASIC and have started re-learning Apple II assembly language. I started writing code in 1982 on a Commodore CBM.<br/>
 
     Sometimes it is the people no one can imagine anything of who do the things no one can imagine. - Alan Turing<br/>
 
@@ -145,3 +145,10 @@ echo "bWVycnkgY2hyaXN0bWFzIHRvIGFsbCBhbmQgdG8gYWxsIGEgZ29vZCBuaWdodAo=" | base64
 !!! quote "Mark DeVito"
     Excellent work! You've successfully recovered that deleted file and decoded the hidden message. <br/>
     Sometimes the old ways are the best ways. Vintage file systems never truly forget what they've seen. Play some Star Trek... it actually works.
+
+## Learnings
+1. Deleting a file doesn't necessarily mean it's gone.
+1. Explore the disk structure first with recovery tools like TestDisk.
+
+## Prevention & Hardening Notes
+1. When handling legacy systems or backups, If they are really decommissioned, securely wipe them.

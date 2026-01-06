@@ -28,7 +28,7 @@ icon: material/text-box-outline
    Charlie in the hotel has quantum gnome mysteries waiting to be solved. What is the flag that you find?
 
 ??? quote "Charlie Goldner"
-        Things are getting strange, and I think we’ve wandered into a quantum conundrum!<br/>
+        Things are getting strange, and I think we've wandered into a quantum conundrum!<br/>
         If you help me unravel these riddles, we might just outsmart future quantum computers.<br/>
         Cryptic puzzles, quirky gnomes, and post-quantum secrets—will you leap with me?<br/>
 
@@ -181,3 +181,13 @@ HHC{L3aping_0v3r_Quantum_Crypt0}
     That was wild—who knew quantum gnomes could hide so many secrets?<br/>
     Thanks for helping me leap into the future of cryptography!
 
+
+## Learnings
+1. I didn't even know you can have comments in SSH keys.
+
+
+## Prevention & Hardening Notes
+1. Anything sensitive in comments is not acceptable. So, code review (both manual and automated) is important to catch those.
+1. Enforce strict file permissions and separation between user environments so that SSH keys and related metadata aren't readable across accounts.
+Here Multiple user accounts (gnome1,gnome4,admin) existed on the same host.<br/>
+Each user's .ssh directory was readable once you pivoted into that account.

@@ -142,3 +142,10 @@ Challenge Complete! To finish, type: finish
 
 !!! quote "Goose Barry"
     There it is. A SAS token with read-write-delete permissions, publicly accessible. <br/>At least someone around here knows how to do a proper security audit.
+
+## Learnings
+1. A static website hosting can unintentionally configuration artifacts (```terraform.tfvars```) with sensitive data.
+
+## Prevention & Hardening Notes
+1. Keep public website content and infrastructure or configuration files strictly separated, and never place sensitive files in containers meant for public access.
+1. Actively look for exposed secrets like SAS tokens in storage accounts and rotate or revoke them immediately when they're found.

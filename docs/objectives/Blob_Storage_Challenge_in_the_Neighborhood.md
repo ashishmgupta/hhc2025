@@ -145,3 +145,12 @@ Type finish to complete the objective
 
 !!! quote "Goose Grace"
    HONK HONK HONK! 'No sensitive data publicly accessible' they claimed. Meanwhile, literally everything was public! Good save, security expert!
+
+
+## Learnings
+1. A single configuration flag (`allowBlobPublicAccess` in this case) can completely change the security posture of a cloud service, even when everything else appears normal.
+1. Enumerating cloud resources methodically made it clear how easy it is for sensitive data to become public without anyone actively exposing it.
+
+## Prevention & Hardening Notes
+1. Disable public blob access at the storage account level unless there is a clear and documented business requirement.
+1. Regularly audit storage accounts and containers for public access and monitor for sensitive files being placed in publicly accessible locations.

@@ -491,3 +491,13 @@ We submit that as the answer and that is accepted. <br/>
 !!! quote "Goose Olivia"
     Looks like you found your own way down that mountain... and maybe took a few shortcuts along the way. <br/>
     No judgment here—sometimes the clever path IS the right path. Now I'm one step closer to figuring out my own mystery. Thanks for the company, friend!
+
+## Learnings
+
+1. PyInstaller executables can be extracted and reversed.
+1. Unused code paths often contain the real solution.
+1. XOR with a predictable seed is fully reversible.
+
+## Prevention & Hardening Notes
+Avoid placing secrets in client-side logic.
+

@@ -92,3 +92,11 @@ Completing the firewall configuration rules completes this objective.
 ## Response
 !!! quote "Chris Elgee"
     <i>finger guns</i> You did it! That deserves the biggest whoopie pie celebration ever - way to have fun while saving the day!
+
+## Learnings
+1. This challenge reinforced how firewall rules are really about *intent*, not just ports — understanding traffic direction and trust zones matters more than memorizing allow/deny patterns.
+1. Visualizing traffic flows between Internet, DMZ, internal, and cloud zones made it much easier to reason about what should be allowed versus what should be blocked.
+
+## Prevention & Hardening Notes
+1. Define firewall rules based on clear zone boundaries and least-privilege access, allowing only the protocols required for each trust level.
+1. Regularly review and test firewall rules to ensure they still match the intended network design and haven't drifted into overly permissive configurations.

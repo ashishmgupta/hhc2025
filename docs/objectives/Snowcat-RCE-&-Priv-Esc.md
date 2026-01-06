@@ -37,7 +37,7 @@ icon: material/text-box-outline
 
 ### High-Level Steps
 
-1. **Gain Initial RCE** – Exploit Snowcat’s Tomcat-based deserialization vulnerability.
+1. **Gain Initial RCE** – Exploit Snowcat's Tomcat-based deserialization vulnerability.
 2. **Identify Privilege Escalation** – Locate SUID root weather monitoring binaries.
 3. **Escalate & Extract Key** – Inject commands to read the unused authorization key.
 
@@ -249,3 +249,14 @@ We enter that in the challenge and Its accepted.<br/>
     Fantastic work! You've successfully exploited those vulnerabilities and retrieved the authorization key from the weather monitoring system.<br/>
 
     Thanks for helping me get access back - our customers are going to have a much better experience now that we've got the weather station running again!
+
+## Learnings
+
+- Snowcat inherited Tomcat risk directly [CVE-2025-24813].
+- Legacy binaries ran as root and trusted input they shouldn't have.
+- Hard-coded keys in JSPs are effectively public once filesystem access exists.
+
+## Prevention & Hardening Notes
+- Patch or disable deserialization paths in Tomcat-based services.
+- Remove or strictly limit SUID binaries; avoid shell execution entirely.
+- Never pass user input to system commands, even in internal tools.

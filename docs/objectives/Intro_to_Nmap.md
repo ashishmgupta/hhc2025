@@ -115,3 +115,11 @@ After connecting to the port 24601 via ncat, the objective is completed.
 
 !!! quote "Eric Pursley"
     Excellent! You stayed laser-focused and didn't let any distractions lead you astray - that's exactly how you reach your goals!
+
+
+## Learnings
+1. Start with Nmap scanning, and definitely follow up with service detection and direct interaction.
+
+## Prevention & Hardening Notes
+1. Regularly scan environments from an external perspective to identify unintended exposed ports or services before an attacker does.
+1. Limit service exposure by binding services to only required interfaces and ports, and verify that non-standard ports are intentional and documented.

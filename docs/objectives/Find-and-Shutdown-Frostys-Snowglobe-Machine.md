@@ -36,7 +36,7 @@ Identify the visual encoding outside the data center and extract the hidden inst
 Reverse the Konami Code concept and translate it into in-game movement rules.
 
 1. **Navigate & Confront**:
-Follow the derived path through the maze to reach Frosty’s lab and stop the machine.
+Follow the derived path through the maze to reach Frosty's lab and stop the machine.
 
 ```mermaid
 %%{init: {"themeVariables": {
@@ -69,7 +69,7 @@ flowchart TD
     direction LR
     J[Follow path through data center rooms]
     K[Traverse Room 1 → Room 11 following the movement rules]
-    L[Reach Frosty’s hidden lab]
+    L[Reach Frosty's hidden lab]
     M[Come out of the lab with snow crystal]
     J --> K --> L --> M
   end

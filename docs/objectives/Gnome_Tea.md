@@ -44,7 +44,7 @@ icon: material/text-box-outline
 
 ```mermaid
 %%{init: {"themeVariables": {
-  "fontSize": "25px",
+  "fontSize": "22px",
   "nodeTextSize": "18px",
   "clusterTextSize": "22px"
 }}}%%
@@ -52,8 +52,8 @@ flowchart TD
 
   subgraph Row1["Discover"]
     direction LR
-    A[Inspect client-side JavaScript]
-    B[Identify Firebase configuration]
+    A[Inspect client-side JS]
+    B[Identify Firebase config]
     A --> B
   end
 
@@ -180,7 +180,7 @@ Looking at the dms.json looking for "pass"<br/>
 
 ![Gnome_Tea](../img/objectives/Gnome_Tea/Gnome_Tea_6.png)<br/>
 
-Since the location data was found in the Barnanby Briefcase’s id, It has to be his password based on the above. Now we need to look for his email address.<br/>
+Since the location data was found in the Barnanby Briefcase's id, It has to be his password based on the above. Now we need to look for his email address.<br/>
 ```
 cat gnomes.json | grep email
 ```
@@ -248,3 +248,12 @@ We submit that as the answer and that is accepted.<br/>
     I asked what they were up to and it said something about going to the old warehouse/data center at the appointed time for the next meeting. No clue what that means though.<br/>
 
     Anyhoo, that's a pretty big item you helped remove from my pile of unfinished hacking projects. I really appreciate the assist!<br/>
+
+
+## Learnings
+1. Client-side logic cannot be trusted for enforcing access control. Anything exposed in JavaScript (admin flags, UIDs, feature gates) can be inspected and overridden by an attacker.
+2. A publicly listable Firebase bucket, permissive Firestore rules, and exposed EXIF metadata together turned small leaks into full account compromise.
+
+## Prevention & Hardening Notes
+1. Enforce authorization exclusively on the backend. Admin access should be validated using server-side checks (e.g., Firebase Auth + Firestore Security Rules), never by client-side variables like `ADMIN_UID`.
+2. Lock down Firebase resources by default: disable public bucket listing, restrict Firestore reads, and strip EXIF metadata from uploaded images to avoid unintentional data leakage.

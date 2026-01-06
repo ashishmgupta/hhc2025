@@ -188,3 +188,12 @@ The challenge is now completed.<br/>
 !!! quote "Goose Lucas"
     Ha! 'Properly protected' they said. More like 'properly exposed to the entire internet'!<br/>
     Good catch, amigo.
+
+
+## Learnings
+1. A single overly permissive NSG rule can expose critical services like RDP directly to the internet.
+
+
+## Prevention & Hardening Notes
+1. Never allow direct internet access to management ports like RDP or SSH; restrict access using jump hosts, VPNs, or private endpoints.
+1. Regularly audit NSG rules for broad source ranges (such as `0.0.0.0/0`) and flag any inbound rules that allow sensitive ports.

@@ -89,7 +89,7 @@ icon: material/text-box-outline
     * Multiple 7-bit device addresses share the same SDA/SCL lines.
     * START condition: SDA falls while SCL is high. STOP: SDA rises while SCL is high.
     * First byte of a transaction = (7-bit address << 1) | R/W. Extract address with address = first_byte >> 1.
-    * Identify and decode every device’s transactions; decrypt only the target device’s payload.
+    * Identify and decode every device's transactions; decrypt only the target device's payload.
     * Print bytes in hex and as ASCII (if printable) — hex patterns reveal structure.
     * Check printable ASCII range (0x20–0x7E) to spot valid text.
     * Verify endianness: swapping LSB/MSB will quickly break readable text.
@@ -103,7 +103,7 @@ icon: material/text-box-outline
 
 !!! question "Request"
    Help Evan next to city hall hack this gnome and retrieve the temperature value reported by the I²C device at address 0x3C. <br/>
-   The temperature data is XOR-encrypted, so you’ll need to work through each communication stage to uncover the necessary keys. <br/>
+   The temperature data is XOR-encrypted, so you'll need to work through each communication stage to uncover the necessary keys. <br/>
    Start with the unencrypted data being transmitted over the 1-wire protocol.
 
 ??? quote "Evan Booth"
@@ -121,7 +121,7 @@ icon: material/text-box-outline
 
 ```mermaid
 %%{init: {"themeVariables": {
-  "fontSize": "25px",
+  "fontSize": "20px",
   "nodeTextSize": "18px",
   "clusterTextSize": "22px"
 }}}%%
@@ -166,7 +166,7 @@ flowchart TD
     **What is 1-Wire?**
     1-Wire is a communication protocol designed to transfer data between a master device (like a microcontroller or Raspberry Pi) and one or more peripheral devices (such as temperature sensors) using just a single data wire, plus ground.<br/>
 
-    As the name suggests, all communication happens over one shared data line, which makes 1-Wire very simple from a wiring perspective. Because of this simplicity, it’s commonly used for low-speed, low-power devices where minimizing wires and hardware complexity is important.<br/>
+    As the name suggests, all communication happens over one shared data line, which makes 1-Wire very simple from a wiring perspective. Because of this simplicity, it's commonly used for low-speed, low-power devices where minimizing wires and hardware complexity is important.<br/>
 
     **What is the Data Line in 1-Wire?**
     In 1-Wire, there is only one signal line, usually called DQ or DATA.<br/>
@@ -177,7 +177,7 @@ flowchart TD
     The data line is normally held high using a pull-up resistor.<br/>
     Both the master and the slave devices communicate by pulling the line low for specific durations of time.<br/>
 
-    So instead of using a separate clock (like I²C’s SCL), 1-Wire encodes data entirely using timing.<br/>
+    So instead of using a separate clock (like I²C's SCL), 1-Wire encodes data entirely using timing.<br/>
 
     **How does communication work without a clock?**<br/>
 
@@ -490,14 +490,14 @@ We run the script and get the key as "icy". <br/>
     SPI, stands for Serial Peripheral Interface, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, SD cards, and displays. It's known for being pretty fast and straightforward. <br/>
 
     **What is MOSI and SCK?** <br/>
-    MOSI stands for "Master Out Slave In", which means it’s the line on which the master device sends data out to a slave device. <br/>
+    MOSI stands for "Master Out Slave In", which means it's the line on which the master device sends data out to a slave device. <br/>
     SCK is the "Serial Clock". This is the line that the master uses to send a clock signal to keep everything in sync.<br/>
 
-    In other words, with SPI, the master is always driving a clock signal, and it’s pushing data out through the MOSI line. The slave devices listen to that clock and pick up the data accordingly.
+    In other words, with SPI, the master is always driving a clock signal, and it's pushing data out through the MOSI line. The slave devices listen to that clock and pick up the data accordingly.
 
     **How SPI is different from 1-Wire protocol?** <br/>
     In a 1-wire protocol, you typically have just one data line that handles both sending and receiving bits. <br/>
-    1-Wire is simpler in terms of wiring, but it’s not as fast or as flexible as SPI. <br/>
+    1-Wire is simpler in terms of wiring, but it's not as fast or as flexible as SPI. <br/>
     SPI is generally faster and more suited for situations where you need to move data quickly and have multiple devices.
 
     **What are the practical examples where SPI is used?** <br/>
@@ -765,11 +765,11 @@ Decoding the stream from SPI shows the key 'bananza'.
 ### I2C protocol
 ??? "Fundamentals"
     **What is I²C?** <br/>
-    I²C, stands for Inter-Integrated Circuit, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, EEPROMs, and real-time clock modules. It’s designed to use fewer wires and to allow multiple devices to share the same bus. <br/>
+    I²C, stands for Inter-Integrated Circuit, is basically a communication protocol often used to send data between microcontrollers and small peripherals like sensors, EEPROMs, and real-time clock modules. It's designed to use fewer wires and to allow multiple devices to share the same bus. <br/>
 
     **What is SDA and SCL?** <br/>
-    SDA stands for “Serial Data Line”, which means it’s the line on which data is sent and received between the master and slave devices. <br/>
-    SCL is the “Serial Clock Line”. This is the line that the master uses to send a clock signal to keep everything in sync. <br/>
+    SDA stands for "Serial Data Line", which means it's the line on which data is sent and received between the master and slave devices. <br/>
+    SCL is the "Serial Clock Line". This is the line that the master uses to send a clock signal to keep everything in sync. <br/>
 
     In other words, with I²C, the master is always driving a clock signal on SCL, and data is exchanged on the SDA line. The slave devices listen to that clock and read or drive data on SDA accordingly.
 
@@ -1183,3 +1183,11 @@ Decoding the I2C data with the key bananza shows the temperature at address 0x3C
     Nice work! You cracked that signal encoding like a pro.<br/>
     Turns out the weirdness had a method to it after all - just like most of my builds!<br/>
 
+## Learnings
+1. First of all - I didn't even know about Signal processing protocols let alone solving a challenge on the same.
+This got me interested in testing with actual hardware. In next few weeks I will be publishing a blog post on this.<br/>
+Solving the challenge here didn't make me an expert - actually far from it.<br/>
+But defnitely gave me headstart. THANK YOU!
+
+Current status : Testing with DS18B20 Temperature Sensor for 1-wire protocol<br/>
+![On the Wire](../img/objectives/On-the-wire/On-the-wire_15.png)<br/>
