@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Common head elements -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/register/css/style.css">
+<link rel="icon" href="/register/images/favicon.ico" type="image/x-icon">
+<script src="/register/js/home.js" defer></script>
+<script src="/register/js/idparam-propagation.js" defer></script>
+<style>
+    body {
+        background: url('/register/images/snowy_background.png') no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+    :root {
+        --accent-color: #D22736;
+        --accent-color-rgb: 210, 39, 54;
+        --secondary-color: #4d9e40;
+    }
+</style>
+    <title>Neighborhood College Courses</title>
+    <!-- Common page styles -->
+<style>    
+    .snowflake {
+        position: absolute;
+        color: white;
+        opacity: 0.7;
+        font-size: 1.5rem;
+        animation: fall linear infinite;
+        z-index: -1;
+    }
+    
+    @keyframes fall {
+        0% {
+            transform: translateY(-100vh);
+        }
+        100% {
+            transform: translateY(95vh);
+        }
+    }
+      /* Snowflake styles */
+    #snowflakes {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+    }
+	
+	/* Snow particles animation */
+    .snow-animation {
+        position: relative;
+        height: 150px;
+        background: linear-gradient(to bottom, #3498db, #2c3e50);
+        border-radius: 8px;
+        margin-top: 1.5rem;
+        overflow: hidden;
+    }
+    
+    .snow-particle {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: snowfall linear infinite;
+    }
+    
+    @keyframes snowfall {
+        0% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(150px);
+        }
+    }
+</style>
+    <!-- Common course page styles -->
+<style>
+    .course-banner {
+        background: linear-gradient(to right, #e74c3c, #c0392b);
+        border-radius: 8px;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .course-icon {
+        font-size: 2.5rem;
+    }
+    
+    .course-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .course-section {
+        background: rgba(255, 255, 255, 0.9);
+        padding: .5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .courses-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .courses-container {
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 1rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .courses-list {
+        text-align: left;
+        background: transparent;
+        padding: 0;
+        font-size: clamp(0.9rem, 1.7vw, 1.3rem);
+    }
+
+    .courses-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        white-space: normal;
+        line-height: 1.3;
+    }
+
+    .courses-list a {
+        display: inline-block;
+    }
+    
+    .course-banner p {
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        background: transparent;
+    }
+
+    .course-section h2 {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .course-section p, 
+    .course-section li {
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+        font-size: .9rem;
+    }
+
+    .instructor-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        justify-content: center;
+    }
+    
+    .instructor-section h3 {
+        font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    }
+
+    .instructor-section p {
+        font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+        background: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
+    .instructor-avatar {
+        background: #2ecc71;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    h2.semester-heading, 
+    .courses-container > h2 {
+        white-space: nowrap;
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    ul {
+        background: var(--panel-bg);
+        padding: 1rem;
+        border-radius: 10px;
+        list-style-type: square;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .back-to-search {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        background-color: rgba(210, 39, 54, 0.85);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000; 
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        max-width: 90px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        opacity: 0.85;
+        transform: translate(0, 0);
+    }
+    
+    .back-to-search:hover {
+        background-color: rgba(210, 39, 54, 1);
+        opacity: 1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .back-to-search::before {
+        content: "←";
+        margin-right: 3px;
+    }
+    
+    @media (max-width: 768px) {
+        .back-to-search {
+            bottom: 65px; 
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            max-width: 80px;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .back-to-search {
+            bottom: 70px;
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 3px 7px;
+            max-width: 75px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .back-to-search {
+            bottom: 80px;
+            right: 8px;
+            font-size: 0.65rem;
+            padding: 3px 6px;
+            max-width: 70px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .back-to-search {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .back-to-search {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            bottom: 15px;
+            right: 15px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .back-to-search {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            bottom: 60px;
+            right: 10px;
+        }
+    }
+    
+    @media (max-width: 320px) {
+        .back-to-search {
+            font-size: 0.65rem;
+            padding: 3px 7px;
+            bottom: 70px;
+            right: 5px;
+        }
+    }
+    
+    /* Cookie showcase styles */
+    .cookie-showcase {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        height: 120px;
+    }
+    
+    .cookie {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: relative;
+    }
+    
+    .cookie::before {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #3d2817;
+        border-radius: 50%;
+        top: 15px;
+        left: 20px;
+        box-shadow: 
+            15px 10px 0 #3d2817,
+            -10px 15px 0 #3d2817,
+            20px -5px 0 #3d2817,
+            -5px -10px 0 #3d2817;
+    }
+    
+    .cookie-frosted {
+        width: 60px;
+        height: 60px;
+        background: #c87f35;
+        border-radius: 50%;
+        position: relative;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cookie-frosted::before {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: #f5f5f5;
+        border-radius: 50%;
+        top: 5px;
+        left: 5px;
+    }
+    
+    .cookie-sprinkles {
+        width: 60px;
+        height: 60px;
+        background: #c87f35;
+        border-radius: 50%;
+        position: relative;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cookie-sprinkles::before {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: #f5f5f5;
+        border-radius: 50%;
+        top: 5px;
+        left: 5px;
+    }
+    
+    .sprinkle {
+        position: absolute;
+        width: 5px;
+        height: 2px;
+        border-radius: 1px;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+    }
+    
+    .cookie-display-container {
+        position: relative;
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+    
+    .cookie-display {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 30px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        white-space: nowrap;
+        min-height: 100px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .cookie {
+        display: inline-block;
+        font-size: 3rem;
+        animation: bounce 2s infinite ease-in-out;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+    
+    .cookie:hover {
+        transform: scale(1.2);
+    }
+    
+    .cookie:nth-child(2n) {
+        animation-delay: 0.3s;
+    }
+    
+    .cookie:nth-child(3n) {
+        animation-delay: 0.6s;
+    }
+    
+    .cookie:nth-child(4n) {
+        animation-delay: 0.9s;
+    }
+    
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    .cookie-scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background-color: rgba(210, 39, 54, 0.8);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        opacity: 0.8;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cookie-scroll-btn:hover {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cookie-scroll-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(210, 39, 54, 0.4);
+    }
+    
+    .cookie-scroll-btn.left {
+        left: 10px;
+    }
+    
+    .cookie-scroll-btn.right {
+        right: 10px;
+    }
+    
+    .cookie-scroll-btn.hidden {
+        display: none;
+    }
+    
+    @media (max-width: 768px) {
+        .cookie {
+            font-size: 2.5rem;
+        }
+        
+        .cookie-display {
+            gap: 15px;
+            padding: 15px 25px;
+        }
+        
+        .cookie-scroll-btn {
+            width: 25px;
+            height: 25px;
+            font-size: 0.9rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .cookie {
+            font-size: 2rem;
+        }
+        
+        .cookie-display {
+            gap: 10px;
+            padding: 10px 20px;
+        }
+        
+        .cookie-scroll-btn {
+            width: 22px;
+            height: 22px;
+            font-size: 0.8rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .cookie-display {
+            padding: 15px 0;
+            gap: 15px;
+        }
+        
+        .cookie {
+            font-size: 2.5rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .cookie-display {
+            padding: 10px 0;
+            gap: 10px;
+        }
+        
+        .cookie {
+            font-size: 2rem;
+        }
+    }
+    
+    .scroll-indicator {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        font-weight: bold;
+        opacity: 0.7;
+        cursor: pointer;
+        z-index: 5;
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.3s ease;
+    }
+    
+    .scroll-indicator:hover {
+        opacity: 1;
+    }
+    
+    .scroll-indicator.left {
+        left: 5px;
+    }
+    
+    .scroll-indicator.right {
+        right: 5px;
+    }
+    
+    @media (max-width: 480px) {
+        h2.semester-heading,
+        .courses-container > h2 {
+            font-size: 1.2rem;
+        }
+    }
+    
+    .reindeer-gallery {
+        margin: 1.5rem 0;
+        overflow: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .reindeer-profile {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.8rem;
+        border-radius: 8px;
+        width: calc(33.33% - 10px);
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .reindeer-profile h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .reindeer-profile p {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .reindeer-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .reindeer-table th {
+        background-color: var(--accent-color);
+        color: white;
+        padding: 12px 15px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    
+    .reindeer-table td {
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 0.95rem;
+    }
+    
+    .reindeer-table tr:last-child td {
+        border-bottom: none;
+    }
+    
+    .reindeer-table tr:nth-child(even) {
+        background-color: rgba(235, 235, 235, 0.5);
+    }
+    
+    .reindeer-table .reindeer-name {
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+    
+    @media (max-width: 768px) {
+        .reindeer-table th,
+        .reindeer-table td {
+            padding: 8px 10px;
+            font-size: 0.9rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .reindeer-table {
+            font-size: 0.85rem;
+        }
+        
+        .reindeer-table th,
+        .reindeer-table td {
+            padding: 6px 8px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .reindeer-profile {
+            width: calc(50% - 10px);
+        }
+        
+        .reindeer-profile h3 {
+            font-size: 1.1rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .reindeer-profile {
+            width: 100%;
+        }
+        
+        .reindeer-profile h3 {
+            font-size: 1rem;
+        }
+        
+        .reindeer-gallery {
+            gap: 10px;
+        }
+    }
+    
+    .reindeer-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    
+    .reindeer-profile {
+        text-align: center;
+        width: 100px;
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .reindeer-avatar {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .reindeer-name {
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+    }
+    
+    .reindeer-specialty {
+        font-size: 0.8rem;
+        color: #666;
+    }
+    
+    .blueprint {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1.5rem auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .blueprint h3 {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        margin-top: 0;
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+    
+    .ascii-art {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .ascii-art pre {
+        display: inline-block;
+        margin: 0;
+        text-align: left;
+        font-family: monospace;
+        font-size: 0.75rem;
+        line-height: 1.2;
+        white-space: pre;
+        color: var(--accent-color);
+    }
+    
+    @media (max-width: 768px) {
+        .blueprint h3 {
+            font-size: 1.1rem;
+        }
+        
+        .ascii-art pre {
+            font-size: 0.65rem;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .ascii-art pre {
+            font-size: 0.55rem;
+            line-height: 1;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .blueprint {
+            padding: 0.8rem;
+        }
+        
+        .blueprint h3 {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+        
+        .ascii-art pre {
+            font-size: 0.45rem;
+            line-height: 0.9;
+        }
+    }
+    
+    @media (max-width: 320px) {
+        .ascii-art pre {
+            font-size: 0.4rem;
+            transform: scale(0.8);
+            transform-origin: center center;
+        }
+    }
+</style>
+    <link rel="stylesheet" href="/register/css/gnome-character.css">
+    <link rel="stylesheet" href="/register/css/registerCourses.css">
+    <link rel="stylesheet" href="/register/css/notification.css">
+</head>
+<body>
+    <div class="mini-gnome-container"></div>
+<script>
+(function() {
+    if (window.gnomeVandalLoaded) return;
+    window.gnomeVandalLoaded = true;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+
+        if (getCookie('Schrodinger')) {
+            var container = document.querySelector('.mini-gnome-container');
+            if (container && !document.getElementById('mini-gnome')) {
+                var img = document.createElement('img');
+                img.src = '/gnomeU?id=29fd5890-bbaf-4446-86f9-2ecd97fb8d39';
+                img.id = 'mini-gnome';
+                img.style.cssText = 'width: 20px;height: auto;position: fixed; left: 10px; bottom: 10px;';
+                container.appendChild(img);
+            }
+        }
+    });
+})();
+</script>
+    
+    <div class="notification">In-scope vulnerability found and reported!</div>
+    
+    
+    <main id="elfStyle" style="top: 15vh;">
+        <!-- Include common animations -->
+        <div id="snowflakes"></div>
+
+<script src="/register/js/course_common.js"></script>
+        
+        <header>
+            <p class="welcome" role="banner">🎄 Neighborhood College Courses</p>
+        </header>
+        <section class="courses-content">
+            <div class="courses-container" style="max-width: 500px;">
+                <h2 class="semester-heading">❄️ Spring Semester 2026 ❄️</h2>
+                <!-- Should provide course listing here eventually instead of the extra step through search flow. -->
+                <ul id="courseSearch" class="courses-list">
+                    <li><a href="/register/courses/search?id=29fd5890-bbaf-4446-86f9-2ecd97fb8d39">Course Search</a></li>
+                </ul>
+            </div>
+        </section>
+        <!-- Common navigation and instructions section -->
+<p class="violation"><a href="/">🏠 Return Home</a> | <a href="/register/reset">🔁 Reset Session</a> | <a href="/register/status_report">📋 View Status Report</a> | <a href="#" id="instBtn" aria-expanded="false" aria-controls="rules">📖 Instructions</a></p>
+<div id="rules" class="rules" aria-hidden="true">    <img id="instructions" src="/register/images/instructions.png" alt="Instructions for the Registration System" style="max-height:100%;">
+    <button id="closeInstructions" class="close-instructions" aria-label="Close Instructions">Close</button>
+</div>
+        <div class="gnome-character-container">
+            <img src="/register/images/gnome-hacker.png" alt="Gnome Hacker" class="gnome-image">
+            <div class="speech-bubble">
+                <span class="initial-text">Guess the site really is still under construction, heh-he!</span>
+                <span class="hover-text">I bet someone has a <i>comment</i> or two about that!</span>
+            </div>
+        </div>
+    </main>
+    <script src="/register/js/registerCourses.js"></script>
+</body>
+</html>

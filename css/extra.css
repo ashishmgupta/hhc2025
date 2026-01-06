@@ -90,3 +90,32 @@ article.md-content__inner {
     -webkit-mask-image: var(--md-admonition-icon--text);
     mask-image: var(--md-admonition-icon--text);
 }
+
+
+/* ================================
+   Enlarge Content Tabs (Material)
+   ================================ */
+
+/* Tab labels */
+.md-typeset .tabbed-labels > label {
+  font-size: 1.05rem;        /* default ~0.8rem */
+  font-weight: 600;
+  padding: 0.75rem 1.2rem;
+}
+
+/* =========================================
+   Act challenge titles (content area only)
+   ========================================= */
+
+/* Target only navigation lists inside the page content */
+.md-content .md-nav__link {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* Active / expanded challenge */
+.md-content .md-nav__item--active > .md-nav__link {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+

