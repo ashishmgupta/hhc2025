@@ -995,22 +995,13 @@ We can move it to rach the lever on the top left to complete the challenge.
     Time to turn this little rebel against its own manufacturing operation and shut them down for good!
 
 ## Learnings
-
-1. Even simple enumeration endpoints can be chained into full compromise. The `/userAvailable` true/false response was enough to discover valid users and later abuse as a blind extraction oracle.
-1. Error messages matter. The Cosmos DB library leak immediately changed the attack path from SQLi to NoSQL-specific payloads and made `IS_DEFINED` viable.
-1. Blind extraction doesn't need to be clever—just consistent. Once the field name and hash format were clear, character-by-character probing worked reliably.
-1. Client-side update functionality is risky when it directly mutates server-side objects. The “update name” feature quietly opened the door to prototype pollution.
-1. Prototype pollution combined with template rendering is especially dangerous. Once polluted values were rendered in `/stats`, RCE was effectively inevitable.
-1. RCE was only a pivot. The real objective was hardware control, and shell access was just the fastest way to inspect and fix the CAN bus client.
-1. CAN bus control relied on obscurity, not security. With access to the client and docs, brute-forcing command IDs was enough to fully control movement.
+1. I first learnt about **prototype pollution** in this challenge.
+When combined with template rendering, It can get us the RCE on the server.
+1.  Don't assume the backend database is an RDBMS like SQL server :-). It could also be a NoSQL database and there are ways to determine the field names (e.g. using IS_DEFINED).
 
 
 ## Prevention & Hardening Notes
-1. Avoid user enumeration signals. Endpoints like `/userAvailable` should return uniform responses and be rate-limited to prevent abuse.
+1. Explicitly block prototype keys (`__proto__`, `constructor`, `prototype`) from all update paths.
 1. Never allow user input to influence NoSQL query structure. Operators like `$ne` and functions like `IS_DEFINED` should never be reachable from user-controlled data.
 1. Password was MD5 hashed. Use slow, salted password hashing (bcrypt/argon2).
-1. Explicitly block prototype keys (`__proto__`, `constructor`, `prototype`) from all update paths.
-1. Treat template rendering as a security boundary. User input should never affect rendering logic or execution paths.
-1. Do not allow web applications to execute OS commands. If hardware control is required, isolate it behind a tightly scoped service.
-1. Secure hardware control channels with authentication and validation. CAN commands should not be guessable or blindly accepted.
-1. Periodically audit legacy features. Several issues here existed simply because older code paths were never revisited.
+

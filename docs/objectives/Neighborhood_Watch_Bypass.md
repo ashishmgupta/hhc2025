@@ -191,9 +191,9 @@ Now we can execute restore_fire_alarm to restore the fire alarm system.
 
 
 ## Learnings
-1. I learned how easily a script relying on a relative path can lead to unintended privilege escalation.
-1. This challenge reinforced the importance of checking for simple sudo misconfigurations.
+1. Relative paths in privileged scripts are dangerous.
+1. One small sudo mistake is enough to escalate.
 
 ## Prevention & Hardening Notes
-1. Always use absolute paths in scripts run with elevated privileges to avoid PATH hijacking.
-1. Regularly audit sudo permissions to ensure that no user-writable directories are included in privileged execution contexts.
+1. Always use absolute paths in the scripts.
+1. Don’t allow writable paths in sudo configs.

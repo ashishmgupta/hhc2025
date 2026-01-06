@@ -124,9 +124,4 @@ Challenge is now completed.
 
 
 ## Learnings
-1. This challenge reinforced how much actually happens *before* an application request is ever sent — DNS resolution and connection setup are just as important as the HTTP request itself.
-1. Walking through each layer step-by-step (DNS > TCP > TLS > HTTP) made it easier to reason about where issues can occur instead of treating networking as a black box.
-
-## Prevention & Hardening Notes
-1. Monitor and log DNS, TCP, and TLS activity to gain visibility into connection establishment issues and unexpected access patterns.
-1. Ensure services enforce encryption where appropriate and do not rely on clients to "do the right thing" when choosing between HTTP and HTTPS.
+1. Through awesome and interactive UI, this challenge reminds me of DNS, TCP, TLS before HTTP request takes place.

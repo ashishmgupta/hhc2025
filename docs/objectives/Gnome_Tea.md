@@ -251,9 +251,9 @@ We submit that as the answer and that is accepted.<br/>
 
 
 ## Learnings
-1. Client-side logic cannot be trusted for enforcing access control. Anything exposed in JavaScript (admin flags, UIDs, feature gates) can be inspected and overridden by an attacker.
-2. A publicly listable Firebase bucket, permissive Firestore rules, and exposed EXIF metadata together turned small leaks into full account compromise.
+1. Always look for sensitive configs/secrets in the JS files.
+1. A publicly listable Firebase bucket, permissive Firestore rules, and exposed EXIF metadata together turned small leaks into full account compromise.
 
 ## Prevention & Hardening Notes
-1. Enforce authorization exclusively on the backend. Admin access should be validated using server-side checks (e.g., Firebase Auth + Firestore Security Rules), never by client-side variables like `ADMIN_UID`.
-2. Lock down Firebase resources by default: disable public bucket listing, restrict Firestore reads, and strip EXIF metadata from uploaded images to avoid unintentional data leakage.
+1. Enforce authorization exclusively on the server side. 
+2. Lock down Firebase resources by default. Disable public bucket listing, restrict Firestore reads, and strip EXIF metadata from uploaded images to avoid unintentional data leakage.

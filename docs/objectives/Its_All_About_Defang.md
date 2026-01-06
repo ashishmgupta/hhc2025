@@ -32,7 +32,7 @@ icon: material/text-box-outline
 
 ??? tip "Extract IOCs"
     Remember, the new Phishing Threat Analysis Station (PTAS) is still under construction. Even though the regex patterns are provided, they haven't been fine tuned. Some of the matches may need to be manually removed.
-    
+
 ## High-Level Steps
 
 1. **Extract** – Use regex to identify IOCs in the phishing message.
@@ -134,9 +134,9 @@ We submit the report to the security team and It is accepted.
     Thanks again! See ya 'round!
 
 ## Learnings
-1. An incorrect regex can partially defang an indicator, leaving a live IoC unintentionally exposed.
-1. A single missed character during defanging can turn a safe example back into a live indicator.
+1. A small regex mistake on my part allowed an indicator to slip through partially defanged.
+1. I was reminded how easy it is for a single missed character to turn a safe example into a live IoC.
 
 ## Prevention & Hardening Notes
-1. Use well-tested, standardized defanging and regex patterns rather than ad-hoc when handling IoCs at scale.
-1. Validate output from regex and the defanged output to ensure no live indicators remain before sharing or publishing.
+1. Use well-tested, defanging and regex patterns for IoCs.
+1. Validate output from regex and from the defang process.

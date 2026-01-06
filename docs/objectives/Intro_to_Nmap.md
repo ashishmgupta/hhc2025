@@ -118,8 +118,9 @@ After connecting to the port 24601 via ncat, the objective is completed.
 
 
 ## Learnings
-1. Start with Nmap scanning, and definitely follow up with service detection and direct interaction.
+1. Start with Nmap.
+1. After identifying the open port, check the service and interact with it.
 
 ## Prevention & Hardening Notes
-1. Regularly scan environments from an external perspective to identify unintended exposed ports or services before an attacker does.
-1. Limit service exposure by binding services to only required interfaces and ports, and verify that non-standard ports are intentional and documented.
+1. Scan from the outside so you see what attackers see.
+1. Only expose what’s needed, on the interfaces and ports you actually intend to use.

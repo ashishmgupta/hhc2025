@@ -183,11 +183,10 @@ HHC{L3aping_0v3r_Quantum_Crypt0}
 
 
 ## Learnings
-1. I didn't even know you can have comments in SSH keys.
+I didn't even know you can have comments in SSH keys.
 
 
 ## Prevention & Hardening Notes
 1. Anything sensitive in comments is not acceptable. So, code review (both manual and automated) is important to catch those.
-1. Enforce strict file permissions and separation between user environments so that SSH keys and related metadata aren't readable across accounts.
-Here Multiple user accounts (gnome1,gnome4,admin) existed on the same host.<br/>
-Each user's .ssh directory was readable once you pivoted into that account.
+1. Lock down file permissions between users.
+Here Multiple user accounts (gnome1,gnome4,admin) existed on the same host.

@@ -141,9 +141,7 @@ The answer is accepted. <br/>
     Now I can finally get back to streamin' some proper metal. BTC tips accepted, by the way.
 
 ## Learnings
-1. Exposed management interfaces can be dangerous when they're running outdated firmware, especially on consumer-grade networking gear.
-1. Simply identifying the exact model and firmware version was enough to pivot straight to a known vulnerability, without needing any credentials at all.
+If I get the firmware version of the router, can search for any published vulnerabilities for that firmware, look for exploits available and use that against that router.
 
 ## Prevention & Hardening Notes
-1. Keep router and network device firmware up to date, and regularly check for published CVEs affecting deployed hardware.
-1. Never expose router management interfaces to untrusted networks; restrict access to trusted IPs or management VLANs.
+Keep router and network device firmware up to date

@@ -147,8 +147,7 @@ echo "bWVycnkgY2hyaXN0bWFzIHRvIGFsbCBhbmQgdG8gYWxsIGEgZ29vZCBuaWdodAo=" | base64
     Sometimes the old ways are the best ways. Vintage file systems never truly forget what they've seen. Play some Star Trek... it actually works.
 
 ## Learnings
-1. Deleting a file doesn't necessarily mean it's gone.
-1. Explore the disk structure first with recovery tools like TestDisk.
+Learnt about TestDisk and how to recover data from the floppy disk. 
 
 ## Prevention & Hardening Notes
-1. When handling legacy systems or backups, If they are really decommissioned, securely wipe them.
+When handling legacy systems or backups, If they are really decommissioned, securely wipe them. In this case, I would format the floppy disk.

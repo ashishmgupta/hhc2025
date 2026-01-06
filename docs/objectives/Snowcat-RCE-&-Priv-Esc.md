@@ -254,9 +254,7 @@ We enter that in the challenge and Its accepted.<br/>
 
 - Snowcat inherited Tomcat risk directly [CVE-2025-24813].
 - Legacy binaries ran as root and trusted input they shouldn't have.
-- Hard-coded keys in JSPs are effectively public once filesystem access exists.
 
 ## Prevention & Hardening Notes
 - Patch or disable deserialization paths in Tomcat-based services.
-- Remove or strictly limit SUID binaries; avoid shell execution entirely.
-- Never pass user input to system commands, even in internal tools.
+- Remove or strictly limit SUID binaries and avoid shell execution entirely.

@@ -571,16 +571,15 @@ hhc25{Frostify_The_World_c05730b46d0f30c9d068343e9d036f80}
 
 
 ## Learnings
-1. LLMs and chatbots can leak sensitive information if they are wired directly into backend context without strict guardrails. Even when direct answers are blocked, simple transformations like encoding can still bypass intent.
-2. Any user-controlled input rendered server-side is a red flag. Seeing a value reflected back was enough to suspect template rendering and eventually confirm SSTI.
-3. Filtering "dangerous strings" is brittle. Octal encoding easily bypassed keyword-based defenses.
-4. Backup or maintenance scripts are often overlooked but can become powerful escalation paths when they process attacker-controlled input.
+1. Chatbots can leak backend details once ask to transform (like encoding) to the sensitive data (e.g. password)
+1. If a user controlled input can render output and Its using template (e.g. jinja), I should test for SSTI.
+1. If my exploit is are not working, very high chance keywords are getting blocked. I should then try encoding (octal/hex) to bypass the protection.
+1. I should always enumerate the file system looking for any backup/maintenance scripts which may have juicy details.
 
 ## Prevention & Hardening Notes
 1. Treat AI/chatbot responses as untrusted output. Never allow them access to secrets, credentials, or privileged runtime context.
-2. Do not render user input directly in server-side templates. If templating is required, enforce strict auto-escaping and avoid dynamic evaluation entirely.
+2. Do not render user input directly in server-side templates. 
 3. Avoid blacklist-based input filtering. Use allowlists and structural validation instead.
-4. Lock down backup and cron-style scripts:
 
 ## Response
 
