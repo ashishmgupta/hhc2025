@@ -124,6 +124,6 @@ Click on each act to view the challenges and detailed solutions.<br/>
 
 ![Group photo](./img/misc/group_photo.png)
 
-My son Aarush navigating through the maze. <br/>
+My son Aarush navigating through the maze. :-) <br/>
 ![Group photo](./img/misc/focus.png)
 
